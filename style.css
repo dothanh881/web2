@@ -1,0 +1,290 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Raleway&family=Rubik&display=swap");
+/*              Sass Template           */
+/*  global classes  */
+button, button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* typography classes */
+.font-baloo {
+    font-family: "Baloo Thambi 2", cursive;
+}
+
+.font-rale {
+    font-family: "Raleway", cursive;
+}
+
+.font-rubik {
+    font-family: "Rubik", cursive;
+}
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.font-size-14 {
+    font-size: 14px;
+}
+
+.font-size-16 {
+    font-size: 16px;
+}
+
+.font-size-20 {
+    font-size: 20px;
+}
+
+/* Color Template  */
+.color-primary {
+    color: #003859;
+}
+
+.color-primary-bg {
+    background: #003859;
+}
+
+.color-second {
+    color: #00A5C4;
+}
+
+.color-second-bg {
+    background: #00A5C4;
+}
+
+.color-third-bg {
+    background: #c42e00;
+}
+
+.color-yellow {
+    color: #FFD289;
+}
+
+.color-yellow-bg {
+    background: #FFD289;
+}
+
+/*  top sale template   */
+#top-sale .owl-carousel .item .product a {
+    overflow: hidden;
+}
+#top-sale .owl-carousel .item .product img {
+    transition: transform 0.5s ease;
+}
+#top-sale .owl-carousel .item .product img:hover {
+    transform: scale(1.1);
+}
+#top-sale .owl-carousel .owl-nav button {
+    position: absolute;
+    top: 30%;
+    outline: none;
+}
+#top-sale .owl-carousel .owl-nav button.owl-prev {
+    left: 0;
+}
+#top-sale .owl-carousel .owl-nav button.owl-prev span,
+#top-sale .owl-carousel .owl-nav button.owl-next span {
+    font-size: 35px;
+    color: #003859;
+    padding: 0 1rem;
+}
+#top-sale .owl-carousel .owl-nav button.owl-prev span {
+    margin-left: -4rem;
+}
+#top-sale .owl-carousel .owl-nav button.owl-next {
+    right: 0;
+}
+#top-sale .owl-carousel .owl-nav button.owl-next span {
+    margin-right: -4rem;
+}
+
+/*   Special Price Section Template */
+#special-price .grid .grid-item {
+    margin-right: 1.2rem;
+    margin-top: 1rem;
+}
+
+.searchbar {
+    display: inline-block;
+    position: relative;
+}
+
+.searchbar input[type="text"] {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.searchbar button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.searchbar button:hover {
+    background-color: #45a049;
+}
+/*# sourceMappingURL=style.css.map */
+
+.searchbar {
+   
+   
+    display: flex;
+}
+
+.searchbar input[type="text"] {
+   
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.searchbar button {
+    padding: 2px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.searchbar button:hover {
+    background-color: #45a049;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+    /* Nếu bạn muốn footer nằm trên main content, hãy thay đổi giá trị này thành flex: auto; */
+}
+
+.empty{
+    padding:1.5rem;
+    background-color: var(--white);
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    color:var(--red);
+    border-radius: .5rem;
+    font-size: 2rem;
+    text-transform: capitalize;
+ }
+ .search-form form {
+    display: flex;
+    justify-content: center;
+
+}
+
+.search-form form input {
+    width: 800px;
+    border: 1px solid #9e9d9d; /* Thay thế border */
+    border-radius: 5px;
+    background-color: #fff; /* Thay thế background-color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thay thế box-shadow */
+    padding: 5px;
+    
+    font-size: 1.2rem;
+    color: #000; /* Thay thế color */
+}
+
+.search-form form button {
+    font-size: 20px;
+    height: 50px;
+    line-height: 10px;
+    background-color: #19ae2f; /* Thay thế background-color */
+    cursor: pointer;
+    color: #fff; /* Thay thế color */
+    border-radius: 5px;
+    width: 100px;
+    text-align: center;
+
+}
+
+.search-form form button:hover {
+    background-color: #2dbe62; /* Thay thế background-color */
+}
+
+
+/* ORDER */
+
+.billing-details,
+.shiping-details {
+  margin-bottom: 30px;
+}
+
+.order-details {
+  position: relative;
+  padding: 0px 30px 30px;
+  border: 1px solid #E4E7ED;
+}
+
+.order-details:before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: -15px;
+  height: 30px;
+  border-top: 1px solid #E4E7ED;
+  border-left: 1px solid #E4E7ED;
+  border-right: 1px solid #E4E7ED;
+}
+
+.order-summary {
+  margin: 15px 0px;
+}
+
+.order-summary .order-col {
+  display: table;
+  width: 100%;
+}
+
+.order-summary .order-col:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.order-summary .order-col>div {
+  display: table-cell;
+  padding: 10px 0px;
+}
+
+.order-summary .order-col>div:first-child {
+  width: calc(100% - 150px);
+}
+
+.order-summary .order-col>div:last-child {
+  width: 150px;
+  text-align: right;
+}
+
+.order-summary .order-col .order-total {
+  font-size: 24px;
+  color: #1964af;
+}
+
+.order-details .payment-method {
+  margin: 30px 0px;
+}
+
+.order-details .order-submit {
+  display: block;
+  margin-top: 30px;
+}
+
+
