@@ -6,6 +6,8 @@ button, button:focus {
     box-shadow: none !important;
 }
 
+
+
 /* typography classes */
 .font-baloo {
     font-family: "Baloo Thambi 2", cursive;
@@ -64,6 +66,7 @@ button, button:focus {
     background: #FFD289;
 }
 
+
 /*  top sale template   */
 #top-sale .owl-carousel .item .product a {
     overflow: hidden;
@@ -100,9 +103,10 @@ button, button:focus {
 
 /*   Special Price Section Template */
 #special-price .grid .grid-item {
-    margin-right: 1.2rem;
+    margin-right: 1rem;
     margin-top: 1rem;
 }
+
 
 .searchbar {
     display: inline-block;
@@ -167,10 +171,9 @@ body {
     margin: 0;
 }
 
-main {
-    flex: 1;
-    /* Nếu bạn muốn footer nằm trên main content, hãy thay đổi giá trị này thành flex: auto; */
-}
+
+
+
 
 .empty{
     padding:1.5rem;
@@ -288,3 +291,6 @@ main {
 }
 
 
+.hid{
+    visibility: hidden;
+}

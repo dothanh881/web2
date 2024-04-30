@@ -1,9 +1,11 @@
+
 </main>
 <!-- !start #main-site -->
 
 <!-- start #footer -->
-<footer id="footer" class="bg-dark text-white py-5">
-    <div class="container">
+<footer  id="footer" class="bg-dark text-white py-5 footer mt-5">
+    
+    <div class="container ">
         <div class="row">
             <div class="col-lg-3 col-12">
                 <h4 class="font-rubik font-size-20">Mobile Shopee</h4>
@@ -40,10 +42,10 @@
             </div>
         </div>
     </div>
+   
+    
 </footer>
-<div class="copyright text-center bg-dark text-white py-2">
-    <!-- <p class="font-rale font-size-14">&copy; Copyrights 2020. Desing By <a href="#" class="color-second">Daily Tuition</a></p> -->
-</div>
+
 <!-- !start #footer -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
@@ -58,9 +60,29 @@
 
 <!-- Custom Javascript -->
 <script src="index.js"></script>
-<script src="./src/bootstrap-input-spinner.js"></script>
-<script>
-    $("input[type='number']").inputSpinner()
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".addItemBtn").click(function(e){
+            e.preventDefault();
+            var $form = $(this).closest(".form-submit");
+            var pid = $form.find("input[name='pid']").val();
+            var name = $form.find("input[name='name']").val();
+            var price = $form.find("input[name='price']").val();
+            var image = $form.find("input[name='image']").val();
+            var qty = $form.find("input[name='qty']").val();
+
+            $.ajax({
+                url: 'get_cart_count.php',
+                method: 'post',
+                data: {pid:pid, name:name, price:price, image:image, qty:qty},
+                success:function(response){
+                    $("#message").html(response);
+                }
+            });
+        });
+    });
 </script>
+
+
 </body>
 </html>

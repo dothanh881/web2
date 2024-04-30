@@ -1,13 +1,8 @@
 <?php include ('header.php');
 
 
-if (isset($_SESSION['username'])) ?>
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-5 border-bottom">
-  <h1 class="h2 ">Hello, <?php echo $_SESSION['username'] ?></h1>
-  <div class="btn-toolbar mb-2 mb-md-0">
+ ?>
 
-  </div>
-</div>
 
 
 

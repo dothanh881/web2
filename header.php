@@ -1,16 +1,19 @@
 <?php 
+
 session_name('customer_session');
     session_start();
  
     
     if(isset($_SESSION['user_id'])){
         $user_id = $_SESSION['user_id'];
+       
      }else{
         $user_id = '';
      };
 
 
 ?>
+
 
 
 <!DOCTYPE html>
@@ -37,22 +40,22 @@ session_name('customer_session');
 
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>    
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3SF+sOSvM6ZXsHnSnjXzBsCtXTwhmJyPJUhCV7QjSpcFNvDyCIlEyHhPOnQjWrH/NlxYLbm3DwzIAEV0yQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-hzTunOHPWCEaOCPAJ9wSxQL8vmEyjabiPwQXdbwnBxQFr2VWvthN/xcbyyCwLwLwT0aSOOCBTk/sffaClByTqSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+
+
 <?php
-    // require functions.php file
-    require ('functions.php');
-    ?>
-
-
-
+include('functions.php');
+?>
 </head>
 <body>
 
 <!-- start #header -->
 <header id="header">
-<div class="strip d-flex justify-content-between px-4 py-1 bg-light">
+<div class="strip d-flex justify-content-between px-4  bg-light">
     <p class="font-rale font-size-12 text-black-50 m-0"></p>
     <div class="font-rale font-size-14 ml-auto">
        
@@ -61,7 +64,7 @@ session_name('customer_session');
 
     <!-- Primary Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">
-        <a class="navbar-brand" href="index.php">Mobile Shopee</a>
+        <a class="navbar-brand ml-2" href="index.php"> Mobile Shopee</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -80,13 +83,7 @@ session_name('customer_session');
     </div>
 
     </li>
-    <li class="nav-item dropdown">
-    <a type="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="searchpage.php?">Products</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="category.php?sCate=APPLE">Apple</a>
-      <a class="dropdown-item" href="category.php?sCate=SAMSUNG">Samsung</a>
-    </div>
-</li>
+   
 
     <li class="nav-item">
         <a class="nav-link" href="#">Order</a>
@@ -135,19 +132,18 @@ $row_count = $result->num_rows;
 
       ?>
 
-            <form action="#" class="font-size-14 font-rale">
+           
 
           
           
            
-                <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
+                <a href="cart.php" class="py-2 rounded-pill color-primary-bg  text-decoration-none mr-2 ">
                     <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
-                    <span  class="px-3 py-2 rounded-pill text-dark bg-light"><?php echo $row_count; ?></span>
+                    <span id="cart-count"  class="px-3 py-2 rounded-pill text-dark bg-light"><span><?= $row_count; ?></span></span>
                 </a>
                 
 
-               
-            </form>
+            
         </div>
     </nav>
     <!-- !Primary Navigation -->
@@ -157,3 +153,4 @@ $row_count = $result->num_rows;
 
 <!-- start #main-site -->
 <main id="main-site">
+                <div id="message"></div>

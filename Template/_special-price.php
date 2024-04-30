@@ -62,7 +62,7 @@ $in_cart = $Cart->getCartId($user_id, $product->getData('cart'));
         <div class="grid">
             <?php array_map(function ($item) use ($in_cart) { ?>
                 <div class="grid-item border <?php echo $item['category_name'] ?? "Brand"; ?>">
-                    <div class="item py-2" style="width: 200px;">
+                    <div class="item py-1" style="width: 230px;">
                         <div class="product font-rale">
                             <a href="<?php printf('%s?item_id=%s', 'product.php', $item['item_id']); ?>"><img
                                     src="<?php echo $item['item_image'] ?? "./assets/products/13.png"; ?>" alt="product1"

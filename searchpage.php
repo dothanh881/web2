@@ -335,17 +335,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // Check for POST request
                                     <span>$<?= $item['item_price'] ?? 0; ?></span>
                                 </div>
                             </div>
-                            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
-                                <input type="hidden" name="item_id" value="<?= $item['item_id']; ?>">
-                                <input type="hidden" name="name" value="<?= $item['item_name']; ?>">
-                                <input type="hidden" name="price" value="<?= $item['item_price']; ?>">
-                                <input type="hidden" name="image" value="<?= $item['item_image']; ?>">
-                                <input type="hidden" name="qty" value="1">
-                                <div class="text-center">
-                        <?php echo '<button type="submit" name="add-product" class="btn btn-warning font-size-12">Add to Cart</button>'; ?>
-                    </div>
-                               
-                            </form>
+                          
                         </div>
                     </div>
                 </div>

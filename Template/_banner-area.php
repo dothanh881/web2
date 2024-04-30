@@ -1,9 +1,9 @@
 <!-- Owl-carousel -->
 <section id="banner-area">
     <div class="owl-carousel owl-theme">
-        <div class="item">
+        <!-- <div class="item">
             <img src="./assets/bannerNew1.png" alt="Banner1">
-        </div>
+        </div> -->
         <div class="item">
             <img src="./assets/bannerNew2.png" alt="Banner2">
         </div>

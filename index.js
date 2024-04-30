@@ -31,18 +31,18 @@ $(document).ready(function(){
         }
     });
 
+    User
     // isotope filter
-    var $grid = $(".grid").isotope({
-        itemSelector : '.grid-item',
-        layoutMode : 'fitRows'
-    });
-
-    // filter items on button click
-    $(".button-group").on("click", "button", function(){
-        var filterValue = $(this).attr('data-filter');
-        $grid.isotope({ filter: filterValue});
-    })
-
+      var $grid = $(".grid").isotope({
+          itemSelector : '.grid-item',
+          layoutMode : 'fitRows'
+      });
+  
+      // filter items on button click
+      $(".button-group").on("click", "option", function(){
+          var filterValue = $(this).attr('data-filter');
+          $grid.isotope({ filter: filterValue});
+      })
 
     // new phones owl carousel
     $("#new-phones .owl-carousel").owlCarousel({
@@ -152,3 +152,7 @@ function checkQuantity(input, itemId) {
         alert("Cart quantity for item " + itemId + " exceeds available quantity in stock.");
     }
 }
+
+
+
+
