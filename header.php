@@ -101,22 +101,17 @@ include('functions.php');
     <li class="nav-item active">
         <a class="nav-link" href="#">On Sale</a>
     </li>
-    <li class="nav-item">
-    <div class="dropdown">
-        <a class="nav-link  dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Samsung</button>
-    <button class="dropdown-item" type="button">Iphone</button>
-  </div>
+    <li class="nav-item dropdown">
+    <a type="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="searchpage.php?">Products</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="category.php?sCate=APPLE">Iphone</a>
+      <a class="dropdown-item" href="category.php?sCate=SAMSUNG">Samsung</a>
     </div>
-
-    </li>
+</li>
    
 
-    <li class="nav-item">
-        <a class="nav-link" href="#">Order</a>
-    </li>
-    <div class="form-container">
+    
+    <div class="form-container ml-3">
     <form method="post" action="searchpage.php" class="d-flex">
         <input type="text" name="search_box" placeholder="search here..." class="form-control " id="search">
         <button class="btn btn-success" id="search_btn" name="search_btn">Search</button>

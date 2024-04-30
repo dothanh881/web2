@@ -66,6 +66,13 @@ if (isset($_POST['pid'])) {
         echo $rows;
     }
 
-
+    if(isset($_GET['clear'])){
+        $stmt = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
+        $stmt -> bind_param("s", $user_id);
+        $stmt -> execute();
+        $_SESSION['showAlert'] = 'block';
+        $_SESSION['message'] = 'All Item removed from the cart';
+        header("location: cart.php");
+    }
 
 ?>

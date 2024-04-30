@@ -161,62 +161,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         // \SEARCH FEATURE
         ?>
 
-        <?php 
-        // ADD PRODUCT
+     
         
-        if(isset($_POST['add-product'])){
-            if($user_id == ''){
-                header('location: ./login.php');
-            } else {
-                $item_id = $_POST['item_id'];
-                $name = $_POST['name'];
-                $cart_price = $_POST['price'];
-                $cart_quantity = $_POST['qty'];
-                $cart_image = $_POST['image'];
-        
-                $check_cart_numbers = $conn->prepare("SELECT * FROM `cart` WHERE item_id = ? AND user_id = ?");
-                $check_cart_numbers->bind_param("is", $item_id, $user_id);
-                $check_cart_numbers->execute();
-                $check_cart_numbers->store_result();
-        
-                if($check_cart_numbers->num_rows > 0){
-                    $message = 'already added to cart!';
-                } else {
-                    $check_cart_numbers->close();
-        
-                    $insert_cart = $conn->prepare("INSERT INTO `cart`(user_id, item_id, cart_quantity, cart_price, name, cart_image) VALUES(?,?,?,?,?,?)");
-                    $insert_cart->bind_param("siidss", $user_id, $item_id, $cart_quantity, $cart_price, $name, $cart_image);
-                    $insert_cart->execute();
-                    $message = 'added to wishlist!';
-                }
-            }
-        }
-        
-        if (isset($_POST['add-product'])){
-            /// print_r($_POST['product_id']);
-            if(isset($_SESSION['cart'])){
-        
-                if(in_array($_POST['item_id'], array_keys($_SESSION['cart']))){
-                    $_SESSION['cart'][$_POST['item_id']] += 1;
-                   
-                }else{
-                    // Create new session variable
-                    $_SESSION['cart'][$_POST['item_id']] = 1;
-                    // print_r($_SESSION['cart']);
-                 
-                }
-        
-            }else{
-                // Create new session variable
-                $_SESSION['cart'][$_POST['item_id']] = 1;
-                // print_r($_SESSION['cart']);
-              
-            }
-        }
-         // \ADD PRODUCT
-        ?>
-        
-
+<br><br><br>
 <section id="bd_search_result" class="d-flex">
     
     <div class="advance_search col-md-3 ml-5  mr-5">
@@ -319,7 +266,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
             while ($item = $list_result->fetch_assoc()) {
             ?>
                 <div class="grid-item border" style="margin-top:30px">
-                    <div class="item py-2" style="width: 200px;">
+                    <div class="item py-2" style="width: 250px;">
                         <div class="product font-rale">
                         <a href="<?php printf('%s?item_id=%s', 'product.php',  $item['item_id']); ?>"><img src="<?php echo $item['item_image'] ?? "./assets/products/1.png"; ?>" alt="product1" class="img-fluid"></a>
                             <div class="text-center">
@@ -328,14 +275,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
                                     <span>$<?= $item['item_price'] ?? 0; ?></span>
                                 </div>
                             </div>
-                            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
-                                <input type="hidden" name="item_id" value="<?= $item['item_id']; ?>">
+                            <form  class="form-submit">
+                                <input type="hidden" name="pid" value="<?= $item['item_id']; ?>">
                                 <input type="hidden" name="name" value="<?= $item['item_name']; ?>">
                                 <input type="hidden" name="price" value="<?= $item['item_price']; ?>">
                                 <input type="hidden" name="image" value="<?= $item['item_image']; ?>">
                                 <input type="hidden" name="qty" value="1">
                                 <div class="text-center">
-                        <?php echo '<button type="submit" name="add-product" class="btn btn-warning font-size-12">Add to Cart</button>'; ?>
+                                <button type="button" class="btn btn-warning font-size-12 addItemBtn">Add to Cart</button>
+
                     </div>
                                
                             </form>
