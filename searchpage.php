@@ -219,10 +219,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // Check for POST request
               
             }
         }
-         // \ADD PRODUCT
+         //  \ADD PRODUCT
         ?>
         
-
+        <br><br><br>
 <section id="bd_search_result" class="d-flex">
     
     <div class="advance_search col-md-3 ml-5  mr-5">

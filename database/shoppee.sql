@@ -172,7 +172,7 @@ CREATE TABLE `user` (
   `district` varchar(30) NOT NULL,
   `city` varchar(100) NOT NULL,
   `phone_number` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0,
+  `status` int(11) NOT NULL DEFAULT 1,
   `is_admin` tinyint(1) NOT NULL DEFAULT 0,
   `register_date` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),

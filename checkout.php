@@ -8,26 +8,17 @@ if(isset($_SESSION['user_id'])){
  }else{
     $user_id = '';
 
-    header('location:login.php');
-    
- };
- 
-
-
+    header('location:login.php');   
+ }; 
 ?>
-
-
+<br>
 <br>
 <br>
 <div class="section">
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
-				
-
 						<!-- /Shiping Details -->
-						
-					
                 <div class="row">
 	<!-- Order Details -->
     <div class="col-md-12 order-details">
@@ -56,7 +47,6 @@ if(isset($_SESSION['user_id'])){
 									<span></span>
 									Online Banking
 								</label>
-								
 							</div>
 						</div>
 						<div class="input-checkbox">
@@ -65,8 +55,6 @@ if(isset($_SESSION['user_id'])){
 									<span></span>
 									Deliver to available address.
 							</label>
-                            
-                            
 						</div>
                         <div class="input-checkbox">
 							<input type="radio" name="address" id="terms">
