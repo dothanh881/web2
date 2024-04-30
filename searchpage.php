@@ -334,8 +334,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // Check for POST request
                                 <div class="price py-2">
                                     <span>$<?= $item['item_price'] ?? 0; ?></span>
                                 </div>
-                            </div>
-                          
+                           
+                            <form action="" class="form-submit">
+                                    <input type="hidden" name="pid" value="<?= $item['item_id']; ?>">
+                                    <input type="hidden" name="name" value="<?= $item['item_name']; ?>">
+                                    <input type="hidden" name="price" value="<?= $item['item_price']; ?>">
+                                    <input type="hidden" name="image" value="<?= $item['item_image']; ?>">
+                                    <input type="hidden" name="qty" value="1">
+                                    <button type="button" class=" btn btn-warning font-size-12 addItemBtn">Add to Cart</button>
+
+                                </form>
+                                </div>
                         </div>
                     </div>
                 </div>

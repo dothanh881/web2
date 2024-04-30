@@ -17,7 +17,9 @@ if (isset($_SESSION['user_id'])) {
 
 if (isset($_POST['pid'])) {
     if ($user_id == '') {
-        header("location: login.php");
+        echo "<script>
+            alert('Login, please!');
+        </script>";
     } else {
         $pid = $_POST['pid'];
         $name = $_POST['name'];
@@ -31,9 +33,9 @@ if (isset($_POST['pid'])) {
         $check_cart_numbers->store_result();
 
         if ($check_cart_numbers->num_rows > 0) {
-            echo '<div class="alert alert-success alert-dismissible">
+            echo '<div class="alert alert-danger alert-dismissible">
                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                   <strong>Success!</strong> Item already added to your cart!</strong>
+                   <strong>Item already added to your cart!</strong> 
                  </div>';
         } else {
             $check_cart_numbers->close();
@@ -44,7 +46,7 @@ if (isset($_POST['pid'])) {
                 $insert_cart->execute();
                 echo '<div class="alert alert-success alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Success!</strong> Item added to your cart!</strong>
+                        <strong>Item added to your cart!</strong> 
                       </div>';
             } catch (mysqli_sql_exception $e) {
                 echo 'An error occurred: ' . $e->getMessage();
@@ -53,4 +55,17 @@ if (isset($_POST['pid'])) {
         }
     }
 }
+
+    if(isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart-item' ){
+        $stmt = $conn->prepare("SELECT * FROM cart where user_id = ?");
+        $stmt ->bind_param("s", $user_id);
+        $stmt ->execute();
+        $stmt ->store_result();
+        $rows = $stmt->num_rows;
+
+        echo $rows;
+    }
+
+
+
 ?>

@@ -52,29 +52,26 @@
 
 
 ?>
+<br><br><br>
 <section id="product" class="py-3">
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <img src="<?php echo $item['item_image'] ?? "./assets/products/1.png" ?>" alt="product" class="img-fluid">
+                <img src="<?php echo $item['item_image'] ?? "./assets/products/1.png" ?>" alt="product" style="width:400px;" class="img-fluid">
                 <div class="form-row pt-4 font-size-16 font-baloo">
                     <div class="col">
                         <button type="submit" class="btn btn-danger form-control">Proceed to Buy</button>
                     </div>
                     <div class="col">
-                    <form method="post">
-                            <input type="hidden" name="pid" value="<?= $item['item_id']; ?>">
-                            <input type="hidden" name="name" value="<?= $item['item_name']; ?>">
-                            <input type="hidden" name="price" value="<?= $item['item_price']; ?>">
-                            <input type="hidden" name="image" value="<?= $item['item_image']; ?>">
-                            <input type="hidden" name="qty" value="1">
+                    <form action="" class="form-submit">
+                                    <input type="hidden" name="pid" value="<?= $item['item_id']; ?>">
+                                    <input type="hidden" name="name" value="<?= $item['item_name']; ?>">
+                                    <input type="hidden" name="price" value="<?= $item['item_price']; ?>">
+                                    <input type="hidden" name="image" value="<?= $item['item_image']; ?>">
+                                    <input type="hidden" name="qty" value="1">
+                                    <button type="button" class="btn btn-warning font-size-16 form-control addItemBtn">Add to Cart</button>
 
-                        <?php
-                       
-                            echo '<button type="submit" name="top_sale_submit" class="btn btn-warning font-size-16 form-control">Add to Cart</button>';
-                        
-                        ?>
-                         </form>
+                                </form>
                     </div>
                 </div>
             </div>

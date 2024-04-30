@@ -45,13 +45,41 @@ session_name('customer_session');
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-hzTunOHPWCEaOCPAJ9wSxQL8vmEyjabiPwQXdbwnBxQFr2VWvthN/xcbyyCwLwLwT0aSOOCBTk/sffaClByTqSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<style>
+        #message {
+            position: fixed; /* Thiết lập vị trí cố định */
+            top: 50px; /* Đặt khoảng cách từ đỉnh trang đến message, ví dụ như header có chiều cao là 60px */
+            left: 0; /* Đặt vị trí từ bên trái */
+          
+            border-radius: 0; /* Không có góc bo tròn */
+            width: 100%;
+            z-index: 999; /* Đảm bảo phần tử này hiển thị trên tất cả các phần tử khác */
 
+        }
+        #header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999; /* Đảm bảo message hiển thị trên header */
+
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Xác định số lượng cột và kích thước */
+  grid-auto-rows: auto; /* Xác định chiều cao mặc định của mỗi hàng */
+  gap: 20px; /* Khoảng cách giữa các grid item */
+}
+ 
+    </style>
 
 <?php
 include('functions.php');
 ?>
 </head>
 <body>
+<div id="message"></div>
 
 <!-- start #header -->
 <header id="header">
@@ -120,17 +148,7 @@ include('functions.php');
 
 
        
-<?php
-      
-      $select_rows = $conn->prepare("SELECT * FROM `cart` WHERE `user_id` = ?");
-      $select_rows->bind_param("s", $user_id);
-      $select_rows->execute();
 
-// Lấy kết quả và đếm số dòng trả về
-$result = $select_rows->get_result();
-$row_count = $result->num_rows;
-
-      ?>
 
            
 
@@ -139,7 +157,7 @@ $row_count = $result->num_rows;
            
                 <a href="cart.php" class="py-2 rounded-pill color-primary-bg  text-decoration-none mr-2 ">
                     <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
-                    <span id="cart-count"  class="px-3 py-2 rounded-pill text-dark bg-light"><span><?= $row_count; ?></span></span>
+                    <span id="cart-item"  class="px-3 py-2 rounded-pill text-dark bg-light"><span></span></span>
                 </a>
                 
 
@@ -153,4 +171,3 @@ $row_count = $result->num_rows;
 
 <!-- start #main-site -->
 <main id="main-site">
-                <div id="message"></div>

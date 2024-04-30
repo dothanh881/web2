@@ -15,7 +15,7 @@ class Product
     // fetch product data using getData Method
     public function getData($table = 'product')
     {
-        $result = $this->conn->query("SELECT * FROM {$table}");
+        $result = $this->conn->query("SELECT * FROM {$table} ");
 
         $resultArray = array();
 
@@ -32,6 +32,21 @@ class Product
     public function getData2($table = 'product', $table1 ='category')
     {
         $result = $this->conn->query("SELECT * FROM {$table},{$table1} WHERE $table.category_id = $table1.category_id AND item_status = 1" );
+
+        $resultArray = array();
+
+        if ($result) {
+            // fetch product data one by one
+            while ($item = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                $resultArray[] = $item;
+            }
+        }
+
+        return $resultArray;
+    }
+    public function getData3($table = 'product', $table1 ='category')
+    {
+        $result = $this->conn->query("SELECT * FROM {$table},{$table1} WHERE $table.category_id = $table1.category_id AND item_status = 1 " );
 
         $resultArray = array();
 

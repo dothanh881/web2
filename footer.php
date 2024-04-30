@@ -77,12 +77,30 @@
                 data: {pid:pid, name:name, price:price, image:image, qty:qty},
                 success:function(response){
                     $("#message").html(response);
+               load_cart_item_number();
                 }
             });
         });
-    });
-</script>
+        load_cart_item_number();
+       
+        function load_cart_item_number(){
+            $.ajax({
+                url: 'get_cart_count.php',
+                method: 'get',
+                data: {cartItem: "cart-item"},
+                success:function(response){
+                    $("#cart-item").html(response);
+                }
+            });
+        }
 
+    });
+
+
+
+ 
+ 
+</script>
 
 </body>
 </html>
