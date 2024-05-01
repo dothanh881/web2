@@ -76,87 +76,11 @@ while ($row = $result -> fetch_assoc()){
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
-						<!-- /Shiping Details -->
-                <div class="row">
-				<div class="col-md-6 ">
-						<!-- Shiping Details -->
-						<div class="shiping-details">
-							<div class="section-title">
-								<h3 class="title1">Deliver Address</h3>
-							</div>
-						
-							<div class="row">
-							<div class="col-md-6">
-								<label for="name">Name</label>
-								<input type="text" id="name" name="fullname" class="form-control" required>
-							</div>
-							<div class="col-md-6">
-								<label for="email">Email</label>
-								<input type="email" id="email" name="email"class="form-control" required>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-12">
-								<label for="phone">Phone</label>
-								<input type="text" id="phone" name="phone"class="form-control" required>
-							</div>
-						</div>
-
-								<div class="caption">
-                                <div class="row">
-							<div class="col-md-12">
-								<label for="street">Street</label>
-								<input type="text" id="street" name="street"class="form-control" required>
-							</div>
-						</div>
-						<div class="row">
-						<div class="col-md-6">
-                                <label for="city">City</label>
-                                <select id="city" name="city" class="form-control" required>
-                                    <option value="">Select City</option>
-                                    <option value="HCMC">Ho Chi Minh</option>
-                                    
-                                    <!-- Add more options as needed -->
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="district">District</label>
-                                <select id="district" name="district" class="form-control" required>
-                                    <option value="">Select District</option>
-                                    <option value="district1">District 1</option>
-                                    <option value="district2">District 2</option>
-                                    <option value="district3">District 3</option>
-                                    <option value="district4">District 4</option>
-                                    <option value="district5">District 5</option>
-                                    <option value="district6">District 6</option>
-                                    <option value="district7">District 7</option>
-                                    <option value="district8">District 8</option>
-                                    <option value="district9">District 9</option>
-                                    <option value="district10">District 10</option>
-                                    <option value="district11">District 11</option>
-                                    <option value="district12">District 12</option>
-                                    <option value="TanBinh">Tan Binh </option>
-                                    <option value="BinhTan">Binh Tan </option>
-                                    <option value="TanPhu">Tan Phu</option>
-                                    <option value="GoVap">Go Vap</option>
-                                    <option value="PhuNhuan">Phu Nhuan</option>
-                                    <option value="BinhChanh">Binh Chanh</option>
-                                    <option value="HocMon">Hoc Mon</option>
-                                    <option value="CanGio">Can Gio</option>
-                                    <option value="CuChi">Cu Chi</option>
-                                    <option value="NhaBe">Nha Be</option>
-                                    <!-- Add more options as needed -->
-                                </select>
-                            </div>
-						</div>
-							
-							</div>
-						</div>
-
-                </div>
-	<!-- Order Details -->
-    <div class="col-md-6 order-details">
+				<!-- Order Details -->
+	
+<div class="row">
+	<div class="col-md-6">
+	<div class="order-details ">
 						<div class="section-title text-center">
 							<h3 class="title">Your Order</h3>
 						</div>
@@ -233,14 +157,14 @@ while ($row = $result -> fetch_assoc()){
 						<div class="input-checkbox">
 						<div><strong>Delivery Address</strong></div>
 
-							<input type="radio" name="address" id="available-address-radio">
+							<input type="radio" name="address" id="available-address-radio" >
                             <label for="shiping-address">
 									<span></span>
 									Deliver to available address.
 							</label>
 						</div>
                         <div class="input-checkbox">
-							<input type="radio" name="address" id="new-address-radio">
+							<input type="radio" name="address" id="new-address-radio" >
                            
                             
                             <label for="shiping-address">
@@ -256,21 +180,230 @@ while ($row = $result -> fetch_assoc()){
 
 						</div>
 						
+	</div>
+		
+
+	</div>
+	</div>
+
+						<div class="col-md-6">
+
+<!-- Shiping Details -->
+<div class="shiping-details">
+							<div class="section-title">
+								<h3 class="title1">Deliver Address</h3>
+							</div>
+						
+							<div class="row">
+							<div class="col-md-6">
+								<label for="name">Name</label>
+								<input type="text" id="name" name="fullname" class="form-control" required>
+							</div>
+							<div class="col-md-6">
+								<label for="email">Email</label>
+								<input type="email" id="email" name="email"class="form-control" required>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12">
+								<label for="phone">Phone</label>
+								<input type="text" id="phone" name="phone"class="form-control" required>
+							</div>
+						</div>
+
+								<div class="caption">
+                                <div class="row">
+							<div class="col-md-12">
+								<label for="street">Street</label>
+								<input type="text" id="street" name="street"class="form-control" required>
+							</div>
+						</div>
+						<div class="row">
+							
+						<div class="col-md-6">
+                                <label for="city">City</label>
+                                <select id="city" name="city" class="form-control" required>
+                                    <option value="">Select City</option>
+                                    <option value="HCMC">Ho Chi Minh</option>
+                                    
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="district">District</label>
+                                <select id="district" name="district" class="form-control" required>
+                                    <option value="">Select District</option>
+                                    <option value="district1">District 1</option>
+                                    <option value="district2">District 2</option>
+                                    <option value="district3">District 3</option>
+                                    <option value="district4">District 4</option>
+                                    <option value="district5">District 5</option>
+                                    <option value="district6">District 6</option>
+                                    <option value="district7">District 7</option>
+                                    <option value="district8">District 8</option>
+                                    <option value="district9">District 9</option>
+                                    <option value="district10">District 10</option>
+                                    <option value="district11">District 11</option>
+                                    <option value="district12">District 12</option>
+                                    <option value="TanBinh">Tan Binh </option>
+                                    <option value="BinhTan">Binh Tan </option>
+                                    <option value="TanPhu">Tan Phu</option>
+                                    <option value="GoVap">Go Vap</option>
+                                    <option value="PhuNhuan">Phu Nhuan</option>
+                                    <option value="BinhChanh">Binh Chanh</option>
+                                    <option value="HocMon">Hoc Mon</option>
+                                    <option value="CanGio">Can Gio</option>
+                                    <option value="CuChi">Cu Chi</option>
+                                    <option value="NhaBe">Nha Be</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+						</div>
+							
+							</div>
+						</div>
 
 
 
+
+
+						<?php 
+$customer_id = $_SESSION['user_id'];
+$sql = "SELECT * FROM `user` WHERE `user_id` = ? AND is_admin = 0 ";
+
+$select = $conn->prepare($sql);
+
+$select->bind_param("s", $customer_id);
+
+$select->execute();
+
+$result = $select->get_result();
+
+
+if ($result->num_rows == 1) {
+  $row1 = $result->fetch_assoc();
+  
+
+
+
+?>
+
+						
+				<!-- Shiping Details Available -->
+				<div class="shiping-details-available">
+							<div class="section-title">
+								<h3 class="title1">Available Address</h3>
+							</div>
+
+							<div class="form-group">
+      						<input type="text" class="form-control" name="user_id" value="<?php echo $row1['user_id'] ?>" hidden>
+   							 </div>
+						
+							<div class="row">
+							<div class="col-md-6">
+								<label for="name">Name</label>
+								<input type="text" id="name" name="fullname" class="form-control" value="<?php echo $row1['fullname'] ?>" required>
+							</div>
+							<div class="col-md-6">
+								<label for="email">Email</label>
+								<input type="email" id="email" name="email"class="form-control" value="<?php echo $row1['email'] ?>" required>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12">
+								<label for="phone">Phone</label>
+								<input type="text" id="phone" name="phone"class="form-control"  value="<?php echo $row1['phone_number'] ?>" required>
+							</div>
+						</div>
+
+								<div class="caption">
+                                <div class="row">
+							<div class="col-md-12">
+								<label for="street">Street</label>
+								<input type="text" id="street" name="street"class="form-control"  value="<?php echo $row1['street'] ?>" required>
+							</div>
+						</div>
+						<div class="row">
+							
+						<div class="col-md-6">
+                                <label for="city">City</label>
+                               <input type="text" id="city" name="city" class="form-control"  value="<?php echo $row1['city'] ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="district">District</label>
+								<input type="text" name="district" id="district" class="form-control"  value="<?php echo $row1['district'] ?>">
+                            </div>
+						</div>
+							
+							</div>
+						</div>
+
+                
+				<?php }else{
+
+echo '<p class="empty">no product user!</p>';
+
+				}?>
+				
+
+						</div>
+
+
+
+
+
+
+		
 					
 
 
 
-					</div>
+				
 							
-							
+						
+	</div>
+
+		</div>
 						
 						
 					</div>
 					<!-- /Order Details -->
-				</div>
+
+
+						<!-- /Shiping Details -->
+      
+			
+				
+	
+	
+
+                </div>
+
+			
+	
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+			
+	
+			
                 </div>
 				
 				

@@ -108,22 +108,28 @@
         var availableAddressRadio = document.getElementById("available-address-radio");
         var newAddressRadio = document.getElementById("new-address-radio");
 
-        // Chọn phần shipping-details
+       
         var shipingDetails = document.querySelector(".shiping-details");
-
+        var shipingDetailsAvailable = document.querySelector(".shiping-details-available");
         // Ẩn phần shipping-details ban đầu
         shipingDetails.style.display = "none";
+        shipingDetailsAvailable.style.display = "none";
 
         // Bắt sự kiện click trên radio buttons
         availableAddressRadio.addEventListener("click", function() {
-            shipingDetails.style.display = "block"; 
+            shipingDetailsAvailable.style.display = "block"; 
+            shipingDetails.style.display = "none";
+
         });
 
         newAddressRadio.addEventListener("click", function() {
             shipingDetails.style.display = "block"; 
+            shipingDetailsAvailable.style.display = "none";
+
         });
     });
 </script>
+
 
 </body>
 </html>

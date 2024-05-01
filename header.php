@@ -74,15 +74,15 @@ session_name('customer_session');
  
 
 .color-second {
-    color: #c42e00;
+    color: #269493;
 }
 
 .color-second-bg {
-    background: #c42e00;
+    background: #269493;
 }
 
 .color-third-bg {
-    background: #c42e00;
+    background: #269492;
 }
 
 
