@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 20, 2024 lúc 05:09 PM
+-- Thời gian đã tạo: Th5 01, 2024 lúc 07:02 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -42,7 +42,11 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `user_id`, `item_id`, `cart_quantity`, `cart_price`, `name`, `cart_image`) VALUES
-(38, 'f5889a61ccd0', 4, 1, 1169.56, 'iPhone 14 Plus', './assets/products/img4.png');
+(195, 'bb14664305c0', 3, 1, 1129.00, 'iPhone 14 Plus', './assets/products/img3.png'),
+(199, 'bb14664305c0', 10, 1, 1129.00, 'Samsung Galaxy S23 Ultra', './assets/products/img10.png'),
+(211, 'f5889a61ccd0', 1, 4, 1459.35, 'iPhone 15 Pro Max', './assets/products/img1.png'),
+(212, 'f5889a61ccd0', 11, 1, 524.00, 'Samsung Galaxy S23 FE', './assets/products/img11.png'),
+(213, 'f5889a61ccd0', 7, 1, 1089.00, 'Samsung Galaxy S24 Ultra', './assets/products/img7.png');
 
 --
 -- Bẫy `cart`
@@ -99,7 +103,10 @@ CREATE TABLE `order` (
   `order_status` varchar(50) NOT NULL DEFAULT 'Pending',
   `city` varchar(100) DEFAULT NULL,
   `district` varchar(30) DEFAULT NULL,
-  `street` varchar(255) DEFAULT NULL
+  `street` varchar(255) DEFAULT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone_number` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -144,7 +151,7 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`item_id`, `category_id`, `item_name`, `item_quantity`, `item_price`, `item_color`, `item_image`, `item_discription`, `item_status`, `item_rom`, `item_ram`, `size_screen`, `created_at`, `updated_at`) VALUES
 (1, 1, 'iPhone 15 Pro Max', 9, 1459.35, 'Black', './assets/products/img1.png', 'iPhone 15 Pro Max is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone 15 Pro Max possesses Apple most outstanding features. Accordi', 1, 512, 8, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(2, 2, 'iPhone 15 Pro Max', 10, 1452.00, 'Black', './assets/products/img2.png', 'iPhone 15 Pro Max is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone 15 Pro Max possesses Apple most outstanding features. Accordi', 1, 512, 8, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(2, 1, 'iPhone 15 Pro Max', 10, 1452.00, 'Black', './assets/products/img2.png', 'iPhone 15 Pro Max is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone 15 Pro Max possesses Apple most outstanding features. Accordi', 1, 512, 8, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (3, 1, 'iPhone 14 Plus', 10, 1129.00, 'Purple', './assets/products/img3.png', 'The appeal of the new generation iPhone 2022 with a large screen, the best battery ever, impressive night photography and a series of top-notch technologies, the iPhone 14 Plus brings users into advanced mobile experiences. Advanced, ready for an active,', 1, 256, 6, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (4, 1, 'iPhone 14 Plus', 10, 1169.56, 'Yellow', './assets/products/img4.png', 'The appeal of the new generation iPhone 2022 with a large screen, the best battery ever, impressive night photography and a series of top-notch technologies, the iPhone 14 Plus brings users into advanced mobile experiences. Advanced, ready for an active,', 1, 256, 6, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (5, 1, 'iPhone 13 Pro Max', 10, 1048.00, 'White', './assets/products/img5.png', 'iPhone 13 Pro Max has the best dual camera system ever, the fastest Apple A15 processor in the smartphone world and extremely long battery life, ready to accompany you all day long.', 1, 512, 6, 6.70, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
@@ -184,6 +191,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `email`, `username`, `password`, `street`, `district`, `city`, `phone_number`, `status`, `is_admin`, `register_date`, `updated_at`, `fullname`) VALUES
+('05550747fe0b', 'sd@d.com', 'x', '$2y$10$xJsHCDO2PYbkP/I8T7dTYuG6YW6J1SWJ/qQt21C5X93V9ZubdU5ri', 'x', 'district11', 'HCMC', '12321312', 1, 0, '2024-04-22 10:37:17', '2024-04-22 10:37:17', 'x'),
 ('5d314b93c7b7', 'admin@email.com', 'admin', '$2y$10$u.LVXI1z1AY9eU2gsItc7.i0WsA2cbwxO1vJVm3OwJ4aEFqnOhIn2', '273 An Duong Vuong', 'district 5', 'HCMC   ', '0981776491', 1, 1, '2024-04-14 21:21:53', '2024-04-14 21:21:53', 'Phu Thanh'),
 ('bb14664305c0', 'thanhabc@gmail.com', 'thanhdo', '$2y$10$T/2yWVozYX18CYtrJGWQg.W2GmJbWFNA6jT0g8xcym4Ynu3vteQCq', '48/42 Le Nga', 'TanPhu', 'HCMC', '0125665893', 1, 0, '2024-04-16 22:10:16', '2024-04-16 22:10:16', 'Thanh Do Phu'),
 ('f2279ebced53', 'test@gmail.com', 'test1', '$2y$10$PKKWO3uJOjIxNv4eQhuJg.cBoXnDWATsbV.wFR9/Aea8BJf5KGK8y', 'Nguyen Thi Nho', 'district 11 ', 'HCMC  ', '015972369', 1, 0, '2024-04-20 21:09:14', '2024-04-20 21:09:14', 'Test Thanh Do'),
@@ -242,13 +250,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=214;
+
+--
+-- AUTO_INCREMENT cho bảng `category`
+--
+ALTER TABLE `category`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

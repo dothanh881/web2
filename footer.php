@@ -81,6 +81,27 @@
                 }
             });
         });
+
+
+        $("#placeOrder").submit(function(e){
+
+            e.preventDefault();
+            $.ajax({
+                url: 'get_cart_count.php',
+                method: 'post',
+                data: $( 'form' ).serialize()+"&action=order",
+                success: function(response){
+                    $("#order").html(response);
+                }
+            });
+        });
+
+
+
+
+
+
+
         load_cart_item_number();
        
         function load_cart_item_number(){

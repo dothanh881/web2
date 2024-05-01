@@ -97,7 +97,22 @@
 <!-- Custom CSS file -->
 <link rel="stylesheet" href="style.css">
 
+<style>
+    
+.color-second {
+    color: #269493;
+}
 
+.color-second-bg {
+    background: #269493;
+}
+
+.color-third-bg {
+    background: #269492;
+}
+
+
+</style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">

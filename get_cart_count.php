@@ -75,4 +75,38 @@ if (isset($_POST['pid'])) {
         header("location: cart.php");
     }
 
+    function input_filter($data){
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+      }
+
+    if(isset($_POST['action']) && isset($_POST['action']) == 'order'){
+        $newName = input_filter($_POST['newFullname']);
+        $newPhone = input_filter($_POST['newPhone']);
+        $newEmail = input_filter($_POST['newEmail']);
+        $newStreet = input_filter($_POST['newStreet']);
+        $newCity = input_filter($_POST['newCity']);
+        $newDistrict = input_filter($_POST['newDistrict']);
+        $grand_total = input_filter($_POST['grand_total']);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

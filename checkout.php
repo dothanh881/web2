@@ -80,8 +80,18 @@ while ($row = $result -> fetch_assoc()){
 	
 <div class="row">
 	<div class="col-md-6">
-	<div class="order-details ">
+	<div class="order-details border border-secondary " id="order">
+
 						<div class="section-title text-center">
+							<br>
+
+					
+
+
+		<form action="" method="post" id="placeOrder">
+
+		<input type="hidden" name="grand_total" value="<?= $grand_total ?>">
+
 							<h3 class="title">Your Order</h3>
 						</div>
 						<div class="order-summary">
@@ -145,8 +155,8 @@ while ($row = $result -> fetch_assoc()){
 								
 							</div>
 							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-3">
-								<label for="payment-3">
+								<input type="radio" name="payment" id="payment-2">
+								<label for="payment-2">
 									<span></span>
 									Online Banking
 								</label>
@@ -174,8 +184,9 @@ while ($row = $result -> fetch_assoc()){
 						</div>
                      
 						<br>
-						<button type="button" class="btn btn-primary">Check out</button>
 
+						<input type="submit" name="submit" class="btn btn-primary" value="Order Place">
+<br><br>
 
 
 						</div>
@@ -189,26 +200,27 @@ while ($row = $result -> fetch_assoc()){
 						<div class="col-md-6">
 
 <!-- Shiping Details -->
-<div class="shiping-details">
+<div class="shiping-details ">
 							<div class="section-title">
-								<h3 class="title1">Deliver Address</h3>
+								<h3 class="title1">New Address</h3>
 							</div>
 						
+							
 							<div class="row">
 							<div class="col-md-6">
 								<label for="name">Name</label>
-								<input type="text" id="name" name="fullname" class="form-control" required>
+								<input type="text" id="name" name="newFullname" class="form-control" required>
 							</div>
 							<div class="col-md-6">
 								<label for="email">Email</label>
-								<input type="email" id="email" name="email"class="form-control" required>
+								<input type="email" id="email" name="newEmail"class="form-control" required>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-md-12">
 								<label for="phone">Phone</label>
-								<input type="text" id="phone" name="phone"class="form-control" required>
+								<input type="text" id="phone" name="newPhone"class="form-control" required>
 							</div>
 						</div>
 
@@ -216,14 +228,14 @@ while ($row = $result -> fetch_assoc()){
                                 <div class="row">
 							<div class="col-md-12">
 								<label for="street">Street</label>
-								<input type="text" id="street" name="street"class="form-control" required>
+								<input type="text" id="street" name="newStreet"class="form-control" required>
 							</div>
 						</div>
 						<div class="row">
 							
 						<div class="col-md-6">
                                 <label for="city">City</label>
-                                <select id="city" name="city" class="form-control" required>
+                                <select id="city" name="newCity" class="form-control" required>
                                     <option value="">Select City</option>
                                     <option value="HCMC">Ho Chi Minh</option>
                                     
@@ -232,7 +244,7 @@ while ($row = $result -> fetch_assoc()){
                             </div>
                             <div class="col-md-6">
                                 <label for="district">District</label>
-                                <select id="district" name="district" class="form-control" required>
+                                <select id="district" name="newDistrict" class="form-control" required>
                                     <option value="">Select District</option>
                                     <option value="district1">District 1</option>
                                     <option value="district2">District 2</option>
@@ -293,7 +305,7 @@ if ($result->num_rows == 1) {
 				<!-- Shiping Details Available -->
 				<div class="shiping-details-available">
 							<div class="section-title">
-								<h3 class="title1">Available Address</h3>
+								<h3 class="title1">Your Address</h3>
 							</div>
 
 							<div class="form-group">
@@ -358,7 +370,7 @@ echo '<p class="empty">no product user!</p>';
 		
 					
 
-
+						</form>
 
 				
 							
