@@ -101,6 +101,29 @@
  
  
 </script>
+<!-- Đưa vào cuối trang HTML -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Chọn radio buttons
+        var availableAddressRadio = document.getElementById("available-address-radio");
+        var newAddressRadio = document.getElementById("new-address-radio");
+
+        // Chọn phần shipping-details
+        var shipingDetails = document.querySelector(".shiping-details");
+
+        // Ẩn phần shipping-details ban đầu
+        shipingDetails.style.display = "none";
+
+        // Bắt sự kiện click trên radio buttons
+        availableAddressRadio.addEventListener("click", function() {
+            shipingDetails.style.display = "block"; 
+        });
+
+        newAddressRadio.addEventListener("click", function() {
+            shipingDetails.style.display = "block"; 
+        });
+    });
+</script>
 
 </body>
 </html>

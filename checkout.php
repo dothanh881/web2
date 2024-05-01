@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 <?php 
 include('header.php');
 ?>
@@ -10,74 +17,68 @@ if(isset($_SESSION['user_id'])){
 
     header('location:login.php');   
  }; 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
 ?>
+
+<style>
+ .section {
+        overflow-x: hidden;
+    }
+
+</style>
+
+
 <br>
 <br>
 <br>
+<br>
+<br>
+
+<?php
+
+$grand_total = 0;
+$allItems = '';
+$items = array();
+$sum = array();
+
+$sql = "SELECT CONCAT(name, ' x',cart_quantity,'') AS ItemQty, cart_price, cart_quantity FROM `cart` WHERE user_id = ?";
+
+$stmt = $conn -> prepare($sql);
+$stmt -> bind_param("s" , $user_id);
+$stmt -> execute();
+$result = $stmt-> get_result();
+while ($row = $result -> fetch_assoc()){
+   $grand_total += ($row['cart_price'] * $row['cart_quantity']);
+	$sum[] = ($row['cart_price'] * $row['cart_quantity']);
+   $items[] = $row['ItemQty'];
+}
+
+	
+	$allItems = implode("<br> " , $items);
+
+?>
+
+
 <div class="section">
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
 						<!-- /Shiping Details -->
                 <div class="row">
-	<!-- Order Details -->
-    <div class="col-md-12 order-details">
-						<div class="section-title text-center">
-							<h3 class="title">Your Order</h3>
-						</div>
-						<div class="order-summary">
-							<div class="order-col">
-								<div><strong>Product</strong></div>
-								<div><strong>Total</strong></div>
-							</div>
-							<div class="order-products">
-							</div>
-						<div class="payment-method">
-							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-1">
-								<label for="payment-1">
-									<span></span>
-									Cash On Delivery
-								</label>
-								
-							</div>
-							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-3">
-								<label for="payment-3">
-									<span></span>
-									Online Banking
-								</label>
-							</div>
-						</div>
-						<div class="input-checkbox">
-							<input type="radio" name="address" id="terms">
-                            <label for="shiping-address">
-									<span></span>
-									Deliver to available address.
-							</label>
-						</div>
-                        <div class="input-checkbox">
-							<input type="radio" name="address" id="terms">
-                           
-                            
-                            <label for="shiping-address">
-									<span></span>
-									Deliver to new address.
-								</label>
-						</div>
-                     
-						<button type="button" class="btn btn-primary">Check out</button>
-					</div>
-					<!-- /Order Details -->
-				</div>
-                </div>
-				
-				
-
-
-
-                <div class="row">
-                <div class="col-md-6">
+				<div class="col-md-6 ">
 						<!-- Shiping Details -->
 						<div class="shiping-details">
 							<div class="section-title">
@@ -149,11 +150,135 @@ if(isset($_SESSION['user_id'])){
                                 </select>
                             </div>
 						</div>
-								</div>
+							
 							</div>
 						</div>
 
                 </div>
+	<!-- Order Details -->
+    <div class="col-md-6 order-details">
+						<div class="section-title text-center">
+							<h3 class="title">Your Order</h3>
+						</div>
+						<div class="order-summary">
+						<div class="order col">
+						<div><strong>Product</strong></div>
+								
+
+					<div class="row">
+								
+							<div class="col-6 text-left">
+								<p>
+								<?php 
+							 foreach($items as $item){
+								echo "<div>" . $item . "</div>";
+							 }
+							
+							?>
+								</p>
+							</div>
+							
+						
+							<div class="col-6 text-right">
+								<p>
+								<?php
+								 foreach($sum as $su){
+									echo  "<div>" .  $su . "</div>";
+								}
+								?>
+							</p>
+							</div>
+							
+							
+								
+					</div>
+								
+								<div class="row">
+									<div class="col-6">
+									<div><strong>Total:</strong>
+
+									</div>
+									</div>
+									<div class="col-6 text-right">
+								<strong><?php 
+							 echo $grand_total;
+							?></strong>
+									</div>
+								
+							
+								</div>
+
+
+								<div class="payment-method">
+								<div><strong>Choose Payment Method:</strong></div>
+
+							<div class="input-radio">
+								<input type="radio" name="payment" id="payment-1">
+								<label for="payment-1">
+									<span></span>
+									Cash On Delivery
+								</label>
+								
+							</div>
+							<div class="input-radio">
+								<input type="radio" name="payment" id="payment-3">
+								<label for="payment-3">
+									<span></span>
+									Online Banking
+								</label>
+							</div>
+						</div>
+
+
+						<div class="input-checkbox">
+						<div><strong>Delivery Address</strong></div>
+
+							<input type="radio" name="address" id="available-address-radio">
+                            <label for="shiping-address">
+									<span></span>
+									Deliver to available address.
+							</label>
+						</div>
+                        <div class="input-checkbox">
+							<input type="radio" name="address" id="new-address-radio">
+                           
+                            
+                            <label for="shiping-address">
+									<span></span>
+									Deliver to new address.
+								</label>
+						</div>
+                     
+						<br>
+						<button type="button" class="btn btn-primary">Check out</button>
+
+
+
+						</div>
+						
+
+
+
+					
+
+
+
+					</div>
+							
+							
+						
+						
+					</div>
+					<!-- /Order Details -->
+				</div>
+                </div>
+				
+				
+
+
+
+               
+             
              
 			
 			<!-- /container -->

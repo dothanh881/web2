@@ -47,11 +47,11 @@ button, button:focus {
 }
 
 .color-second {
-    color: #00A5C4;
+    color: #c42e00;
 }
 
 .color-second-bg {
-    background: #00A5C4;
+    background: #c42e00;
 }
 
 .color-third-bg {
@@ -229,7 +229,7 @@ main{
 
 /* ORDER */
 
-.billing-details,
+/* .billing-details,
 .shiping-details {
   margin-bottom: 30px;
 }
@@ -293,4 +293,4 @@ main{
 .order-details .order-submit {
   display: block;
   margin-top: 30px;
-}
+} */

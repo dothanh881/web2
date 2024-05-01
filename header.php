@@ -72,6 +72,20 @@ session_name('customer_session');
   gap: 20px; /* Khoảng cách giữa các grid item */
 }
  
+
+.color-second {
+    color: #c42e00;
+}
+
+.color-second-bg {
+    background: #c42e00;
+}
+
+.color-third-bg {
+    background: #c42e00;
+}
+
+
     </style>
 
 <?php
