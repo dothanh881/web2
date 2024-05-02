@@ -44,7 +44,7 @@ if(isset($_SESSION['user_id'])){
 
         <div class=" col-md-6 col-lg-3 search-p ">
           <div id="DataTables_Table_0_filter" class="dataTables_filter">
-            <label><input type="search" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Order Number" aria-controls="DataTables_Table_0">
+            <label><input type="search" id="myInput" class="form-control" placeholder="Order Number" aria-controls="DataTables_Table_0">
             </label>
         </div>
           <div class="search-btnn ">
@@ -61,7 +61,7 @@ if(isset($_SESSION['user_id'])){
 
 <div class="container">
    <div class="row">
-      <div class="title">My Order</div>
+      <div class="title"><strong>My Order</strong></div>
       <div class="col-md-10 text-center">
       <table class="table">
   <thead>
@@ -88,14 +88,16 @@ if(isset($_SESSION['user_id'])){
       <th scope="row">#<?php echo $order->order_id ?></th>
       <td><?php echo $order->order_status ?></td>
       <td><?php echo $order->order_date ?></td>
-      <td><?php echo $order->order_total_price ?></td>
-      <td><a href="order-detail.php">Details</a></td>
+      <td>$<?php echo $order->order_total_price ?></td>
+      <td><a href="order-detail.php?order=<?=$order->order_id ?>">Details</a></td>
 
     </tr>
+
+    <?php } ?>
    
   </tbody>
 </table>
-<?php } ?>
+
 
       </div>
    </div>

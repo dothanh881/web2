@@ -1,6 +1,20 @@
 <!-- Shopping cart section  -->
+<br><br><br>
 <section id="cart" class="py-3 mb-5">
     <div class="container-fluid w-75">
+    <div style="display:
+    <?php 
+    if(isset($_SESSION['showAlert']))
+    { echo $_SESSION['showAlert']; } 
+    else{
+        echo 'none';
+    } 
+    unset($_SESSION['showAlert']);
+    
+    ?>;" class="alert alert-success alert-dismissible ">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong> <?php if(isset($_SESSION['message'])){ echo $_SESSION['message']; }else{ echo 'none'; } unset($_SESSION['message']); ?></strong> 
+                      </div>
         <h5 class="font-baloo font-size-20">Shopping Cart</h5>
 
         <!--  shopping cart items   -->
