@@ -67,7 +67,7 @@ while ($row = $result -> fetch_assoc()){
 }
 
 	
-	$allItems = implode("<br> " , $items);
+	$allItems = implode(", " , $items);
 
 ?>
 
@@ -98,6 +98,7 @@ while ($row = $result -> fetch_assoc()){
 
 		<input type="hidden" name="grand_total" value="<?= $grand_total ?>">
 		<input type="hidden" name="order_id" value="<?= $orderid ?>">
+		<input type="hidden" name="allItems" value="<?= $allItems ?>">
 		<div class="section-title text-center">
 
 							<h3 class="title">Your Order</h3>

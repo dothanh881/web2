@@ -92,6 +92,8 @@
                 data: $( 'form' ).serialize()+"&action=order",
                 success: function(response){
                     $("#order").html(response);
+                    load_cart_item_number();
+
                 }
             });
         });

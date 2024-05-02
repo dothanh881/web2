@@ -95,6 +95,7 @@ if (isset($_POST['pid'])) {
         $grand_total = input_filter($_POST['grand_total']);
         $orderid = input_filter($_POST['order_id']);
         $payment_method = input_filter($_POST['payment']);
+        $allItems = input_filter($_POST['allItems']);
 
         $data ='';
 
@@ -117,9 +118,24 @@ if (isset($_POST['pid'])) {
                 $insert_order = $conn->prepare($query);
                 $insert_order -> bind_param("ssdsssssss", $orderid, $user_id, $grand_total, $payment_method, $row1['city'], $row1['district'], $row1['street'], $row1['fullname'], $row1['email'] , $row1['phone_number']);
                 $insert_order -> execute();
+
+                $delete_cart = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
+                $delete_cart -> bind_param("s", $user_id);
+                $delete_cart -> execute();
+
+
+
                 $data .= '<div class="text-center">
                 <h1 class="display-4 mt-2 text-danger">Thank You!</h1>
                 <h2 class="text-success">Your Order Placed Successfully! </h2>
+                <h4>Order Number: '.$orderid.' </h4>
+                <h4 class="bg-warning text-light rounded p-2">Items Purchased: '.$allItems.' </h4>
+                <h4>Your Name: '.$row1['fullname'].' </h4>
+                <h4>Your E-mail: '.$row1['email'].' </h4>
+                <h4>Your Phone: '.$row1['phone_number'].' </h4>
+                <h4>Total Amount Paid: '.$grand_total.' </h4>
+                <h4>Payment method: '.$payment_method.' </h4>
+                
                 
               </div>';
                 echo $data;
@@ -132,9 +148,21 @@ if (isset($_POST['pid'])) {
             $stmt1 = $conn->prepare($query);
             $stmt1 -> bind_param("ssdsssssss", $orderid, $user_id, $grand_total, $payment_method, $newCity, $newDistrict, $newStreet, $newName, $newEmail , $newPhone);
             $stmt1 -> execute();
+            $delete_cart = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
+            $delete_cart -> bind_param("s", $user_id);
+            $delete_cart -> execute();
+
             $data .= '<div class="text-center">
             <h1 class="display-4 mt-2 text-danger">Thank You!</h1>
             <h2 class="text-success">Your Order Placed Successfully! </h2>
+            <h4>Order Number: '.$orderid.' </h4>
+            <h4 class="bg-warning text-light rounded p-2">Items Purchased: '.$allItems.' </h4>
+            <h4>Your Name: '.$newName.' </h4>
+            <h4>Your E-mail: '.$newEmail.' </h4>
+            <h4>Your Phone: '.$newPhone.' </h4>
+            <h4>Total Amount Paid: '.$grand_total.' </h4>
+            <h4>Payment method: '.$payment_method.' </h4>
+            
             
           </div>';
 
