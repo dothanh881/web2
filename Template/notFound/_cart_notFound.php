@@ -21,8 +21,16 @@
                     <h6 class="font-size-12 font-rale text-success py-3"><i class="fas fa-check"></i> Your order is eligible for FREE Delivery.</h6>
                     <div class="border-top py-4">
                         <h5 class="font-baloo font-size-20">Subtotal ( <?php echo isset($subTotal) ? count($subTotal) : 0; ?> item):&nbsp; <span class="text-danger">$<span class="text-danger" id="deal-price"><?php echo isset($subTotal) ? $Cart->getSum($subTotal) : 0; ?></span> </span> </h5>
-                        <button type="submit" class="btn btn-warning mt-3">Proceed to Buy</button>
+                      <a href="checkout.php" class="btn btn-warning mt-3  <?=($subTotal > 1)? "": "disabled" ?>"><i class='fas fa-credit-card'></i>
+&nbsp;&nbsp;Proceed to Buy</a> 
+
+                            <a href="get_cart_count.php?clear=all" > <button type="button" onclick="return confirm('Are you sure want to remove all item?');" class="btn btn-danger mt-3"><i class='fas fa-trash-alt'></i>
+                &nbsp;  Clear Cart </button></a> 
+
+                      <a href="index.php"><button type="button" class="btn btn-success mt-3"><i class="fas fa-cart-plus"></i>&nbsp; Continue Shopping</button></a>  
+
                     </div>
+
                 </div>
             </div>
             <!-- !subtotal section-->

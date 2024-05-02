@@ -54,7 +54,7 @@ $allItems = '';
 $items = array();
 $sum = array();
 
-$sql = "SELECT CONCAT(name, ' x',cart_quantity,'') AS ItemQty, cart_price, cart_quantity FROM `cart` WHERE user_id = ?";
+$sql = "SELECT CONCAT(name, ' x(',cart_quantity,')') AS ItemQty, cart_price, cart_quantity FROM `cart` WHERE user_id = ?";
 
 $stmt = $conn -> prepare($sql);
 $stmt -> bind_param("s" , $user_id);
@@ -126,7 +126,7 @@ while ($row = $result -> fetch_assoc()){
 								<p>
 								<?php
 								 foreach($sum as $su){
-									echo  "<div>" .  $su . "</div>";
+									echo  "<div> $su$</div>";
 								}
 								?>
 							</p>
@@ -144,7 +144,7 @@ while ($row = $result -> fetch_assoc()){
 									</div>
 									<div class="col-6 text-right">
 								<strong><?php 
-							 echo $grand_total;
+							 echo "<p> $grand_total$</p>";
 							?></strong>
 									</div>
 								
@@ -168,7 +168,7 @@ while ($row = $result -> fetch_assoc()){
 								</div> -->
 
 							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-1" value="COD">
+								<input type="radio" name="payment" id="payment-1" value="cod">
 							
 								<label for="payment-1">
 									<span></span>

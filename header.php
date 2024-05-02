@@ -144,7 +144,7 @@ include('functions.php');
             
             <div class="dropdown-menu drop" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="profile.php">Profile</a>
-                <a class="dropdown-item" href="#">Order</a>
+                <a class="dropdown-item" href="order.php">Order</a>
                 <a class="dropdown-item" href="logout.php" onclick="return confirm('logout from the website?');">Logout</a>
             </div>
             </div>

@@ -59,7 +59,7 @@ if(isset($_SESSION['user_id'])){
     
     ?>;" class="alert alert-success alert-dismissible ">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong> <?php if(isset($_SESSION['message'])){ echo $_SESSION['message']; } unset($_SESSION['showAlert']); ?></strong> 
+                        <strong> <?php if(isset($_SESSION['message'])){ echo $_SESSION['message']; }else{ echo 'none'; } unset($_SESSION['message']); ?></strong> 
                       </div>
         <h5 class="font-baloo font-size-20">Shopping Cart</h5>
 
@@ -131,8 +131,8 @@ if(isset($_SESSION['user_id'])){
                       <a href="checkout.php" class="btn btn-warning mt-3  <?=($subTotal > 1)? "": "disabled" ?>"><i class='fas fa-credit-card'></i>
 &nbsp;&nbsp;Proceed to Buy</a> 
 
-<a href="get_cart_count.php?clear=all" > <button type="button" onclick="return confirm('Are you sure want to remove all item?');" class="btn btn-danger mt-3"><i class='fas fa-trash-alt'></i>
-&nbsp;  Clear Cart </button></a> 
+                            <a href="get_cart_count.php?clear=all" > <button type="button" onclick="return confirm('Are you sure want to remove all item?');" class="btn btn-danger mt-3"><i class='fas fa-trash-alt'></i>
+                &nbsp;  Clear Cart </button></a> 
 
                       <a href="index.php"><button type="button" class="btn btn-success mt-3"><i class="fas fa-cart-plus"></i>&nbsp; Continue Shopping</button></a>  
 
