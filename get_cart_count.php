@@ -4,6 +4,7 @@ session_name('customer_session');
 
 session_start();
 include('functions.php');
+include('code-generator.php');
 
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
@@ -83,6 +84,8 @@ if (isset($_POST['pid'])) {
       }
 
     if(isset($_POST['action']) && isset($_POST['action']) == 'order'){
+          // Kiểm tra session user_id
+   
         $newName = input_filter($_POST['newFullname']);
         $newPhone = input_filter($_POST['newPhone']);
         $newEmail = input_filter($_POST['newEmail']);
@@ -90,6 +93,53 @@ if (isset($_POST['pid'])) {
         $newCity = input_filter($_POST['newCity']);
         $newDistrict = input_filter($_POST['newDistrict']);
         $grand_total = input_filter($_POST['grand_total']);
+        $orderid = input_filter($_POST['order_id']);
+        $payment_method = input_filter($_POST['payment']);
+
+        $data ='';
+
+
+        if( empty($newName) && empty($newStreet) && empty($newCity) && empty($newDistrict)){
+
+            $sql = "SELECT * FROM `user` WHERE user_id = ? AND is_admin = 0";
+            $stmt = $conn->prepare($sql);
+            $stmt -> bind_param("s", $user_id);
+            $stmt -> execute();
+            $result = $stmt -> get_result();
+      
+
+            if($result -> num_rows == 1){
+
+                $row1 = $result-> fetch_assoc();
+
+                $query = " INSERT INTO `order` (order_id, user_id, order_total_price, method, city, district, street, fullname, email, phone_number) VALUE(?,?,?,?,?,?,?,?,?,?)";
+
+                $insert_order = $conn->prepare($query);
+                $insert_order -> bind_param("ssdsssssss", $orderid, $user_id, $grand_total, $payment_method, $row1['city'], $row1['district'], $row1['street'], $row1['fullname'], $row1['email'] , $row1['phone_number']);
+                $insert_order -> execute();
+                $data .= '<div class="text-center">
+                <h1 class="display-4 mt-2 text-danger">Thank You!</h1>
+                <h2 class="text-success">Your Order Placed Successfully! </h2>
+                
+              </div>';
+                echo $data;
+
+            }
+           
+        }
+        else{
+            $query = " INSERT INTO `order` (order_id, user_id, order_total_price, method, city, district, street, fullname, email, phone_number) VALUE(?,?,?,?,?,?,?,?,?,?)";
+            $stmt1 = $conn->prepare($query);
+            $stmt1 -> bind_param("ssdsssssss", $orderid, $user_id, $grand_total, $payment_method, $newCity, $newDistrict, $newStreet, $newName, $newEmail , $newPhone);
+            $stmt1 -> execute();
+            $data .= '<div class="text-center">
+            <h1 class="display-4 mt-2 text-danger">Thank You!</h1>
+            <h2 class="text-success">Your Order Placed Successfully! </h2>
+            
+          </div>';
+
+          echo $data;
+        }
 
     }
 

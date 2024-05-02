@@ -71,6 +71,10 @@ while ($row = $result -> fetch_assoc()){
 
 ?>
 
+<?php
+ include("code-generator.php");
+?>
+
 
 <div class="section">
 			<!-- container -->
@@ -78,11 +82,13 @@ while ($row = $result -> fetch_assoc()){
 				<!-- row -->
 				<!-- Order Details -->
 	
-<div class="row">
-	<div class="col-md-6">
-	<div class="order-details border border-secondary " id="order">
+	
 
-						<div class="section-title text-center">
+<div class="row " id="order">
+	<div class="col-md-6 " >
+	<div class="order-details border border-secondary " >
+
+						
 							<br>
 
 					
@@ -91,6 +97,8 @@ while ($row = $result -> fetch_assoc()){
 		<form action="" method="post" id="placeOrder">
 
 		<input type="hidden" name="grand_total" value="<?= $grand_total ?>">
+		<input type="hidden" name="order_id" value="<?= $orderid ?>">
+		<div class="section-title text-center">
 
 							<h3 class="title">Your Order</h3>
 						</div>
@@ -145,9 +153,22 @@ while ($row = $result -> fetch_assoc()){
 
 								<div class="payment-method">
 								<div><strong>Choose Payment Method:</strong></div>
+<!-- 
+
+								<div class="form-group">
+									<select name="method" class="form-contrl">
+										<option value="" selected disabled>-Select Payment Method-</option>
+										<option value="cod">Cash on Delivery</option>
+										<option value="onlinebanking">Online Banking</option>
+
+
+
+									</select>
+								</div> -->
 
 							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-1">
+								<input type="radio" name="payment" id="payment-1" value="COD">
+							
 								<label for="payment-1">
 									<span></span>
 									Cash On Delivery
@@ -155,7 +176,8 @@ while ($row = $result -> fetch_assoc()){
 								
 							</div>
 							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-2">
+								<input type="radio" name="payment" id="payment-2"value="onlinebanking" >
+
 								<label for="payment-2">
 									<span></span>
 									Online Banking
@@ -209,18 +231,18 @@ while ($row = $result -> fetch_assoc()){
 							<div class="row">
 							<div class="col-md-6">
 								<label for="name">Name</label>
-								<input type="text" id="name" name="newFullname" class="form-control" required>
+								<input type="text" id="name" name="newFullname" class="form-control" >
 							</div>
 							<div class="col-md-6">
 								<label for="email">Email</label>
-								<input type="email" id="email" name="newEmail"class="form-control" required>
+								<input type="email" id="email" name="newEmail"class="form-control" >
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-md-12">
 								<label for="phone">Phone</label>
-								<input type="text" id="phone" name="newPhone"class="form-control" required>
+								<input type="text" id="phone" name="newPhone"class="form-control" >
 							</div>
 						</div>
 
@@ -228,14 +250,14 @@ while ($row = $result -> fetch_assoc()){
                                 <div class="row">
 							<div class="col-md-12">
 								<label for="street">Street</label>
-								<input type="text" id="street" name="newStreet"class="form-control" required>
+								<input type="text" id="street" name="newStreet"class="form-control" >
 							</div>
 						</div>
 						<div class="row">
 							
 						<div class="col-md-6">
                                 <label for="city">City</label>
-                                <select id="city" name="newCity" class="form-control" required>
+                                <select id="city" name="newCity" class="form-control" >
                                     <option value="">Select City</option>
                                     <option value="HCMC">Ho Chi Minh</option>
                                     
@@ -244,7 +266,7 @@ while ($row = $result -> fetch_assoc()){
                             </div>
                             <div class="col-md-6">
                                 <label for="district">District</label>
-                                <select id="district" name="newDistrict" class="form-control" required>
+                                <select id="district" name="newDistrict" class="form-control" >
                                     <option value="">Select District</option>
                                     <option value="district1">District 1</option>
                                     <option value="district2">District 2</option>
