@@ -86,7 +86,10 @@ if(isset($_GET['order']))
 
   $order_id = $_GET['order'];
   
-  $stmt = $conn->prepare("SELECT * FROM `order_detail` INNER JOIN `product` ON `product`.item_id = `order_detail`.item_id WHERE `order_detail`.order_id = ?");
+  $stmt = $conn->prepare("SELECT * FROM `order_detail` INNER JOIN `product` ON `product`.item_id = `order_detail`.item_id 
+                                               
+  
+   WHERE `order_detail`.order_id = ?");
   $stmt -> bind_param("s", $order_id);
   $stmt -> execute();
 

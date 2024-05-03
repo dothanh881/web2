@@ -245,28 +245,37 @@ if (isset($_POST['pid'])) {
 
 
 
+ /* UPDATE QUANTITY WHEN CHECK OUT */
 
-            $sql2 = "SELECT * FROM `order_detail` INNER JOIN  `product` ON `order_detail`.item_id = `product`.item_id WHERE `cart`.user_id = ?";
-            $stmt = $conn-> prepare($sql2);
-            $stmt -> bind_param("s", $user_id);
-            $stmt -> execute();
-            $result  = $stmt->get_result();
+ $sql2 = "SELECT * FROM `order_detail` 
+ INNER JOIN  `product` ON `order_detail`.item_id = `product`.item_id 
+ INNER JOIN  `order` ON `order_detail`.order_id = `order`.order_id 
+ WHERE `order`. user_id = ?";
+ $stmt = $conn-> prepare($sql2);
+ $stmt -> bind_param("s", $user_id);
+ $stmt -> execute();
+ $result  = $stmt->get_result();
 
-            if($result -> num_rows > 1){
-                    while($row = $result -> fetch_assoc()){
-                        $item_id = $row['item_id'];
-                        $order_quantity = $row['order_detail_quantity'];
-                        $current_quantity = $row['item_quantity'];
-                        $update_quantity = $conn->prepare("UPDATE `product` SET item_quantity = ? WHERE item_id = ? ");
-                        $update_quantity->bind_param("ii", $new_quantity, $item_id); // Assuming item_id is an integer
-                         $update_quantity->execute();
+ if($result -> num_rows > 1){
+         while($row = $result -> fetch_assoc()){
+             $item_id = $row['item_id'];
+             $order_quantity = $row['order_detail_quantity'];
+             $current_quantity = $row['item_quantity'];
+             $new_quantity = $current_quantity - $order_quantity;
 
-                         $update_status = $conn->prepare("UPDATE `product` SET item_status = 2 WHERE item_id = ?");
-                         $update_status -> bind_param("i", $item_id);
-                         $update_status -> execute();
+             $update_quantity = $conn->prepare("UPDATE `product` SET item_quantity = ? WHERE item_id = ? ");
+             $update_quantity->bind_param("ii", $new_quantity, $item_id); // Assuming item_id is an integer
+              $update_quantity->execute();
 
-                    }
-            }
+              $update_status = $conn->prepare("UPDATE `product` SET item_status = 2 WHERE item_id = ?");
+              $update_status -> bind_param("i", $item_id);
+              $update_status -> execute();
+
+         }
+ }
+
+
+/*\ UPDATE QUANTITY WHEN CHECK OUT */
 
 
 

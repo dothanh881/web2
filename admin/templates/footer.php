@@ -3,5 +3,26 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 	<script src="./js/dashboard.js"></script>
+	<script>
+    document.addEventListener("DOMContentLoaded", function(e) {
+        // Chọn radio buttons
+        var btnChange = document.getElementById("change-status");
+
+       
+        var showChange = document.querySelector(".show-change");
+        // Ẩn phần shipping-details ban đầu
+        showChange.style.display = "none";
+
+        // Bắt sự kiện click trên radio buttons
+        btnChange.addEventListener("click", function(e) {
+			e.preventDefault(); 
+            showChange.style.display = "block"; 
+			btnChange.style.display = 'none';
+
+        });
+
+      
+    });
+</script>
  </body>
 </html>
