@@ -3,14 +3,14 @@ session_name('admin_session');
 session_start();
 include("./../functions.php");
 
-$status = $_POST['status'];
+$district = $_POST['district'];
 
 // Sử dụng prepared statement để tránh lỗ hổng SQL injection
-if ($status == 'select' || empty($status)) {
+if ($district == 'All' || empty($district)) {
     $stmt = $conn->prepare("SELECT * FROM `order`");
 } else {
-    $stmt = $conn->prepare("SELECT * FROM `order` WHERE order_status = ?");
-    $stmt->bind_param("s", $status);
+    $stmt = $conn->prepare("SELECT * FROM `order` WHERE district = ?");
+    $stmt->bind_param("s", $district);
 }
 
 $stmt->execute();
@@ -26,8 +26,14 @@ if ($result->num_rows > 0) {
             <td><?php echo $order->order_date ?></td>
             <td>$<?php echo $order->order_total_price ?></td>
             <td><?php echo $order->street . ", " . $order->district . ", " . $order->city ?></td>
-            <td><a href="edit_order.php?order=<?php echo $order->order_id ?>" class="btn btn-primary"><i class="far fa-eye"></i> View</a></td>
-        </tr>
+            
+            <td>
+                <?php 
+                // Xác định URL cho nút "View" dựa trên điều kiện lọc
+                $viewURL = empty($district) ? "edit_order.php?order=" . $order->order_id : "edit_order.php?order=" . $order->order_id . "&district=" . urlencode($district);
+                ?>
+                <a href="<?php echo $viewURL; ?>" class="btn btn-primary"><i class="far fa-eye"></i> View</a>
+            </td>        </tr>
 <?php
     }
 } else {

@@ -126,29 +126,25 @@ session_start(); ?>
 		        		<label>District: </label>
 		        	  <select id="district" name="district" class="form-control">
                       <option value="<?php echo $distrc ?> "><?php echo $distrc ?> </option>
-                      <option value="district1">District 1</option>
-                                    <option value="district 2">District 2</option>
-                                    <option value="district 3">District 3</option>
-                                    <option value="district 4">District 4</option>
-                                    <option value="district 5">District 5</option>
-                                    <option value="district 6">District 6</option>
-                                    <option value="district 7">District 7</option>
-                                    <option value="district 8">District 8</option>
-                                    <option value="district 9">District 9</option>
-                                    <option value="district 10">District 10</option>
-                                    <option value="district 11">District 11</option>
-                                    <option value="district 12">District 12</option>
+                      <option value="District 1">District 1</option>
+                                    <option value="District 2">District 2</option>
+                                    <option value="District 3">District 3</option>
+                                    <option value="District 4">District 4</option>
+                                    <option value="District 5">District 5</option>
+                                    <option value="District 6">District 6</option>
+                                    <option value="District 7">District 7</option>
+                                    <option value="District 8">District 8</option>
+                                    <option value="District 9">District 9</option>
+                                    <option value="District 10">District 10</option>
+                                    <option value="District 11">District 11</option>
+                                    <option value="District 12">District 12</option>
                                     <option value="Tan Binh">Tan Binh </option>
                                     <option value="Binh Tan">Binh Tan </option>
                                     <option value="Tan Phu">Tan Phu</option>
                                     <option value="Go Vap">Go Vap</option>
                                     <option value="Phu Nhuan">Phu Nhuan</option>
                                     <option value="Binh Chanh">Binh Chanh</option>
-                                    <option value="Hoc Mon">Hoc Mon</option>
-                                    <option value="Can Gio">Can Gio</option>
-                                    <option value="Cu Chi">Cu Chi</option>
-                                    <option value="Nha Be">Nha Be</option>
-                     
+                                  
            </select>
 		        	</div>
     </div>

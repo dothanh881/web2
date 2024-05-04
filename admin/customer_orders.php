@@ -11,6 +11,50 @@ session_start();
 ?>
   <?php include "./templates/sidebar.php"; ?>
 
+  <style>
+    .pagination-justify-content-center {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 15px;
+    }
+
+    .pagination-justify-content-center .page-item {
+        display: inline-block;
+        margin-right: 5px;
+        background-color: #ddd; /* Màu nền xám */
+        padding: 15px 30px; /* Kích thước padding */
+        border-radius: 2px;
+    }
+
+    .pagination-justify-content-center .page-item.disabled .page-link {
+        color: #6c757d;
+        pointer-events: none;
+        background-color: #ddd; /* Màu nền xám */
+    }
+
+    .pagination-justify-content-center .page-item.active .page-link {
+        /* color: #613d8a; màu nút khi được bấm */
+        color: red;
+    }
+
+    .pagination-justify-content-center .page-link {
+        color: black; 
+    }
+
+    .pagination-justify-content-center .page-link:hover {
+        color: purple; /* Màu chữ khi hover */
+        text-decoration: none;
+
+    }
+
+</style>
+
+
+
+
+
 <div class="container">
   
 <div class="row">
@@ -48,21 +92,30 @@ session_start();
     <div class="col-md-6 col-lg-4 search-p">
         <div id="DataTables_Table_1_filter" class="dataTables_filter">
             <label>
-                <select class="form-control"   aria-controls="DataTables_Table_1">
+                <select class="form-control" id="myInput1"   aria-controls="DataTables_Table_1">
                     <option value="All">Select all</option>
-                    <option value="district1">District 1</option>
-                    <option value="district2">District 2</option>
-                    <option value="district3">District 3</option>
-                    <option value="district4">District 4</option>
-                    <option value="district5">District 5</option>
-                    <option value="district6">District 6</option>
-                    <option value="district7">District 7</option>
-                    <option value="district8">District 8</option>
-                    <option value="district9">District 9</option>
-                    <option value="district10">District 10</option>
-                    <option value="district11">District 11</option>
-                    <option value="district12">District 12</option>
-                    <option value="TanPhu">Tan Phu</option>
+                    <option value="district 1">District 1</option>
+                                    <option value="district 2">District 2</option>
+                                    <option value="district 3">District 3</option>
+                                    <option value="district 4">District 4</option>
+                                    <option value="district 5">District 5</option>
+                                    <option value="district 6">District 6</option>
+                                    <option value="district 7">District 7</option>
+                                    <option value="district 8">District 8</option>
+                                    <option value="district 9">District 9</option>
+                                    <option value="district 10">District 10</option>
+                                    <option value="district11">District 11</option>
+                                    <option value="district 12">District 12</option>
+                                    <option value="Tan Binh">Tan Binh </option>
+                                    <option value="Binh Tan">Binh Tan </option>
+                                    <option value="Tan Phu">Tan Phu</option>
+                                    <option value="Go Vap">Go Vap</option>
+                                    <option value="Phu Nhuan">Phu Nhuan</option>
+                                    <option value="Binh Chanh">Binh Chanh</option>
+                                    <option value="Hoc Mon">Hoc Mon</option>
+                                    <option value="Can Gio">Can Gio</option>
+                                    <option value="Cu Chi">Cu Chi</option>
+                                    <option value="Nha Be">Nha Be</option>
                     <!-- Thêm các tùy chọn khác tương ứng với các quận bạn muốn lọc -->
                 </select>
             </label>
@@ -105,8 +158,8 @@ session_start();
       </div>
     </main>
   </div>
+  
 </div>
-
 
 
 
@@ -119,6 +172,12 @@ session_start();
  $('#myInput2').on('change', function() {
       var selectedStatus = $(this).val(); // Lấy giá trị của option được chọn
       selectdata(selectedStatus); // Gọi hàm selectdata với giá trị đã chọn
+    });
+
+    // Đặt sự kiện onchange cho select element
+ $('#myInput1').on('change', function() {
+      var selectedDistrict = $(this).val(); // Lấy giá trị của option được chọn
+      selectdistrict(selectedDistrict); // Gọi hàm selectdata với giá trị đã chọn
     });
 
 
@@ -139,6 +198,19 @@ function selectdata(status){
 
 }
 
+function selectdistrict(district){
+  $.ajax({
+
+url: 'select-district.php',
+method: 'post',
+data: 'district='+district,
+success: function(response){
+  $("#customer_order_list").html(response);
+
+}
+
+});
+}
 
 
 });

@@ -260,7 +260,7 @@ while ($row = $result -> fetch_assoc()){
                                 <label for="city">City</label>
                                 <select id="city" name="newCity" class="form-control" >
                                     <option value="">Select City</option>
-                                    <option value="HCMC">Ho Chi Minh</option>
+                                    <option value="Ho Chi Minh">Ho Chi Minh</option>
                                     
                                     <!-- Add more options as needed -->
                                 </select>
@@ -269,28 +269,25 @@ while ($row = $result -> fetch_assoc()){
                                 <label for="district">District</label>
                                 <select id="district" name="newDistrict" class="form-control" >
                                     <option value="">Select District</option>
-                                    <option value="district1">District 1</option>
-                                    <option value="district2">District 2</option>
-                                    <option value="district3">District 3</option>
-                                    <option value="district4">District 4</option>
-                                    <option value="district5">District 5</option>
-                                    <option value="district6">District 6</option>
-                                    <option value="district7">District 7</option>
-                                    <option value="district8">District 8</option>
-                                    <option value="district9">District 9</option>
-                                    <option value="district10">District 10</option>
-                                    <option value="district11">District 11</option>
-                                    <option value="district12">District 12</option>
-                                    <option value="TanBinh">Tan Binh </option>
-                                    <option value="BinhTan">Binh Tan </option>
-                                    <option value="TanPhu">Tan Phu</option>
-                                    <option value="GoVap">Go Vap</option>
-                                    <option value="PhuNhuan">Phu Nhuan</option>
-                                    <option value="BinhChanh">Binh Chanh</option>
-                                    <option value="HocMon">Hoc Mon</option>
-                                    <option value="CanGio">Can Gio</option>
-                                    <option value="CuChi">Cu Chi</option>
-                                    <option value="NhaBe">Nha Be</option>
+									<option value="District 1">District 1</option>
+                                    <option value="District 2">District 2</option>
+                                    <option value="District 3">District 3</option>
+                                    <option value="District 4">District 4</option>
+                                    <option value="District 5">District 5</option>
+                                    <option value="District 6">District 6</option>
+                                    <option value="District 7">District 7</option>
+                                    <option value="District 8">District 8</option>
+                                    <option value="District 9">District 9</option>
+                                    <option value="District 10">District 10</option>
+                                    <option value="District 11">District 11</option>
+                                    <option value="District 12">District 12</option>
+                                    <option value="Tan Binh">Tan Binh </option>
+                                    <option value="Binh Tan">Binh Tan </option>
+                                    <option value="Tan Phu">Tan Phu</option>
+                                    <option value="Go Vap">Go Vap</option>
+                                    <option value="Phu Nhuan">Phu Nhuan</option>
+                                    <option value="Binh Chanh">Binh Chanh</option>
+                                  
                                     <!-- Add more options as needed -->
                                 </select>
                             </div>

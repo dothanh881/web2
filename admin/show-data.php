@@ -5,6 +5,22 @@ session_start();
 
 ?>
 
+<?php
+
+//paging nav
+  $products_per_page = 4;
+  
+  $total_products = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `order`"));
+
+  $total_pages = ceil($total_products / $products_per_page);
+
+
+  $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+  $offset = ($current_page - 1) * $products_per_page;
+
+
+?>
 
 <?php
    $stmt = $conn ->prepare("SELECT * FROM `order` ");
@@ -36,3 +52,4 @@ session_start();
 
     <?php }
     } ?>
+
