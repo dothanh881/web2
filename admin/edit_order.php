@@ -234,3 +234,24 @@ if(isset($_GET['order']))
 
 
 <?php include_once("./templates/footer.php"); ?>
+<script>
+    document.addEventListener("DOMContentLoaded", function(e) {
+        // Chọn radio buttons
+        var btnChange = document.getElementById("change-status");
+
+       
+        var showChange = document.querySelector(".show-change");
+        // Ẩn phần shipping-details ban đầu
+        showChange.style.display = "none";
+
+        // Bắt sự kiện click trên radio buttons
+        btnChange.addEventListener("click", function(e) {
+			e.preventDefault(); 
+            showChange.style.display = "block"; 
+			btnChange.style.display = 'none';
+
+        });
+
+      
+    });
+</script>

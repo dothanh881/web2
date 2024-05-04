@@ -9,17 +9,81 @@ session_start();
     include("./../functions.php");
 
 ?>
+  <?php include "./templates/sidebar.php"; ?>
 
-<div class="container-fluid">
+<div class="container">
+  
+<div class="row">
+    <div class="col-10">
+        <h2>Order Management</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-lg-4 form-group date-check">
+        <label for="datefrom">From</label>
+        <input type="date" id="datefrom" name="datefrom" class="form-control">
+    </div>
+    <div class="col-md-6 col-lg-4 form-group date-check">
+        <label for="dateto">To</label>
+        <input type="date" id="dateto" name="dateto" class="form-control">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-lg-4 search-p " >
+        <div id="DataTables_Table_0_filter" class="dataTables_filter">
+            <label>
+                <select  class="form-control" onchange="selectdata(this.options[this.selectedIndex].value);" >
+                    <option value="select">Order Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="complete">Complete</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </label>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4 search-p">
+        <div id="DataTables_Table_1_filter" class="dataTables_filter">
+            <label>
+                <select id="myInput2" class="form-control"   aria-controls="DataTables_Table_1">
+                    <option value="All">Select all</option>
+                    <option value="district1">District 1</option>
+                    <option value="district2">District 2</option>
+                    <option value="district3">District 3</option>
+                    <option value="district4">District 4</option>
+                    <option value="district5">District 5</option>
+                    <option value="district6">District 6</option>
+                    <option value="district7">District 7</option>
+                    <option value="district8">District 8</option>
+                    <option value="district9">District 9</option>
+                    <option value="district10">District 10</option>
+                    <option value="district11">District 11</option>
+                    <option value="district12">District 12</option>
+                    <option value="TanPhu">Tan Phu</option>
+                    <!-- Thêm các tùy chọn khác tương ứng với các quận bạn muốn lọc -->
+                </select>
+            </label>
+        </div>
+    </div>
+</div>
+
+
+       
+      
+
+
+<br><br>
+
+  
   <div class="row">
     
-    <?php include "./templates/sidebar.php"; ?>
 
-      <div class="row">
-      	<div class="col-10">
-      		<h2>Order Management</h2>
-      	</div>
-      </div>
+  
+  
+
       
       <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -30,41 +94,12 @@ session_start();
       <th scope="col">Customer</th>
       <th scope="col">Created On</th>
       <th scope="col">Order Total</th>
+      <th scope="col">Address</th>
       <th scope="col">View</th>
             </tr>
           </thead>
           <tbody id="customer_order_list">
            
-		  <?php
-   $stmt = $conn ->prepare("SELECT * FROM `order` ");
-	$stmt -> execute();
-   $result = $stmt ->get_result();
-
-   while($order = $result->fetch_object()){
-   ?>
-
-	
-<tr>
-      <th scope="row">#<?php echo $order->order_id ?></th>
-      <td><?php echo $order->order_status ?></td>
-      <td><?php echo $order->fullname ?> 
-		<br>
-		<?php  echo $order->email ?>
-	</td>
-      <td><?php echo $order->order_date ?></td>
-      <td>$<?php echo $order->order_total_price ?></td>
-      <td>
-	  <a href="edit_order.php?order=<?=$order->order_id ?>" class="btn btn-primary">
-    <i class="far fa-eye"></i> View
-</a>
-    </tr>
-
-    <?php } ?>
-
-
-
-
-
           </tbody>
         </table>
       </div>
@@ -80,4 +115,3 @@ session_start();
 
 
 
-<script type="text/javascript" src="./js/customers.js"></script>
