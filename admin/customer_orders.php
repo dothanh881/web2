@@ -34,7 +34,7 @@ session_start();
     <div class="col-md-6 col-lg-4 search-p " >
         <div id="DataTables_Table_0_filter" class="dataTables_filter">
             <label>
-                <select  class="form-control" onchange="selectdata(this.options[this.selectedIndex].value);" >
+                <select  id="myInput2"  class="form-control"  >
                     <option value="select">Order Status</option>
                     <option value="pending">Pending</option>
                     <option value="processing">Processing</option>
@@ -48,7 +48,7 @@ session_start();
     <div class="col-md-6 col-lg-4 search-p">
         <div id="DataTables_Table_1_filter" class="dataTables_filter">
             <label>
-                <select id="myInput2" class="form-control"   aria-controls="DataTables_Table_1">
+                <select class="form-control"   aria-controls="DataTables_Table_1">
                     <option value="All">Select all</option>
                     <option value="district1">District 1</option>
                     <option value="district2">District 2</option>
@@ -112,6 +112,37 @@ session_start();
 
 
 <?php include_once("./templates/footer.php"); ?>
+<script type="text/javascript">
+  $(document).ready(function(){
 
+ // Đặt sự kiện onchange cho select element
+ $('#myInput2').on('change', function() {
+      var selectedStatus = $(this).val(); // Lấy giá trị của option được chọn
+      selectdata(selectedStatus); // Gọi hàm selectdata với giá trị đã chọn
+    });
+
+
+
+function selectdata(status){
+
+  $.ajax({
+
+    url: 'select-data.php',
+    method: 'post',
+    data: 'status='+status,
+    success: function(response){
+      $("#customer_order_list").html(response);
+
+    }
+
+  });
+
+}
+
+
+
+});
+
+</script>
 
 

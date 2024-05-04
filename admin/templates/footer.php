@@ -29,11 +29,6 @@ success : function(response){
 
 
 
-function selectdata(status) {
-    
-    console.log(status);
-
-}
 
 });
 </script>	
