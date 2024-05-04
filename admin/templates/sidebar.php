@@ -25,7 +25,7 @@ if ( isset($_SESSION["user_id"]) ) {
           <li class="nav-item">
             <a class="nav-link <?php echo ($page == '' || $page == 'index_admin.php') ? 'active' : ''; ?>" href="index_admin.php">
               <span data-feather="home"></span>
-              Dashboard <span class="sr-only">(current)</span>
+              Admin  <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">

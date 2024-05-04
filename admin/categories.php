@@ -41,7 +41,13 @@ if(isset($_POST['add_cate'])){
       $result = $check_stmt->get_result();
     
       if($result->num_rows > 0 ){
-          echo "<script>alert('Category already exists!')</script>";
+
+        echo '<div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Category already exist!</strong> 
+        
+      </div>';
+
       } else {
           // Insert new category
           $insert_sql = "INSERT INTO `category` (category_name) VALUES (?)";
@@ -53,7 +59,11 @@ if(isset($_POST['add_cate'])){
 
           $insert_stmt->bind_param("s", $cate_name);
           if($insert_stmt->execute()){
-              echo "Category added successfully!";
+            echo '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Add category successfully!</strong> 
+          </div>';
+
           } else {
               echo "Error adding category: " . $insert_stmt->error;
           }
@@ -73,7 +83,7 @@ if(isset($_GET['delete'])) {
       $stmt = $conn->prepare($sql);
       $stmt->bind_param("i", $delete_id);
       $stmt->execute();
-
+ 
 }
 
 

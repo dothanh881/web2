@@ -6,6 +6,7 @@ session_start(); ?>
 <?php include_once("./templates/navbar.php"); ?>
 <div class="container-fluid">
   <div class="row">
+ 
     
     <?php include "./templates/sidebar.php";
     include("./../functions.php");
@@ -123,10 +124,13 @@ session_start(); ?>
 
 ?>
 
+
       <div class="row">
       	<div class="col-10">
+      
       		<h2>Product List</h2>
       	</div>
+       
       	<div class="col-2">
       		<a href="#" data-toggle="modal" data-target="#add_product_modal" class="btn btn-warning btn-sm">Add Product</a>
       	</div>
@@ -212,13 +216,14 @@ if(isset($_POST['add-product'])){
       if($stmt){
           $stmt->bind_param("isidsssiii", $item_category, $item_name, $item_qty, $item_price, $item_color, $item_image, $item_desc, $item_rom, $item_ram, $item_screen);
           if($stmt->execute()) {
-              echo "Success!!";
+            echo '<script> alert("Add product successfully!");</script>';
+              
           } else {
               echo "Error " . $stmt->error;
           }
       } 
   } else {
-      echo "Image up failed!!";
+      echo '<script> alert("Image up failed!!");</script>';
   }
 }
   

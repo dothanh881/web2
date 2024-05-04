@@ -170,56 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // Check for POST request
         <?php 
         // ADD PRODUCT
         
-        if(isset($_POST['add-product'])){
-            if($user_id == ''){
-                header('location: ./login.php');
-            } else {
-                $item_id = $_POST['item_id'];
-                $name = $_POST['name'];
-                $cart_price = $_POST['price'];
-                $cart_quantity = $_POST['qty'];
-                $cart_image = $_POST['image'];
-        
-                $check_cart_numbers = $conn->prepare("SELECT * FROM `cart` WHERE item_id = ? AND user_id = ?");
-                $check_cart_numbers->bind_param("is", $item_id, $user_id);
-                $check_cart_numbers->execute();
-                $check_cart_numbers->store_result();
-        
-                if($check_cart_numbers->num_rows > 0){
-                    $message = 'already added to cart!';
-                } else {
-                    $check_cart_numbers->close();
-        
-                    $insert_cart = $conn->prepare("INSERT INTO `cart`(user_id, item_id, cart_quantity, cart_price, name, cart_image) VALUES(?,?,?,?,?,?)");
-                    $insert_cart->bind_param("siidss", $user_id, $item_id, $cart_quantity, $cart_price, $name, $cart_image);
-                    $insert_cart->execute();
-                    $message = 'added to wishlist!';
-                }
-            }
-        }
-        
-        if (isset($_POST['add-product'])){
-            /// print_r($_POST['product_id']);
-            if(isset($_SESSION['cart'])){
-        
-                if(in_array($_POST['item_id'], array_keys($_SESSION['cart']))){
-                    $_SESSION['cart'][$_POST['item_id']] += 1;
-                   
-                }else{
-                    // Create new session variable
-                    $_SESSION['cart'][$_POST['item_id']] = 1;
-                    // print_r($_SESSION['cart']);
-                 
-                }
-        
-            }else{
-                // Create new session variable
-                $_SESSION['cart'][$_POST['item_id']] = 1;
-                // print_r($_SESSION['cart']);
-              
-            }
-        }
-         //  \ADD PRODUCT
+      
         ?>
         
         <br><br><br>
@@ -289,7 +240,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // Check for POST request
             </div>
             <div class="form-group">
                 <button type="submit" class="btn-sub">Search</button>
-                <button type="button" class="btn-reset" onclick="window.location.reload()" formmethod="post">Reset</button>
             </div>
         </form>
     </div>

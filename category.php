@@ -229,7 +229,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
             </div>
             <div class="form-group">
                 <button type="submit" class="btn-sub">Search</button>
-                <button type="button" class="btn-reset" onclick="window.location.reload()" formmethod="post">Reset</button>
             </div>
         </form>
     </div>

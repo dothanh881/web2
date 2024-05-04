@@ -25,7 +25,7 @@ function checkStatus($id)
       return $status;
   } else {
      
-      return "Product not found";
+      return "Not found";
   }
   
 }

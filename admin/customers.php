@@ -31,8 +31,10 @@ include("./../functions.php");
 <div class="container-fluid">
   <div class="row">
     <?php include "./templates/sidebar.php"; ?>
-    <div class="row">
+  
       <div class="col-10">
+      <div class="row">
+    
         <h2>Customers</h2>
       </div>
     </div>
@@ -63,6 +65,7 @@ include("./../functions.php");
                 <?php 
                 if($cust->status == 1){
                   echo '<p><a href="active.php?user_id='.$cust->user_id.'&status=0" class="btn btn-success">Active</a></p>';
+                  
                 }
                 else{
                   echo '<p><a href="active.php?user_id='.$cust->user_id.'&status=1" class="btn btn-danger">Inactive</a></p>';

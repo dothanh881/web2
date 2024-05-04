@@ -46,6 +46,10 @@ session_start(); ?>
       $stmt->bind_param("ssdiiiisiii", $item_name, $item_desc, $item_price, $item_category, $item_status, $item_rom, $item_ram, $item_color, $item_screen , $item_quantity, $item_id);
       $queryCart->bind_param("dsi",  $item_price, $item_name, $item_id);
       $stmt->execute();
+      echo '<div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Update successfully!</strong> 
+    </div>';
       $queryCart->execute();
       // Xử lý ảnh mới
       $old_image = $_POST['item_image'];
@@ -57,12 +61,18 @@ session_start(); ?>
           $image_folder = './assets/products/' . $imageNew;
     
           if($imageNew_size > 2000000){
-              echo ("size too large");
+            echo '<div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Image size too large!</strong> 
+          </div>';
           } else {
               $query = "UPDATE `product` SET item_image = ? WHERE item_id = ?";
               $stmt = $conn->prepare($query);
               $stmt->bind_param("si", $image_folder, $item_id);
               $stmt->execute();
+
+            
+          
 
               $upCart = "UPDATE `cart` SET cart_image = ? WHERE item_id = ?";
               $query1 = $conn->prepare($upCart);
@@ -70,7 +80,6 @@ session_start(); ?>
               $query1->execute();
               
               move_uploaded_file($imageNew_temp, __DIR__ . "/../" . $image_folder);
-              echo ("update success");
           }
       } else {
           // Nếu không có ảnh mới được chọn

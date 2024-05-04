@@ -59,25 +59,26 @@
             <div class="col-sm-6">
                 <img src="<?php echo $item['item_image'] ?? "./assets/products/1.png" ?>" alt="product" style="width:400px;" class="img-fluid">
                 <div class="form-row pt-4 font-size-16 font-baloo">
-                    <div class="col">
-                        <button type="submit" class="btn btn-danger form-control">Proceed to Buy</button>
-                    </div>
-                    <div class="col">
-                    <form action="" class="form-submit">
+                 
+                    <div class="col-md-6 ml-5 justify-content-center ">
+                       
+                        <form action="" class="form-submit">
                                     <input type="hidden" name="pid" value="<?= $item['item_id']; ?>">
                                     <input type="hidden" name="name" value="<?= $item['item_name']; ?>">
                                     <input type="hidden" name="price" value="<?= $item['item_price']; ?>">
                                     <input type="hidden" name="image" value="<?= $item['item_image']; ?>">
                                     <input type="hidden" name="qty" value="1">
-                                    <button type="button" class="btn btn-warning font-size-16 form-control addItemBtn">Add to Cart</button>
+                                    <button type="button" class="btn btn-warning font-size-16 form-control addItemBtn "><i class="fas fa-cart-plus"></i>  Add to Cart</button>
 
                                 </form>
+
+                      
+                 
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 py-5">
                 <h5 class="font-baloo font-size-20"><?php echo $item['item_name'] ?? "Unknown"; ?></h5>
-                <small>by <?php echo $item['item_brand'] ?? "Brand"; ?></small>
                 <div class="d-flex">
                     <div class="rating text-warning font-size-12">
                       

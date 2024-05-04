@@ -50,8 +50,13 @@ session_start(); ?>
       $stmt->bind_param("sssssss", $fullname, $email, $phone, $street, $city, $district, $user_id);
      
       $stmt->execute();
+      
      
       
+      echo  '<div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Update successfully!</strong> 
+    </div>';
   }
      ?>
 
