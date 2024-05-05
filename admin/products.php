@@ -83,6 +83,11 @@ session_start(); ?>
           $stmt->bind_param("i", $delete_id);
           $stmt->execute();
 
+          echo '<div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Delete successfully!</strong> 
+        </div>';
+
 
       } elseif ($status == 2) {
           // Nếu trạng thái là 2, cập nhật lại trạng thái thành 0 thay vì xóa
@@ -214,7 +219,7 @@ if(isset($_POST['add-product'])){
       $stmt = $conn->prepare($sql);
 
       if($stmt){
-          $stmt->bind_param("isidsssiii", $item_category, $item_name, $item_qty, $item_price, $item_color, $item_image, $item_desc, $item_rom, $item_ram, $item_screen);
+          $stmt->bind_param("isidsssiid", $item_category, $item_name, $item_qty, $item_price, $item_color, $item_image, $item_desc, $item_rom, $item_ram, $item_screen);
           if($stmt->execute()) {
             echo '<script> alert("Add product successfully!");</script>';
               

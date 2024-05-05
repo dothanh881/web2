@@ -43,7 +43,7 @@ session_start(); ?>
     
       $stmt = $conn->prepare($sql);
       $queryCart = $conn->prepare($updateCart);
-      $stmt->bind_param("ssdiiiisiii", $item_name, $item_desc, $item_price, $item_category, $item_status, $item_rom, $item_ram, $item_color, $item_screen , $item_quantity, $item_id);
+      $stmt->bind_param("ssdiiiisdii", $item_name, $item_desc, $item_price, $item_category, $item_status, $item_rom, $item_ram, $item_color, $item_screen , $item_quantity, $item_id);
       $queryCart->bind_param("dsi",  $item_price, $item_name, $item_id);
       $stmt->execute();
       echo '<div class="alert alert-success alert-dismissible">

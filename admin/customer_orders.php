@@ -63,14 +63,24 @@ session_start();
     </div>
 </div>
 
+<br><br>
+<div class="row">
+  <div class="col-10">
+  <h5><i class="fas fa-info"></i> Filter</h5>
+        <hr>
+  </div>
+
+</div>
+
+
 <div class="row">
     <div class="col-md-6 col-lg-4 form-group date-check">
-        <label for="datefrom">From</label>
-        <input type="date" id="datefrom" name="datefrom" class="form-control">
+        <label for="fromDate">From</label>
+        <input type="date" id="fromDate" name="fromDate" class="form-control">
     </div>
     <div class="col-md-6 col-lg-4 form-group date-check">
-        <label for="dateto">To</label>
-        <input type="date" id="dateto" name="dateto" class="form-control">
+        <label for="toDate">To</label>
+        <input type="date" id="toDate" name="toDate" class="form-control">
     </div>
 </div>
 
@@ -93,7 +103,7 @@ session_start();
         <div id="DataTables_Table_1_filter" class="dataTables_filter">
             <label>
                 <select class="form-control" id="myInput1"   aria-controls="DataTables_Table_1">
-                    <option value="All">Select all</option>
+                    <option value="All">All district</option>
                     <option value="district 1">District 1</option>
                                     <option value="district 2">District 2</option>
                                     <option value="district 3">District 3</option>
@@ -104,7 +114,7 @@ session_start();
                                     <option value="district 8">District 8</option>
                                     <option value="district 9">District 9</option>
                                     <option value="district 10">District 10</option>
-                                    <option value="district11">District 11</option>
+                                    <option value="district 11">District 11</option>
                                     <option value="district 12">District 12</option>
                                     <option value="Tan Binh">Tan Binh </option>
                                     <option value="Binh Tan">Binh Tan </option>
@@ -182,6 +192,7 @@ session_start();
 
 
 
+
 function selectdata(status){
 
   $.ajax({
@@ -199,6 +210,7 @@ function selectdata(status){
 }
 
 function selectdistrict(district){
+  console.log(district);
   $.ajax({
 
 url: 'select-district.php',
@@ -211,6 +223,43 @@ success: function(response){
 
 });
 }
+
+$('#fromDate').on('change', function() {
+        var fromDate = $(this).val(); // Lấy giá trị của option được chọn
+        var toDate = $('#toDate').val(); // Lấy giá trị của toDate
+        filterData(fromDate, toDate); // Gọi hàm filterData với giá trị fromDate và toDate
+    });
+    
+
+    $('#toDate').on('change', function() {
+        var fromDate = $('#fromDate').val(); // Lấy giá trị của fromDate
+        var toDate = $(this).val(); // Lấy giá trị của option được chọn
+        filterData(fromDate, toDate); // Gọi hàm filterData với giá trị fromDate và toDate
+    });
+
+function filterData(fromDate, toDate) {
+ 
+
+    // Send AJAX request
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                document.getElementById("customer_order_list").innerHTML = xhr.responseText;
+            } else {
+                console.error("Error fetching data:", xhr.status);
+            }
+        }
+    };
+    xhr.open("GET", "filter_data.php?fromDate=" + fromDate + "&toDate=" + toDate, true);
+    xhr.send();
+}
+
+
+
+
+
+
 
 
 });

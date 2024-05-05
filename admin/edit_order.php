@@ -79,7 +79,7 @@ session_start(); ?>
     $result = $select->get_result();
 
  
-    if($result ->num_rows > 1){
+    if($result ->num_rows  > 0 ){
       $orders = $result->fetch_object();
     
    
@@ -124,6 +124,7 @@ session_start(); ?>
             <div class="form-group">
               <select name="order_status" class="form-control">
                 <option value="<?=$orders->order_status ?>" selected> <?php echo $orders->order_status ?></option>
+                <option value="Pending">Pending</option>
                 <option value="Processing">Processing</option>
                 <option value="Complete">Complete</option>
                 <option value="Cancelled">Cancelled</option>
@@ -139,7 +140,7 @@ session_start(); ?>
         <hr>
         <div class="row">
 
-            <div class="col-md-6">
+            <div class="col-md-8">
               <div class="text">
                
                 <h6>Order total: $<?php echo $orders->order_total_price ?></h6>

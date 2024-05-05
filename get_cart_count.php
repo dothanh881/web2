@@ -128,7 +128,7 @@ if (isset($_POST['pid'])) {
                 $select -> bind_param("s", $user_id);
                 $select ->execute();
                 $result = $select -> get_result();
-                if($result -> num_rows > 1){
+                if($result -> num_rows > 0){
                     while( $row2 = $result -> fetch_assoc()){
                         $sum = ($row2['cart_price'] * $row2['cart_quantity']);
                         $insert_order_detail = $conn -> prepare("INSERT INTO `order_detail` (order_detail_price, order_detail_quantity, order_id, item_id, total_price) 
@@ -155,7 +155,7 @@ if (isset($_POST['pid'])) {
                     $stmt -> execute();
                     $result  = $stmt->get_result();
 
-                    if($result -> num_rows > 1){
+                    if($result -> num_rows >0){
                             while($row = $result -> fetch_assoc()){
                                 $item_id = $row['item_id'];
                                 $order_quantity = $row['order_detail_quantity'];
@@ -225,7 +225,7 @@ if (isset($_POST['pid'])) {
             $select -> bind_param("s", $user_id);
             $select ->execute();
             $result = $select -> get_result();
-            if($result -> num_rows > 1){
+            if($result -> num_rows > 0){
                 while( $row2 = $result -> fetch_assoc()){
                     $sum = ($row2['cart_price'] * $row2['cart_quantity']);
                     $insert_order_detail = $conn -> prepare("INSERT INTO `order_detail` (order_detail_price, order_detail_quantity, order_id, item_id, total_price) 
@@ -256,7 +256,7 @@ if (isset($_POST['pid'])) {
  $stmt -> execute();
  $result  = $stmt->get_result();
 
- if($result -> num_rows > 1){
+ if($result -> num_rows > 0){
          while($row = $result -> fetch_assoc()){
              $item_id = $row['item_id'];
              $order_quantity = $row['order_detail_quantity'];
