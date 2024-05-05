@@ -11,46 +11,6 @@ session_start();
 ?>
   <?php include "./templates/sidebar.php"; ?>
 
-  <style>
-    .pagination-justify-content-center {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        font-size: 15px;
-    }
-
-    .pagination-justify-content-center .page-item {
-        display: inline-block;
-        margin-right: 5px;
-        background-color: #ddd; /* Màu nền xám */
-        padding: 15px 30px; /* Kích thước padding */
-        border-radius: 2px;
-    }
-
-    .pagination-justify-content-center .page-item.disabled .page-link {
-        color: #6c757d;
-        pointer-events: none;
-        background-color: #ddd; /* Màu nền xám */
-    }
-
-    .pagination-justify-content-center .page-item.active .page-link {
-        /* color: #613d8a; màu nút khi được bấm */
-        color: red;
-    }
-
-    .pagination-justify-content-center .page-link {
-        color: black; 
-    }
-
-    .pagination-justify-content-center .page-link:hover {
-        color: purple; /* Màu chữ khi hover */
-        text-decoration: none;
-
-    }
-
-</style>
-
 
 
 
@@ -88,7 +48,7 @@ session_start();
     <div class="col-md-6 col-lg-4 search-p " >
         <div id="DataTables_Table_0_filter" class="dataTables_filter">
             <label>
-                <select  id="myInput2"  class="form-control"  >
+                <select  id="myInput2" name="selectedStatus"  class="form-control"  >
                     <option value="select">Order Status</option>
                     <option value="pending">Pending</option>
                     <option value="processing">Processing</option>
@@ -102,7 +62,7 @@ session_start();
     <div class="col-md-6 col-lg-4 search-p">
         <div id="DataTables_Table_1_filter" class="dataTables_filter">
             <label>
-                <select class="form-control" id="myInput1"   aria-controls="DataTables_Table_1">
+                <select class="form-control" name="selectedDistrict" id="myInput1"   aria-controls="DataTables_Table_1">
                     <option value="All">All district</option>
                     <option value="district 1">District 1</option>
                                     <option value="district 2">District 2</option>
@@ -141,129 +101,37 @@ session_start();
 <br><br>
 
   
-  <div class="row">
+  
+
+  <div class="row" id="customer_order_list">
     
-
-  
-  
-
-      
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-			<th scope="col">Order #</th>
-      <th scope="col">Order Status</th>
-      <th scope="col">Customer</th>
-      <th scope="col">Created On</th>
-      <th scope="col">Order Total</th>
-      <th scope="col">Address</th>
-      <th scope="col">View</th>
-            </tr>
-          </thead>
-          <tbody id="customer_order_list">
-           
-          </tbody>
-        </table>
-      </div>
-    </main>
+    
   </div>
+
   
 </div>
-
+<br><br>
 
 
 
 <?php include_once("./templates/footer.php"); ?>
-<script type="text/javascript">
-  $(document).ready(function(){
 
- // Đặt sự kiện onchange cho select element
- $('#myInput2').on('change', function() {
-      var selectedStatus = $(this).val(); // Lấy giá trị của option được chọn
-      selectdata(selectedStatus); // Gọi hàm selectdata với giá trị đã chọn
-    });
-
-    // Đặt sự kiện onchange cho select element
- $('#myInput1').on('change', function() {
-      var selectedDistrict = $(this).val(); // Lấy giá trị của option được chọn
-      selectdistrict(selectedDistrict); // Gọi hàm selectdata với giá trị đã chọn
-    });
-
-
-
-
-function selectdata(status){
-
-  $.ajax({
-
-    url: 'select-data.php',
-    method: 'post',
-    data: 'status='+status,
-    success: function(response){
-      $("#customer_order_list").html(response);
-
-    }
-
-  });
-
-}
-
-function selectdistrict(district){
-  console.log(district);
-  $.ajax({
-
-url: 'select-district.php',
-method: 'post',
-data: 'district='+district,
-success: function(response){
-  $("#customer_order_list").html(response);
-
-}
-
-});
-}
-
-$('#fromDate').on('change', function() {
-        var fromDate = $(this).val(); // Lấy giá trị của option được chọn
-        var toDate = $('#toDate').val(); // Lấy giá trị của toDate
-        filterData(fromDate, toDate); // Gọi hàm filterData với giá trị fromDate và toDate
-    });
+<script>
     
+$(document).on('click', '.page-link', function(e) {
+    e.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt
 
-    $('#toDate').on('change', function() {
-        var fromDate = $('#fromDate').val(); // Lấy giá trị của fromDate
-        var toDate = $(this).val(); // Lấy giá trị của option được chọn
-        filterData(fromDate, toDate); // Gọi hàm filterData với giá trị fromDate và toDate
-    });
+    var page = $(this).attr('href').split('page=')[1]; // Lấy số trang từ href
 
-function filterData(fromDate, toDate) {
- 
-
-    // Send AJAX request
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                document.getElementById("customer_order_list").innerHTML = xhr.responseText;
-            } else {
-                console.error("Error fetching data:", xhr.status);
-            }
+    // Thực hiện Ajax để tải dữ liệu mới
+    $.ajax({
+        url: 'show-data.php?page=' + page,
+        method: 'GET',
+        success: function(data) {
+            $("#customer_order_list").html(data); // Hiển thị dữ liệu mới
         }
-    };
-    xhr.open("GET", "filter_data.php?fromDate=" + fromDate + "&toDate=" + toDate, true);
-    xhr.send();
-}
-
-
-
-
-
-
-
-
+    });
 });
 
 </script>
-
 

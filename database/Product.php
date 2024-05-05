@@ -44,6 +44,7 @@ class Product
 
         return $resultArray;
     }
+  
     public function getData3($table = 'product', $table1 ='category')
     {
         $result = $this->conn->query("SELECT * FROM {$table},{$table1} WHERE $table.category_id = $table1.category_id AND item_status = 1 " );

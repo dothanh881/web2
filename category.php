@@ -132,7 +132,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         $key_rom = $_GET['sRom'] ?? 'All Rom';
         $key_screen = $_GET['sScreen'] ?? 'All Screen';
     }
-        $sql = "SELECT * FROM `product`,`category` WHERE 1 AND `product`.category_id = `category`.category_id  "; // Start with a base condition
+        $sql = "SELECT * FROM `product`,`category` WHERE  `product`.category_id = `category`.category_id  "; // Start with a base condition
         $conditions = [];
         if ($key_brand !== 'All categories') {
             $conditions[] = "category_name = '$key_brand'"; // Filter by brand
@@ -151,7 +151,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         if (!empty($conditions)) {
             $sql .= " AND " . implode(' AND ', $conditions) ; // Combine conditions
         }
-        
+    
+
+
+
+      
        
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -262,6 +266,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
     <div class="row">
         <div class="grid-search d-flex align-content-end flex-wrap " style="background-color: white;">
             <?php
+
             while ($item = $list_result->fetch_assoc()) {
             ?>
                 <div class="grid-item border" style="margin-top:30px">
@@ -295,7 +300,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         </div>
     </div>
 
-    
 
 
 </div>
