@@ -52,7 +52,7 @@ if(isset($_GET['order']))
                 <h6>Name: <?php echo $row['fullname'] ?> </h6>
                 <h6>E-mail: <?php echo $row['email'] ?> </h6>
                 <h6>Phone: <?php echo $row['phone_number'] ?> </h6>
-                <h6>Address: <?php echo $row['street'] .", "  .$row['ward ']. ", " . $row['district'] .", ". $row['city']  ?>  </h6>
+                <h6>Address: <?php echo $row['street'] .", "  .$row['ward']. ", " . $row['district'] .", ". $row['city']  ?>  </h6>
          </div>
       </div>
       <?php  } } ?>

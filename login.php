@@ -140,9 +140,17 @@
 							<input type="text" class="form-control" name="fname" id="fname" required/>
 							<label for="password">Password</label>
 							<input type="password" class="form-control" name="password" id="password" required/>
-							<p><br/></p>
-							<a href="#" style="color:#333; list-style:none;">Forgotten Password</a><input type="submit" class="btn btn-success" name="Login" style="float:right;" Value="Login">
-							<div><a href="register.php">Create a new account?</a></div>						
+						
+                            <div><a href="register.php">Create a new account?</a></div>	
+                            <br>
+                            <div class="text-center">
+    <div class="row">
+        <div class="col-md-4 offset-md-4"> <!-- Centered column with offset -->
+            <input type="submit" class="btn btn-success" name="Login" style="width: 100%;" value="Login">
+        </div>
+    </div>
+</div>
+												
 						</form>
 				</div>
 				<div class="panel-footer"><div id="e_msg"></div></div>

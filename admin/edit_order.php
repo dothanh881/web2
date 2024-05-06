@@ -146,7 +146,7 @@ session_start(); ?>
                 <h6>Order total: $<?php echo $orders->order_total_price ?></h6>
                 <h6>Name: <?php echo $orders->fullname ?></h6>
                 <h6>Phone: <?php echo $orders->phone_number ?></h6>
-                <h6>Address: <?php echo $orders->street . ", " . $orders->district . ", " . $orders->city. "." ?></h6>
+                <h6>Address: <?php echo $orders->street . ", " . $orders->ward . ", " .$orders->district. ", " . $orders->city. "." ?></h6>
               </div>
             </div>
         </div>
@@ -255,4 +255,20 @@ if(isset($_GET['order']))
 
       
     });
+
+    document.addEventListener("DOMContentLoaded", function(e) {
+    var btnChange = document.getElementById("change-status");
+  
+    var showChange = document.querySelector(".show-change");
+  
+    showChange.style.display = "none";
+  
+    var orderStatus = "<?php echo $orders->order_status; ?>";
+  
+    if (orderStatus === "Cancelled") {
+      btnChange.style.display = "none";
+    }
+});
+
+   
 </script>

@@ -317,6 +317,7 @@ $sql .= " LIMIT $products_per_page OFFSET $offset";
 
         </div>
     </div>
+    <br><br>
     <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
         <li class="page-item <?php echo $current_page == 1 ? 'disabled' : ''; ?>">

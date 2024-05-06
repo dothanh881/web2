@@ -32,7 +32,7 @@ if(isset($_SESSION['user_id'])){
 	$district = input_filter($_POST['district']);
 	$fullname = input_filter($_POST['fullname']);
 	$user_id = input_filter($_POST['customer_id']);
-
+	$ward = input_filter($_POST['ward']);
 
 
 	$username = mysqli_real_escape_string($conn, $username);
@@ -45,7 +45,7 @@ if(isset($_SESSION['user_id'])){
 	$district = mysqli_real_escape_string($conn, $district);
 	$fullname = mysqli_real_escape_string($conn, $fullname);
 	$user_id = mysqli_real_escape_string($conn, $user_id);
-	
+	$ward = mysqli_real_escape_string($conn, $ward);
 
 
 
@@ -64,11 +64,21 @@ if(isset($_SESSION['user_id'])){
 	$result = $stmt->get_result();
 
 	if($result-> num_rows > 0 ){
-		echo "<script>alert('Username already exists !')</script>";
+		echo '<div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
+		<strong>Warning</strong>Username already exists!.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>';
 	}
 	else{
 		if($pass != $repass){
-			echo "Confirm password not matched!";
+			echo '<div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
+			<strong>Failed!</strong>Confirm password not matched!.
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>';
 		}
 		else{
 			$enc_pass = password_hash($pass, PASSWORD_DEFAULT);
@@ -76,12 +86,18 @@ if(isset($_SESSION['user_id'])){
 			$status = 1;
 			$is_admin = 1;
 
-			$insert_user = $conn->prepare("INSERT INTO `user` (`user_id` ,`email`, `username`, `password`, `street`, `district`, `city`, `phone_number`, `status`, `is_admin`, `fullname` ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			$insert_user = $conn->prepare("INSERT INTO `user` (`user_id` ,`email`, `username`, `password`, `street`, `district`, `city`, `phone_number`, `status`, `is_admin`, `fullname`, `ward` ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 
-			$insert_user-> bind_param("ssssssssiis",$user_id , $email, $username,$enc_pass, $street, $district, $city, $mobile, $status, $is_admin, $fullname);
+			$insert_user-> bind_param("ssssssssiiss",$user_id , $email, $username,$enc_pass, $street, $district, $city, $mobile, $status, $is_admin, $fullname, $ward);
 			$insert_user-> execute();
-			echo "Register successfully!";
+			echo '
+			<div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
+			<strong>Success!</strong> Registered account successfully.
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>';
 		}
 	}
 	$stmt->close();
@@ -156,10 +172,29 @@ if(isset($_SESSION['user_id'])){
 							
 						</div>
 						<div class="row">
-							<div class="col-md-12">
+							<div class="col-md-6">
 								<label for="street">Street</label>
 								<input type="text" id="street" name="street"class="form-control" required>
 							</div>
+							<div class="col-md-6">
+								<label for="ward">Ward</label>
+								<select id="ward" name="ward" class="form-control" required>
+                                    <option value="">Select Ward</option>
+									<option value="Ward 1">Ward 1</option>
+									<option value="Ward 2">Ward 2</option>
+									<option value="Ward 3">Ward 3</option>
+									<option value="Ward 4">Ward 4</option>
+									<option value="Ward 5">Ward 5</option>
+									<option value="Ward 6">Ward 6</option>
+									<option value="Ward 7">Ward 7</option>
+									<option value="Ward 8">Ward 8</option>
+									<option value="Ward 9">Ward 9</option>
+									<option value="Ward 10">Ward 10</option>
+									<option value="Ward 11">Ward 11</option>
+									<option value="Ward 12">Ward 12</option>
+                                    
+                                    <!-- Add more options as needed -->
+                                </select>							</div>
 						</div>
 						<div class="row">
 						<div class="col-md-6">

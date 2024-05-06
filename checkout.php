@@ -231,31 +231,31 @@ while ($row = $result -> fetch_assoc()){
 							
 							<div class="row">
 							<div class="col-md-6">
-								<label for="name">Name</label>
-								<input type="text" id="name" name="newFullname" class="form-control" >
+								<label for="newFullname">Name</label>
+								<input type="text" id="newFullname" name="newFullname" class="form-control" >
 							</div>
 							<div class="col-md-6">
-								<label for="email">Email</label>
-								<input type="email" id="email" name="newEmail"class="form-control" >
+								<label for="newEmail">Email</label>
+								<input type="email" id="newEmail" name="newEmail"class="form-control" >
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-md-12">
-								<label for="phone">Phone</label>
-								<input type="text" id="phone" name="newPhone"class="form-control" >
+								<label for="newPhone">Phone</label>
+								<input type="text" id="newPhone" name="newPhone"class="form-control" >
 							</div>
 						</div>
 
 								<div class="caption">
                                 <div class="row">
 							<div class="col-md-6">
-								<label for="street">Street</label>
-								<input type="text" id="street" name="newStreet"class="form-control" >
+								<label for="newStreet">Street</label>
+								<input type="text" id="newStreet" name="newStreet"class="form-control" >
 							</div>
 							<div class="col-md-6">
-								<label for="ward">Ward</label>
-								<select id="ward" name="newWard" class="form-control" required>
+								<label for="new_Ward">Ward</label>
+								<select id="ward" name="new_Ward" class="form-control" >
                                     <option value="">Select Ward</option>
 									<option value="Ward 1">Ward 1</option>
 									<option value="Ward 2">Ward 2</option>

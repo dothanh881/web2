@@ -55,7 +55,7 @@ session_start();
 	$result = $stmt->get_result();
 
 	if($result-> num_rows > 0 ){
-		echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<strong>Warning</strong>Username already exists!.
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		  <span aria-hidden="true">&times;</span>
@@ -64,7 +64,7 @@ session_start();
 	}
 	else{
 		if($pass != $repass){
-			echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
 			<strong>Failed!</strong>Confirm password not matched!.
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			  <span aria-hidden="true">&times;</span>
@@ -264,7 +264,7 @@ session_start();
 							<div class="col-md-12">
 								<input style="width:100%;" value="Register Now" type="submit" name="register"class="btn btn-success btn-lg">
 							</div>
-						</div>
+						</div><br>
 						<p>Already have an account?</p>
       					<a href="login.php" >
 						  <div class="row">

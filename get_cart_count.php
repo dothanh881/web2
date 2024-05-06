@@ -95,14 +95,16 @@ if (isset($_POST['pid'])) {
         $grand_total = input_filter($_POST['grand_total']);
         $orderid = input_filter($_POST['order_id']);
         $payment_method = input_filter($_POST['payment']);
-        $newWard = input_filter($_POST['newWard']);
+        $newWard = $_POST['new_Ward'];
         $allItems = input_filter($_POST['allItems']);
 
         $data ='';
 
 
-        if( empty($newName) && empty($newStreet) && empty($newCity) && empty($newDistrict) && empty($newWard)){
+        if( empty($newName)){
 
+
+         
             $sql = "SELECT * FROM `user` WHERE user_id = ? AND is_admin = 0";
             $stmt = $conn->prepare($sql);
             $stmt -> bind_param("s", $user_id);
@@ -112,7 +114,7 @@ if (isset($_POST['pid'])) {
 
             if($result -> num_rows == 1){
 
-                $row1 = $result-> fetch_assoc();
+                $row1= $result-> fetch_assoc();
 
                 $query = " INSERT INTO `order` (order_id, user_id, order_total_price, method, city, district, street, fullname, email, phone_number, ward) VALUE(?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -217,6 +219,7 @@ if (isset($_POST['pid'])) {
            
         }
         else{
+            
             $query = " INSERT INTO `order` (order_id, user_id, order_total_price, method, city, district, street, fullname, email, phone_number, ward) VALUE(?,?,?,?,?,?,?,?,?,?, ?)";
             $stmt1 = $conn->prepare($query);
             $stmt1 -> bind_param("ssdssssssss", $orderid, $user_id, $grand_total, $payment_method, $newCity, $newDistrict, $newStreet, $newName, $newEmail , $newPhone, $newWard);

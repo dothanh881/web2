@@ -47,10 +47,12 @@ $total_orders = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `order`"));
 if (!empty($filter)) {
     $total_filtered_order = mysqli_num_rows(mysqli_query($conn, $sql));
     $total_pages = ceil($total_filtered_order / $order_per_page);
+   
 } else {
     $total_pages = ceil($total_orders / $order_per_page);
 }
-
+// Hiển thị giá trị của total_pages trước và sau khi filter
+echo 'Total Pages after filter: ' . $total_pages;
 
 $stmt = $conn ->prepare($sql);
 $stmt->execute();
@@ -111,6 +113,7 @@ for ($i = 1; $i <= $total_pages; $i++) {
 $output .= '<li class="page-item ' . ($current_page == $i ? 'active' : '') . '">
        <a class="page-link" href="?page=' . $i . '">' . $i . '</a>
    </li>';
+
 }
 $output .= '<li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
    <a class="page-link" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1)) . '">Next</a>

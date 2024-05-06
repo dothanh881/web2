@@ -50,7 +50,14 @@ session_start(); ?>
         text-decoration: none;
 
     }
-
+    .alert.fixed-top {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999; /* Adjust z-index as needed */
+}
 </style>
 
 
@@ -221,14 +228,24 @@ if(isset($_POST['add-product'])){
       if($stmt){
           $stmt->bind_param("isidsssiid", $item_category, $item_name, $item_qty, $item_price, $item_color, $item_image, $item_desc, $item_rom, $item_ram, $item_screen);
           if($stmt->execute()) {
-            echo '<script> alert("Add product successfully!");</script>';
+            echo '<div class="alert alert-success alert-dismissible fade show fixed-top mt-5 " role="alert">
+            <strong>Success</strong>Add product successfully!.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>';
               
           } else {
               echo "Error " . $stmt->error;
           }
       } 
   } else {
-      echo '<script> alert("Image up failed!!");</script>';
+    echo '<div class="alert alert-danger alert-dismissible fade show fixed-top mt-5 " role="alert">
+    <strong>Failed</strong>Image up failed!.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>';
   }
 }
   
