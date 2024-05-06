@@ -98,7 +98,7 @@ include("./../functions.php");
                 <?php
                 if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != $admin->user_id) { // Checking if session variable is set and not equal to current admin's ID
                   ?>
-                  <a class="btn btn-sm btn-info">Edit</a>
+                  <a href="edit_admin.php?admin=<?= $admin->user_id?>" class="btn btn-sm btn-info">Edit</a>
                   <a class="btn btn-sm btn-warning">Delete</a>
                   <?php
                 } else {

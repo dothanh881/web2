@@ -22,34 +22,7 @@ session_start(); ?>
 <hr>
 <?php
 
-  if(isset($_GET['order'])){
-    $order_id = $_GET['order'];
-    
-    if(isset($_POST['update-status'])){
-
-      $order_status = $_POST['order_status'];
   
-      $stmt =  $conn-> prepare("UPDATE `order` SET order_status = ? WHERE order_id = ?");
-      $stmt -> bind_param("ss", $order_status, $order_id);
-      $stmt -> execute();
-
-      echo '<div class="alert alert-success alert-dismissible">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Update successfully!</strong> 
-    </div>';
-  
-  
-    }
-   
-  }
-  else{
-     echo '<div class="alert alert-danger alert-dismissible">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Unsuccessfully!</strong> 
-    </div>';
-    
-  }
-
 
 
 
@@ -235,43 +208,3 @@ if(isset($_GET['order']))
 
 
 <?php include_once("./templates/footer.php"); ?>
-<script>
-    document.addEventListener("DOMContentLoaded", function(e) {
-        // Chọn radio buttons
-        var btnChange = document.getElementById("change-status");
-
-       
-        var showChange = document.querySelector(".show-change");
-        // Ẩn phần shipping-details ban đầu
-        showChange.style.display = "none";
-
-        // Bắt sự kiện click trên radio buttons
-        btnChange.addEventListener("click", function(e) {
-			e.preventDefault(); 
-            showChange.style.display = "block"; 
-			btnChange.style.display = 'none';
-
-        });
-
-      
-    });
-
-    document.addEventListener("DOMContentLoaded", function(e) {
-    var btnChange = document.getElementById("change-status");
-  
-    var showChange = document.querySelector(".show-change");
-  
-    showChange.style.display = "none";
-  
-    var orderStatus = "<?php echo $orders->order_status; ?>";
-  
-    if (orderStatus === "Cancelled") {
-      btnChange.style.display = "none";
-    }
-    else if(orderStatus === 'Complete'){
-      btnChange.style.display = "none";
-    }
-});
-
-   
-</script>

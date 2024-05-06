@@ -193,7 +193,7 @@ session_start(); ?>
 
   <?php }
   }else{
-    echo '<p class="empty">no product user!</p>';
+    echo '<p class="empty">no  user!</p>';
   }
 
   ?>

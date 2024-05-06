@@ -321,21 +321,21 @@ $sql .= " LIMIT $products_per_page OFFSET $offset";
     <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
         <li class="page-item <?php echo $current_page == 1 ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=1" tabindex="-1">First</a>
+            <a class="page-link" href="?page=1&sCate=<?php echo $key_brand?>" tabindex="-1">First</a>
         </li>
         <li class="page-item <?php echo $current_page == 1 ? 'disabled' : ''; ?>">
-            <a class="page-link" href="<?php echo $current_page == 1 ? '#' : '?page=' . ($current_page - 1); ?>">Previous</a>
+            <a class="page-link" href="<?php echo $current_page == 1 ? '#' : '?page=' . ($current_page - 1); ?>&sCate=<?echo $key_brand?>">Previous</a>
         </li>
         <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
             <li class="page-item <?php echo $current_page == $i ? 'active' : ''; ?>">
-                <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                <a class="page-link" href="?page=<?php echo $i; ?>&sCate=<?php echo $key_brand;?>"><?php echo $i; ?></a>
             </li>
         <?php } ?>
         <li class="page-item <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>">
-            <a class="page-link" href="<?php echo $current_page == $total_pages ? '#' : '?page=' . ($current_page + 1); ?>">Next</a>
+            <a class="page-link" href="<?php echo $current_page == $total_pages ? '#' :'?page=' . ($current_page + 1); ?>&sCate=<?php echo $key_brand?>">Next</a>
         </li>
         <li class="page-item <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=<?php echo $total_pages; ?>">Last</a>
+            <a class="page-link" href="?page=<?php echo $total_pages; ?>&sCate=<?echo $key_brand?>">Last</a>
         </li>
     </ul>
 </nav>

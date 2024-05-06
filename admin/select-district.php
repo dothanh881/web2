@@ -33,7 +33,8 @@ if ($result->num_rows > 0) {
                 $viewURL = empty($district) ? "edit_order.php?order=" . $order->order_id : "edit_order.php?order=" . $order->order_id . "&district=" . urlencode($district);
                 ?>
                 <a href="<?php echo $viewURL; ?>" class="btn btn-primary"><i class="far fa-eye"></i> View</a>
-            </td>        </tr>
+            </td>        
+        </tr>
 <?php
     }
 } else {

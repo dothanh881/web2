@@ -20,7 +20,12 @@ if ( isset($_SESSION["user_id"]) ) {
             $page = end($uriAr);
 
           ?>
-
+<li class="nav-item">
+            <a class="nav-link <?php echo ($page == 'dashboard.php') ? 'active' : ''; ?>" href="dashboard.php">
+              <span data-feather="users"></span>
+              DashBoard
+            </a>
+          </li>
 
           <li class="nav-item">
             <a class="nav-link <?php echo ($page == '' || $page == 'index_admin.php') ? 'active' : ''; ?>" href="index_admin.php">
@@ -53,6 +58,7 @@ if ( isset($_SESSION["user_id"]) ) {
               Customers
             </a>
           </li>
+          
         </ul>
 
        

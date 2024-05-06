@@ -8,6 +8,7 @@
 $(document).ready(function(){
 
 showdata();
+showreport();
 
 
 
@@ -54,22 +55,34 @@ showdata();
     });
 
 
-	function showdata(){
+	
+function showdata() {
     var fromDate = $('#fromDate').val(); // Lấy giá trị của fromDate
     var toDate = $('#toDate').val(); // Lấy giá trị của toDate
     var selectedStatus = $('#myInput2').val(); // Lấy giá trị của option được chọn trong myInput2
     var selectedDistrict = $('#myInput1').val(); // Lấy giá trị của option được chọn trong myInput1
 
     $.ajax({
-        url : 'show-data.php',
-        method : 'post',
+        url: 'show-data.php',
+        method: 'get', // Thay đổi phương thức thành GET
         data: { fromDate: fromDate, toDate: toDate, selectedStatus: selectedStatus, selectedDistrict: selectedDistrict },
-        success : function(data){
+        success: function(data) {
             $("#customer_order_list").html(data);
         }
     });
 }
 
+function showreport() {
+   
+    $.ajax({
+        url: 'show_report.php',
+        method: 'get',
+     
+        success: function(response) {
+            $("#customer_report_list").html(response);
+        }
+    });
+}
 
 
 
