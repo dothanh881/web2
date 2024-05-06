@@ -33,19 +33,18 @@ session_start(); ?>
 
 <?php
 // Get db for each product to edit
-   if(isset($_GET['order'])){
+   if(isset($_GET['userId'])){
 
-    $order_id = $_GET['order'];
+    $user_id = $_GET['userId'];
 
    
- $sql = "SELECT * FROM `order_detail` 
- INNER JOIN  `product` ON `order_detail`.item_id = `product`.item_id 
- INNER JOIN  `order` ON `order_detail`.order_id = `order`.order_id 
- WHERE `order_detail`. order_id = ?";
+ $sql = "SELECT * FROM `order` 
+
+ WHERE `order`.user_id  = ?";
 
     $select = $conn->prepare($sql);
     
-    $select -> bind_param("s", $order_id);
+    $select -> bind_param("s", $user_id);
    
     $select->execute();
  
@@ -53,7 +52,7 @@ session_start(); ?>
 
  
     if($result ->num_rows  > 0 ){
-      $orders = $result->fetch_object();
+      while($orders = $result->fetch_object()){
     
    
 
@@ -64,7 +63,7 @@ session_start(); ?>
 <form method="post" >
 
 <div class="form-group">
-      <input type="text" class="form-control" name="order_id" value="<?php echo $orders-> order_id  ?>" hidden>
+      <input type="text" class="form-control" name="order_id" value="<?php echo $orders-> user_id  ?>" hidden>
     </div>
     
 <div class="row">
@@ -78,9 +77,7 @@ session_start(); ?>
                   <h6>Customer: <?php echo $orders->email ?></h6>
                   <h6>Payment method: <?php echo $orders->method ?></h6>
                   <h6>Order status: <strong class="mr-3"><?php echo $orders->order_status ?></strong>  
-                  
-                  <!-- <button  onclick=" return confirm('Are you sure you want to cancel order?');" class="btn btn-danger text-white ml-2">Cancel order</button> -->
-                  <button id="change-status" class="btn btn-info text-white">Change status</button>
+              
 
                 </h6>
 
@@ -92,21 +89,7 @@ session_start(); ?>
 
 </div>
 
-        <div class="row">
-          <div class="col-md-4 show-change" id="show-change" style="margin-left: 185px;">
-            <div class="form-group">
-              <select name="order_status" class="form-control">
-                <option value="<?=$orders->order_status ?>" selected> <?php echo $orders->order_status ?></option>
-                <option value="Pending">Pending</option>
-                <option value="Processing">Processing</option>
-                <option value="Complete">Complete</option>
-                <option value="Cancelled">Cancelled</option>
-              </select>
-            </div>
-            <button name="update-status" type="submit"  class="btn btn-primary">Save</button>
-            <button class="btn btn-secondary">Cancel</button>
-          </div>
-        </div>
+       
           
         <br><br>
         <h5><i class="fas fa-info"></i> Info</h5>
@@ -125,68 +108,9 @@ session_start(); ?>
         </div>
 <br>
 <br>
-        <h5><i class="fas fa-th-list"></i> Products</h5>
+       
 
-        <div class="container">
-   <div class="row">
    
-      <div class="col-md-12 text-center">
-      <table class="table">
-  <thead>
-    <tr>
-      <!-- <th scope="col">#</th> -->
-      <th scope="col">Image</th>
-      <th scope="col">Name</th>
-      <th scope="col">Price</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-
-  <?php
-
-if(isset($_GET['order']))
-{
-
-  $order_id = $_GET['order'];
-  
-  $stmt = $conn->prepare("SELECT * FROM `order_detail` INNER JOIN `product` ON `product`.item_id = `order_detail`.item_id 
-                                               
-  
-   WHERE `order_detail`.order_id = ?");
-  $stmt -> bind_param("s", $order_id);
-  $stmt -> execute();
-
-  $result = $stmt -> get_result();
-  
-  while($order = $result->fetch_object()){  
-?>
-
-
-
-    <tr>
-      <!-- <th scope="row"><?php echo $order->item_id ?></th> -->
-      <td> <img src="./../<?php echo $order->item_image ?>" style=" width: 80px;" alt=""></td>
-      <td><?php echo $order->item_name ?></td>
-      <td>$<?php echo $order->order_detail_price ?></td>
-      <td><?php echo $order->order_detail_quantity ?></td>
-      <td>$<?php echo $order->total_price ?></td>
-
-    </tr>
-
-   <?php }
-}
-   ?>
-   
-  </tbody>
-</table>
-
-
-      </div>
-   </div>
-</div>
-
 
 
           
@@ -199,6 +123,7 @@ if(isset($_GET['order']))
   }else{
     echo '<p class="empty">no success</p>';
   }
+}
 
   ?>
     </div>
