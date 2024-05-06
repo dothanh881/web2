@@ -95,12 +95,13 @@ if (isset($_POST['pid'])) {
         $grand_total = input_filter($_POST['grand_total']);
         $orderid = input_filter($_POST['order_id']);
         $payment_method = input_filter($_POST['payment']);
+        $newWard = input_filter($_POST['newWard']);
         $allItems = input_filter($_POST['allItems']);
 
         $data ='';
 
 
-        if( empty($newName) && empty($newStreet) && empty($newCity) && empty($newDistrict)){
+        if( empty($newName) && empty($newStreet) && empty($newCity) && empty($newDistrict) && empty($newWard)){
 
             $sql = "SELECT * FROM `user` WHERE user_id = ? AND is_admin = 0";
             $stmt = $conn->prepare($sql);
@@ -113,11 +114,14 @@ if (isset($_POST['pid'])) {
 
                 $row1 = $result-> fetch_assoc();
 
-                $query = " INSERT INTO `order` (order_id, user_id, order_total_price, method, city, district, street, fullname, email, phone_number) VALUE(?,?,?,?,?,?,?,?,?,?)";
+                $query = " INSERT INTO `order` (order_id, user_id, order_total_price, method, city, district, street, fullname, email, phone_number, ward) VALUE(?,?,?,?,?,?,?,?,?,?,?)";
 
                 $insert_order = $conn->prepare($query);
-                $insert_order -> bind_param("ssdsssssss", $orderid, $user_id, $grand_total, $payment_method, $row1['city'], $row1['district'], $row1['street'], $row1['fullname'], $row1['email'] , $row1['phone_number']);
+                $insert_order -> bind_param("ssdssssssss", $orderid, $user_id, $grand_total, $payment_method, $row1['city'], $row1['district'], $row1['street'], $row1['fullname'], $row1['email'] , $row1['phone_number'], $row1['ward'] );
                 $insert_order -> execute();
+                   
+            
+                
 
 
               
@@ -213,9 +217,9 @@ if (isset($_POST['pid'])) {
            
         }
         else{
-            $query = " INSERT INTO `order` (order_id, user_id, order_total_price, method, city, district, street, fullname, email, phone_number) VALUE(?,?,?,?,?,?,?,?,?,?)";
+            $query = " INSERT INTO `order` (order_id, user_id, order_total_price, method, city, district, street, fullname, email, phone_number, ward) VALUE(?,?,?,?,?,?,?,?,?,?, ?)";
             $stmt1 = $conn->prepare($query);
-            $stmt1 -> bind_param("ssdsssssss", $orderid, $user_id, $grand_total, $payment_method, $newCity, $newDistrict, $newStreet, $newName, $newEmail , $newPhone);
+            $stmt1 -> bind_param("ssdssssssss", $orderid, $user_id, $grand_total, $payment_method, $newCity, $newDistrict, $newStreet, $newName, $newEmail , $newPhone, $newWard);
             $stmt1 -> execute();
 
 

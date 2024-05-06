@@ -142,7 +142,7 @@
 							<input type="password" class="form-control" name="password" id="password" required/>
 							<p><br/></p>
 							<a href="#" style="color:#333; list-style:none;">Forgotten Password</a><input type="submit" class="btn btn-success" name="Login" style="float:right;" Value="Login">
-							<div><a href="register.php?register=1">Create a new account?</a></div>						
+							<div><a href="register.php">Create a new account?</a></div>						
 						</form>
 				</div>
 				<div class="panel-footer"><div id="e_msg"></div></div>

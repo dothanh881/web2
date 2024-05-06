@@ -33,7 +33,8 @@ session_start(); ?>
       $email = input_filter($_POST['email']);
       $phone = input_filter($_POST['phone']);
       $street = input_filter($_POST['street']);
-   
+
+      $ward = $_POST['ward'];
       $city = $_POST['city'];
       $district = $_POST['district'];
     
@@ -42,12 +43,12 @@ session_start(); ?>
       $phone = mysqli_real_escape_string($conn, $phone);
       $street = mysqli_real_escape_string($conn, $street);
     
-      $sql = "UPDATE `user` SET fullname = ?, email = ?, phone_number = ?, street = ?, city = ?, district = ? WHERE user_id = ?";
+      $sql = "UPDATE `user` SET fullname = ?, email = ?, phone_number = ?, street = ?, city = ?, district = ?, ward = ? WHERE user_id = ?";
      
     
       $stmt = $conn->prepare($sql);
      
-      $stmt->bind_param("sssssss", $fullname, $email, $phone, $street, $city, $district, $user_id);
+      $stmt->bind_param("ssssssss", $fullname, $email, $phone, $street, $city, $district, $ward , $user_id);
      
       $stmt->execute();
      
@@ -103,11 +104,36 @@ session_start(); ?>
       <label for="phone">Phone:</label>
       <input type="text" class="form-control" name="phone" value="<?php echo $row1['phone_number']  ?>">
     </div>
-    <div class="form-group">
+   
+
+      <div class="row">
+        <div class="col-md-6">
+        <div class="form-group">
       <label for="street">Street:</label>
       <input type="text" class="form-control" name="street" value="<?php echo $row1['street']  ?>">
     </div>
+        </div>
+      <div class="col-md-6">
+								<label for="ward">Ward</label>
+								<select id="ward" name="ward" class="form-control" required>
+                <option value="<?php echo $row1['ward'] ?> "><?php echo $row1['ward']  ?></option>
 
+                <option value="Ward 1">Ward 1</option>
+									<option value="Ward 2">Ward 2</option>
+									<option value="Ward 3">Ward 3</option>
+									<option value="Ward 4">Ward 4</option>
+									<option value="Ward 5">Ward 5</option>
+									<option value="Ward 6">Ward 6</option>
+									<option value="Ward 7">Ward 7</option>
+									<option value="Ward 8">Ward 8</option>
+									<option value="Ward 9">Ward 9</option>
+									<option value="Ward 10">Ward 10</option>
+									<option value="Ward 11">Ward 11</option>
+									<option value="Ward 12">Ward 12</option>
+                                    
+                                    <!-- Add more options as needed -->
+                                </select>							</div>
+      </div>
 
    <div class="row">
     <div class="col-6">

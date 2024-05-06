@@ -249,10 +249,29 @@ while ($row = $result -> fetch_assoc()){
 
 								<div class="caption">
                                 <div class="row">
-							<div class="col-md-12">
+							<div class="col-md-6">
 								<label for="street">Street</label>
 								<input type="text" id="street" name="newStreet"class="form-control" >
 							</div>
+							<div class="col-md-6">
+								<label for="ward">Ward</label>
+								<select id="ward" name="newWard" class="form-control" required>
+                                    <option value="">Select Ward</option>
+									<option value="Ward 1">Ward 1</option>
+									<option value="Ward 2">Ward 2</option>
+									<option value="Ward 3">Ward 3</option>
+									<option value="Ward 4">Ward 4</option>
+									<option value="Ward 5">Ward 5</option>
+									<option value="Ward 6">Ward 6</option>
+									<option value="Ward 7">Ward 7</option>
+									<option value="Ward 8">Ward 8</option>
+									<option value="Ward 9">Ward 9</option>
+									<option value="Ward 10">Ward 10</option>
+									<option value="Ward 11">Ward 11</option>
+									<option value="Ward 12">Ward 12</option>
+                                    
+                                    <!-- Add more options as needed -->
+                                </select>							</div>
 						</div>
 						<div class="row">
 							
@@ -352,9 +371,13 @@ if ($result->num_rows == 1) {
 
 								<div class="caption">
                                 <div class="row">
-							<div class="col-md-12">
+							<div class="col-md-6">
 								<label for="street">Street</label>
 								<input type="text" id="street" name="street"class="form-control"  value="<?php echo $row1['street'] ?>" required>
+							</div>
+							<div class="col-md-6">
+								<label for="ward">Ward</label>
+								<input type="text" id="ward" name="ward"class="form-control"  value="<?php echo $row1['ward'] ?>" required>
 							</div>
 						</div>
 						<div class="row">

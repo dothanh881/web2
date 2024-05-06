@@ -47,6 +47,7 @@ if (isset($_POST['update_btn'])) {
   $street = input_filter($_POST['street']);
   $city = $_POST['city'];
   $district = $_POST['district'];
+  $ward = $_POST['ward'];
 
   $fullname = mysqli_real_escape_string($conn, $fullname);
   $email = mysqli_real_escape_string($conn, $email);
@@ -57,12 +58,12 @@ if (isset($_POST['update_btn'])) {
   if (array_key_exists('newPassword', $_POST)) {
     $newPassword = input_filter($_POST['newPassword']);
     $newPass = mysqli_real_escape_string($conn, $newPassword);
-    $sql = "UPDATE `user` SET fullname = ?, email = ?, phone_number = ?, street = ?, city = ?, district = ?, password = ? WHERE user_id = ?";
+    $sql = "UPDATE `user` SET fullname = ?, email = ?, phone_number = ?, street = ?, city = ?, district = ?, ward = ?, password = ? WHERE user_id = ?";
     if (password_verify($pass, $passDB['password'])) {
       $enc_pass = password_hash($newPass, PASSWORD_DEFAULT);
       $stmt = $conn->prepare($sql);
 
-      $stmt->bind_param("ssssssss", $fullname, $email, $phone, $street, $city, $district, $enc_pass, $user_id);
+      $stmt->bind_param("sssssssss", $fullname, $email, $phone, $street, $city, $district, $ward, $enc_pass, $user_id);
 
       $stmt->execute();
       echo " <div class='alert alert-success alert-dismissible fade show'>
@@ -148,10 +149,34 @@ if ($result->num_rows == 1) {
       <input type="text" class="form-control" name="phone" value="<?php echo $row1['phone_number'] ?>">
     </div>
 
-    <div class="form-group">
+    <div class="row">
+        <div class="col-md-6">
+        <div class="form-group">
       <label for="street">Street:</label>
-      <input type="text" class="form-control" name="street" value="<?php echo $row1['street'] ?>">
+      <input type="text" class="form-control" name="street" value="<?php echo $row1['street']  ?>">
     </div>
+        </div>
+      <div class="col-md-6">
+								<label for="ward">Ward</label>
+								<select id="ward" name="ward" class="form-control" required>
+                <option value="<?php echo $row1['ward'] ?> "><?php echo $row1['ward']  ?></option>
+
+                <option value="Ward 1">Ward 1</option>
+									<option value="Ward 2">Ward 2</option>
+									<option value="Ward 3">Ward 3</option>
+									<option value="Ward 4">Ward 4</option>
+									<option value="Ward 5">Ward 5</option>
+									<option value="Ward 6">Ward 6</option>
+									<option value="Ward 7">Ward 7</option>
+									<option value="Ward 8">Ward 8</option>
+									<option value="Ward 9">Ward 9</option>
+									<option value="Ward 10">Ward 10</option>
+									<option value="Ward 11">Ward 11</option>
+									<option value="Ward 12">Ward 12</option>
+                                    
+                                    <!-- Add more options as needed -->
+                                </select>							</div>
+      </div>
 
     <div class="row">
       <div class="col-6">

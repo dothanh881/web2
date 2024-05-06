@@ -112,6 +112,11 @@ label {
 
 </style>
 
+<?php
+
+
+
+?>
 
 
 <?php
@@ -153,9 +158,20 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         }
     
 
+               
+//paging nav
+$products_per_page = 6;
+  
+$total_products = mysqli_num_rows(mysqli_query($conn, $sql));
+
+$total_pages = ceil($total_products / $products_per_page);
 
 
-      
+$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+$offset = ($current_page - 1) * $products_per_page;
+
+$sql .= " LIMIT $products_per_page OFFSET $offset"; 
        
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -297,9 +313,31 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
             <?php
             }
             ?>
+           
+
         </div>
     </div>
-
+    <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        <li class="page-item <?php echo $current_page == 1 ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=1" tabindex="-1">First</a>
+        </li>
+        <li class="page-item <?php echo $current_page == 1 ? 'disabled' : ''; ?>">
+            <a class="page-link" href="<?php echo $current_page == 1 ? '#' : '?page=' . ($current_page - 1); ?>">Previous</a>
+        </li>
+        <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+            <li class="page-item <?php echo $current_page == $i ? 'active' : ''; ?>">
+                <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            </li>
+        <?php } ?>
+        <li class="page-item <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>">
+            <a class="page-link" href="<?php echo $current_page == $total_pages ? '#' : '?page=' . ($current_page + 1); ?>">Next</a>
+        </li>
+        <li class="page-item <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=<?php echo $total_pages; ?>">Last</a>
+        </li>
+    </ul>
+</nav>
 
 
 </div>
