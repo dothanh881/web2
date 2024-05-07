@@ -116,15 +116,27 @@ include('functions.php');
         <a class="nav-link" href="#">On Sale</a>
     </li>
     <li class="nav-item dropdown">
-    <a type="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="searchpage.php?">Products</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="category.php?sCate=APPLE">Iphone</a>
-      <a class="dropdown-item" href="category.php?sCate=SAMSUNG">Samsung</a>
-    </div>
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Products
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <?php
+        // Thực hiện truy vấn để lấy danh sách các thương hiệu từ cơ sở dữ liệu
+        $brand = $conn->prepare("SELECT category_name FROM `product`,`category` WHERE product.category_id = category.category_id GROUP BY category_name");
+        $brand->execute();
+        $result_brand = $brand->get_result();
+        while ($brand_item = $result_brand->fetch_assoc()) { 
+        ?>
+        <!-- Mỗi mục trong dropdown menu -->
+        <li><a class="dropdown-item" href="category.php?sCate=<?php echo $brand_item['category_name'] ?>"><?php echo $brand_item['category_name'] ?></a></li>
+        <?php }?>
+    </ul>
 </li>
-   
+        
+     
 
     
+
     <div class="form-container ml-3">
     <form method="post" action="searchpage.php" class="d-flex">
         <input type="text" name="search_box" placeholder="search here..." class="form-control " id="search">

@@ -24,7 +24,8 @@ if ($fromDate !== $toDate){
  if(!empty($filter)){
     
     $sql .= " AND " . implode(' AND ', $filter) ; 
-
+    
+    
 
    }
 
@@ -41,57 +42,48 @@ $output = '';
 
 if ($result->num_rows > 0) {
 
-        
     $output .= '<div class="table-responsive">
     <table class="table table-striped table-sm">
         <thead>
-             <tr>
-                 <th scope="col">Customer </th>
-                 <th scope="col">Email</th>
-                 <th scope="col">Phone</th>
-                 <th scope="col">Orders Total</th>
-                 <th scope="col">Amount Order</th>
-                 <th scope="col">View</th>
-             </tr>
+            <tr>
+                <th scope="col">Customer </th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Orders Total</th>
+                <th scope="col">Amount Order</th>
+                <th scope="col">View</th>
+            </tr>
         </thead>
-        <tbody >';
-
+        <tbody>';
+   
 
     while ($row = $result->fetch_assoc()) {
-        $user_id = $row['user_id'];
-        $username = $row['username'];
-        $email = $row['email'];
-        $phone_number = $row['phone_number'];
-        $order_total_price = $row['total_order_price'];
-        $amount_order = $row['amount_order'];
-
       
-
-        $output .= '   <tr>
-        <td> <?php echo $username  ?></td>
-        <td> <?php echo $email  ?></td>
-        <td> <?php echo $phone_number  ?></td>
-        <td> $<?php echo $order_total_price  ?></td>
-        <td> <?php echo $amount_order  ?></td>
-        <td>
-        <a href="orders_statistic.php?userId=<?= $user_id ?> " class="btn btn-primary">
-                           <i class="far fa-eye"></i> View
-                       </a>        
-    </td>
-       
-    </tr>';
-
+        $output .=
+        '<tr>
+       <td>' . $row['username'] . '</td>
+       <td>' . $row['email'] . '</td>
+       <td>' . $row['phone_number'] . '</td>
+       <td>$ ' . $row['total_order_price'] . '</td>
+       <td>' . $row['amount_order'] . '</td>
+       <td>
+       <a href="orders_statistic.php?userId=' . $row['user_id'] . '" class="btn btn-primary">
+                       <i class="far fa-eye"></i> View
+                   </a>        
+   </td>
+   </tr>';
+     
+     
      
         
     }
     $output .= '</tbody>
     </table>
 </div>';
-   
 
 } else {
     // Hiển thị thông báo nếu không có dữ liệu
-    echo "<tr><td colspan='7'>No data available</td></tr>";
+    $output .= "<tr><td colspan='7'>No data available</td></tr>";
 }
 echo $output;
 ?>

@@ -74,22 +74,22 @@ function showdata() {
     });
 }
 
+
 function showreport() {
-   
-    $.ajax({
-        url: 'show_report.php',
-        method: 'get',
-     
-        success: function(response) {
-            $("#customer_report_list").html(response);
-        }
-    });
+    // Nếu không có filter được áp dụng, thực hiện hàm showreport()
+        $.ajax({
+            url: 'show_report.php',
+            method: 'get',
+            success: function(response) {
+                $("#customer_report_list").html(response);
+            }
+        });
+    
 }
 
-
 function showreportFilter() {
-    var fromDate = $('#fromDate').val(); // Lấy giá trị của fromDate
-    var toDate = $('#toDate').val(); // Lấy giá trị của toDate
+    var fromDate = $('#fromDate').val();
+    var toDate = $('#toDate').val();
    
     $.ajax({
         url: 'show_report_filter.php',

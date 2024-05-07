@@ -223,6 +223,7 @@ session_start(); ?>
 
 
 <div class="row">
+  
     <div class="col-md-6 col-lg-4 form-group date-check">
         <label for="fromDate">From</label>
         <input type="date" id="fromDate" name="fromDate" class="form-control">
@@ -231,6 +232,10 @@ session_start(); ?>
         <label for="toDate">To</label>
         <input type="date" id="toDate" name="toDate" class="form-control">
     </div>
+    
+
+ 
+    
 </div>
 
 
@@ -245,11 +250,16 @@ session_start(); ?>
   
 
   <div class="row" id="customer_report_list" >
+
+
   
   
 </div>
 
+
+
   </div>
+</div>
 </div>
 
 

@@ -58,7 +58,13 @@
                 exit; // Ensure script stops here to prevent further execution
             } 
         } else {
-            echo "<script>alert('Incorrect username or password !! Enter again please ! ')</script>";
+           
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Warning!</strong> Username or password is incorrect!.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
         }
     
         // Đóng truy vấn và kết nối
@@ -135,8 +141,8 @@
 					 <h3 class="text-center">Login</h3>
 					<div class="panel-body">
 						<!--User Login Form-->
-						<form  id="login" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
-							<label for="fname">Username</label>
+						<form  id="login" method="post"  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>"  >
+							<label for="fname"> Username</label>
 							<input type="text" class="form-control" name="fname" id="fname" required/>
 							<label for="password">Password</label>
 							<input type="password" class="form-control" name="password" id="password" required/>
@@ -160,3 +166,5 @@
 	</div>
 </body>
 </html>
+
+
