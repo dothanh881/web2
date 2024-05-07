@@ -9,6 +9,7 @@ $(document).ready(function(){
 
 showdata();
 showreport();
+showreportFilter();
 
 
 
@@ -52,6 +53,7 @@ showreport();
 
     $('#fromDate, #toDate').on('change', function() {
         showdata(); // Gọi lại hàm showdata() khi có sự thay đổi
+        showreportFilter();
     });
 
 
@@ -84,6 +86,20 @@ function showreport() {
     });
 }
 
+
+function showreportFilter() {
+    var fromDate = $('#fromDate').val(); // Lấy giá trị của fromDate
+    var toDate = $('#toDate').val(); // Lấy giá trị của toDate
+   
+    $.ajax({
+        url: 'show_report_filter.php',
+        method: 'get',
+        data: {fromDate: fromDate, toDate: toDate},
+        success: function(result) {
+            $("#customer_report_list").html(result);
+        }
+    });
+}
 
 
 // function selectdata(status){

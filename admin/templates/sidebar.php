@@ -21,41 +21,45 @@ if ( isset($_SESSION["user_id"]) ) {
 
           ?>
 <li class="nav-item">
+
             <a class="nav-link <?php echo ($page == 'dashboard.php') ? 'active' : ''; ?>" href="dashboard.php">
-              <span data-feather="users"></span>
+            <i class="fa fa-home" aria-hidden="true"></i>
+ &nbsp;&nbsp; <span data-feather="users"></span>
+
               DashBoard
             </a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link <?php echo ($page == '' || $page == 'index_admin.php') ? 'active' : ''; ?>" href="index_admin.php">
-              <span data-feather="home"></span>
-              Admin  <span class="sr-only">(current)</span>
-            </a>
-          </li>
+        
           <li class="nav-item">
             <a class="nav-link <?php echo ($page == 'customer_orders.php') ? 'active' : ''; ?>" href="customer_orders.php">
-              <span data-feather="clipboard"></span>
+            <i class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span data-feather="clipboard"></span>
               Orders
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link <?php echo ($page == 'products.php') ? 'active' : ''; ?>" href="products.php">
-              <span data-feather="shopping-cart"></span>
+            <i class="fa fa-archive" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp; <span data-feather="shopping-cart"></span>
               Products
             </a>
           </li>
         
           <li class="nav-item">
             <a class="nav-link <?php echo ($page == 'categories.php') ? 'active' : ''; ?>" href="categories.php">
-              <span data-feather="layers"></span>
+            <i class="fa fa-bars"></i>&nbsp;&nbsp;&nbsp;&nbsp; <span data-feather="layers"></span>
               Categories
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link <?php echo ($page == 'customers.php') ? 'active' : ''; ?>" href="customers.php">
-              <span data-feather="users"></span>
+            <i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; <span data-feather="users"></span>
               Customers
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <?php echo ($page == '' || $page == 'index_admin.php') ? 'active' : ''; ?>" href="index_admin.php">
+            <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span data-feather="home"></span>
+              Admin  <span class="sr-only">(current)</span>
             </a>
           </li>
           

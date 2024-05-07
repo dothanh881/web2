@@ -115,9 +115,9 @@ session_start(); ?>
             <div class="card-header p-3 pt-2">
              
               <div class="text-end pt-1">
-                <h4 class="text-sm mb-0 text-capitalize">User</h4>
+                <h4 class="text-sm mb-0 text-capitalize">Customers</h4>
                 <?php
-                        $stmt = $conn -> prepare("SELECT COUNT(*) as total_user FROM `user`");
+                        $stmt = $conn -> prepare("SELECT COUNT(*) as total_user FROM `user` WHERE is_admin = 0");
                         $stmt -> execute();
                         $res = $stmt-> get_result();
 
@@ -244,27 +244,8 @@ session_start(); ?>
   
   
 
-  <div class="row" >
-  <div class="table-responsive">
-                   <table class="table table-striped table-sm">
-                       <thead>
-                            <tr>
-                                <th scope="col">Customer </th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone</th>
-                                <th scope="col">Orders Total</th>
-                                <th scope="col">Amount Order</th>
-                                <th scope="col">View</th>
-                            </tr>
-                       </thead>
-                       <tbody id="customer_report_list">
-
-                       </tbody>
-               </table>
-           </div>
-    
-  </div>
-
+  <div class="row" id="customer_report_list" >
+  
   
 </div>
 
@@ -273,3 +254,22 @@ session_start(); ?>
 
 
 <?php include_once("./templates/footer.php"); ?>
+
+<script>
+    
+$(document).on('click', '.page-link', function(e) {
+    e.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt
+
+    var page = $(this).attr('href').split('page=')[1]; // Lấy số trang từ href
+
+    // Thực hiện Ajax để tải dữ liệu mới
+    $.ajax({
+        url: 'show_report.php?page=' + page,
+        method: 'GET',
+        success: function(data) {
+            $("#customer_report_list").html(data); // Hiển thị dữ liệu mới
+        }
+    });
+});
+
+</script>
