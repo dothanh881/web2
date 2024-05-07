@@ -215,7 +215,7 @@ session_start(); ?>
 <br><br>
 <div class="row">
   <div class="col-10">
-  <h5><i class="fas fa-info"></i> Filter</h5>
+  <h5><i class="fas fa-filter"></i> Filter</h5>
         <hr>
   </div>
 

@@ -16,7 +16,7 @@ session_start(); ?>
     ?>
    <div class="container p-5">
 
-<h4>Edit Order Detail</h4>
+<h4>Order Detail</h4>
 
 
 <hr>
@@ -140,7 +140,7 @@ session_start(); ?>
         <hr>
         <div class="row">
 
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="text">
                
                 <h6>Order total: $<?php echo $orders->order_total_price ?></h6>

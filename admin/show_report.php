@@ -13,7 +13,8 @@ SUM(`order`.order_total_price) AS total_order_price,
    AND inner_order.order_status = 'Complete') AS amount_order
 FROM `order`, `user`
 WHERE   `order`.user_id = `user`.`user_id` AND `order`.`order_status` = 'Complete'
-GROUP BY user_id;";
+GROUP BY user_id
+ORDER BY amount_order desc";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();

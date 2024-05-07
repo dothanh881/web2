@@ -16,19 +16,12 @@ session_start(); ?>
     ?>
    <div class="container p-5">
 
-<h4>Edit Order Detail</h4>
-
-
-<hr>
-<?php
-
-  
+<h4>Orders</h4>
 
 
 
 
-
-?>
+    
 
 
 <?php
@@ -40,7 +33,7 @@ session_start(); ?>
    
  $sql = "SELECT * FROM `order` 
 
- WHERE `order`.user_id  = ?";
+ WHERE `order`.user_id  = ? AND order_status = 'Complete' ORDER BY order_total_price desc ";
 
     $select = $conn->prepare($sql);
     
@@ -52,63 +45,55 @@ session_start(); ?>
 
  
     if($result ->num_rows  > 0 ){
+      $print = '
+      <div class="row">
+          <h5></h5>
+      </div>
+      <div class="row">
+
+      <div class="table-responsive">
+                         <table class="table table-striped table-sm">
+                             <thead>
+                                  <tr>
+                                      <th scope="col">Order # </th>
+                                      <th scope="col">Order Status</th>
+                                      <th scope="col">Receiver</th>
+                                      <th scope="col">Create On</th>
+                                      <th scope="col">Total Orders</th>
+                                      <th scope="col">Delivery Address</th>
+                                      <th scope="col">View</th>
+                                  </tr>
+                             </thead>
+                             <tbody >
+      
+                           ';
+      
       while($orders = $result->fetch_object()){
     
-   
+        $print .= '<tr>
+                       <th scope="row">' . $orders->order_id . '</th>
+                       <td>' . $orders->order_status . '</td>
+                       <td>' . $orders->fullname . '<br>' . $orders->email . '</td>
+                       <td>' . $orders->order_date . '</td>
+                       <td>$' . $orders->order_total_price . '</td>
+                       <td>' . $orders->street . ', ' . $orders->ward . ', ' . $orders->district . ', ' . $orders->city . '</td>
+                       <td>
+                           <a href="edit_order.php?order=' . $orders->order_id . '" class="btn btn-primary">
+                               <i class="far fa-eye"></i> View
+                           </a>
+                       </td>
+                   </tr>';
 
-        
+      } 
   // \getdb
-?>
 
-<form method="post" >
-
-<div class="form-group">
-      <input type="text" class="form-control" name="order_id" value="<?php echo $orders-> user_id  ?>" hidden>
-    </div>
-    
-<div class="row">
+          $print .= '</tbody>
+          </table>
+        </div>';
+        ?>
 
 
-            <div class="col-md-6">
-             
-              <div class="text">
-                  <h6>Order: #<?php echo $orders-> order_id ?></h6>
-                  <h6>Create On: <?php echo $orders-> order_date ?></h6>   
-                  <h6>Customer: <?php echo $orders->email ?></h6>
-                  <h6>Payment method: <?php echo $orders->method ?></h6>
-                  <h6>Order status: <strong class="mr-3"><?php echo $orders->order_status ?></strong>  
-              
 
-                </h6>
-
-                  
-                 
- 
-              </div>
-            </div>
-
-</div>
-
-       
-          
-        <br><br>
-        <h5><i class="fas fa-info"></i> Info</h5>
-        <hr>
-        <div class="row">
-
-            <div class="col-md-8">
-              <div class="text">
-               
-                <h6>Order total: $<?php echo $orders->order_total_price ?></h6>
-                <h6>Name: <?php echo $orders->fullname ?></h6>
-                <h6>Phone: <?php echo $orders->phone_number ?></h6>
-                <h6>Address: <?php echo $orders->street . ", " . $orders->ward . ", " .$orders->district. ", " . $orders->city. "." ?></h6>
-              </div>
-            </div>
-        </div>
-<br>
-<br>
-       
 
    
 
@@ -117,15 +102,17 @@ session_start(); ?>
            
 
        
-  </form>
+
 
   <?php }
   }else{
     echo '<p class="empty">no success</p>';
   }
-}
 
+  echo $print;
   ?>
+  
+   
     </div>
 
   </div>
