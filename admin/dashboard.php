@@ -221,22 +221,35 @@ session_start(); ?>
 
 </div>
 
-
+<form action="show_report_filter.php" method="post"> 
 <div class="row">
   
-    <div class="col-md-6 col-lg-4 form-group date-check">
-        <label for="fromDate">From</label>
-        <input type="date" id="fromDate" name="fromDate" class="form-control">
-    </div>
-    <div class="col-md-6 col-lg-4 form-group date-check">
-        <label for="toDate">To</label>
-        <input type="date" id="toDate" name="toDate" class="form-control">
-    </div>
-    
 
- 
-    
+
+
+  <div class="col-md-4 form-group date-check">
+      <label for="fromDate1">From</label>
+      <input type="date" id="fromDate1" name="fromDate1" class="form-control">
+  </div>
+  <div class="col-md-4 form-group date-check">
+      <label for="toDate1">To</label>
+      <input type="date" id="toDate1" name="toDate1" class="form-control">
+  </div>
+  
+
+
+  
 </div>
+
+<div class="row">
+<div class="col-md-4  ">
+    <button type="submit" name="submit" class="btn btn-primary">Filter</button>
+  </div>
+</div>
+
+</form>
+
+
 
 
 
@@ -274,7 +287,7 @@ $(document).on('click', '.page-link', function(e) {
 
     // Thực hiện Ajax để tải dữ liệu mới
     $.ajax({
-        url: 'show_report.php?page=' + page,
+        url: 'show_report_filter.php?page=' + page,
         method: 'GET',
         success: function(data) {
             $("#customer_report_list").html(data); // Hiển thị dữ liệu mới

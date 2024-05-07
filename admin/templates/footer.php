@@ -8,7 +8,7 @@
 $(document).ready(function(){
 
 showdata();
-showreport();
+
 showreportFilter();
 
 
@@ -53,10 +53,15 @@ showreportFilter();
 
     $('#fromDate, #toDate').on('change', function() {
         showdata(); // Gọi lại hàm showdata() khi có sự thay đổi
-        showreportFilter();
+      
     });
 
+    // $('#fromDate1, #toDate1').on('click', function() {
+       
+    //     showreportFilter();
+    // });
 
+  
 	
 function showdata() {
     var fromDate = $('#fromDate').val(); // Lấy giá trị của fromDate
@@ -75,26 +80,21 @@ function showdata() {
 }
 
 
-function showreport() {
-    // Nếu không có filter được áp dụng, thực hiện hàm showreport()
-        $.ajax({
-            url: 'show_report.php',
-            method: 'get',
-            success: function(response) {
-                $("#customer_report_list").html(response);
-            }
-        });
-    
-}
+
+$('button[name="submit"]').on('click', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        showreportFilter();
+    });
 
 function showreportFilter() {
-    var fromDate = $('#fromDate').val();
-    var toDate = $('#toDate').val();
-   
+
+    var fromDate1 = $('#fromDate1').val();
+    var toDate1 = $('#toDate1').val();
+
     $.ajax({
         url: 'show_report_filter.php',
-        method: 'get',
-        data: {fromDate: fromDate, toDate: toDate},
+        method: 'post',
+        data: {fromDate1: fromDate1, toDate1: toDate1},
         success: function(result) {
             $("#customer_report_list").html(result);
         }
