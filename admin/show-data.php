@@ -90,7 +90,7 @@ if ($result->num_rows > 0) {
                        <td>' . $order->fullname . '<br>' . $order->email . '</td>
                        <td>' . $order->order_date . '</td>
                        <td>$' . $order->order_total_price . '</td>
-                       <td>' . $order->street . ', ' . $order->district . ', ' . $order->city . '</td>
+                       <td>' . $order->street . ', ' . $order->ward . ", " . $order->district . ', ' . $order->city . '</td>
                        <td>
                            <a href="edit_order.php?order=' . $order->order_id . '" class="btn btn-primary">
                                <i class="far fa-eye"></i> View

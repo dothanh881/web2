@@ -84,6 +84,7 @@ function showdata() {
 $('button[name="submit"]').on('click', function(event) {
         event.preventDefault(); // Prevent the default form submission
         showreportFilter();
+       
     });
 
 function showreportFilter() {

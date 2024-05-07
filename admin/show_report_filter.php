@@ -8,23 +8,6 @@ include("./../functions.php");
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $fromDate = isset($_POST['fromDate1']) ? $_POST['fromDate1'] : '';
 $toDate = isset($_POST['toDate1']) ? $_POST['toDate1'] : '';
 
@@ -124,13 +107,20 @@ if ($result->num_rows > 0) {
        <td>' . $row['phone_number'] . '</td>
        <td>$ ' . $row['total_order_price'] . '</td>
        <td>' . $row['amount_order'] . '</td>
-       <td>
+       <td>';
 
-
-       <a href="orders_statistic.php?userId=' . $row['user_id'] . '" class="btn btn-primary">
-                       <i class="far fa-eye"></i> View
-                   </a>        
-   </td>
+            if(!empty($filter)){
+                $output .= '  <a href="orders_filter.php?userId=' . $row['user_id'] ."& fromDate=" .$fromDate ."& toDate=" .$toDate. '" class="btn btn-primary">
+                <i class="far fa-eye"></i> View
+            </a>';
+            }
+            else{
+                $output .= '  <a href="orders_statistic.php?userId=' . $row['user_id'] . '" class="btn btn-primary">
+                <i class="far fa-eye"></i> View
+            </a>';
+            }
+         
+   $output .= '</td>
    </tr>';
      
      
