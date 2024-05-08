@@ -110,7 +110,7 @@ if ($result->num_rows > 0) {
        <td>';
 
             if(!empty($filter)){
-                $output .= '  <a href="orders_filter.php?userId=' . $row['user_id'] ."& fromDate=" .$fromDate ."& toDate=" .$toDate. '" class="btn btn-primary">
+                $output .= '  <a href="orders_filter.php?userId=' . $row['user_id'] . '&fromDate=' .$fromDate . '&toDate=' .$toDate. '" class="btn btn-primary">
                 <i class="far fa-eye"></i> View
             </a>';
             }

@@ -17,34 +17,39 @@ session_start(); ?>
    <div class="container p-5">
 
 <h4>Orders</h4>
+<hr>
 
 
-
+<br><br>
 
 
 <?php
 
 
-$fromDate = isset($_GET['fromDate1']) ? $_GET['fromDate1'] : '';
-$toDate = isset($_GET['toDate1']) ? $_GET['toDate1'] : '';
 
 
 
    if(isset($_GET['userId'])){
 
     $user_id = $_GET['userId'];
+    $fromDate = isset($_GET['fromDate']) ? $_GET['fromDate'] : '';
+$toDate = isset($_GET['toDate']) ? $_GET['toDate'] : '';
+
 
    
  $sql = "SELECT * FROM `order`
- WHERE  user_id  = ? AND order_status = 'Complete' AND order_date BETWEEN ? AND ? 
+ WHERE  order_status = 'Complete' AND order_date BETWEEN ? AND  ? AND user_id  = ?  
 ORDER BY order_total_price desc";
 
     $stmt = $conn->prepare($sql);
     
     
-    $stmt -> bind_param("sss", $user_id, $fromDate, $toDate );
+    $stmt -> bind_param("sss", $fromDate, $toDate, $user_id );
    
-    $stmt->execute();
+    if(!  $stmt->execute()){
+     
+    }
+  
 
    
  
@@ -57,8 +62,10 @@ ORDER BY order_total_price desc";
 
       $output = '
       <div class="row">
-          <h5></h5>
+          <h5>From: '.$fromDate.'     To: '.$toDate.'</h5>
+         
       </div>
+      <br>
       <div class="row">
 
       <div class="table-responsive">

@@ -4,13 +4,23 @@ session_name('customer_session');
 session_start();
 
 
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['user_id']) && isset($_SESSION['status_user'])){
     $user_id = $_SESSION['user_id'];
+    $status = $_SESSION['status_user'];
+
+    if($status === 0){
+        echo '<script>console.log("Account status is 0. Displaying alert message...");</script>';
+        echo '<script>alert("Your account have been blocked for unusual behavior!!");</script>';
+        $user_id = '';
+        
+
+    }
 
 } else {
     $user_id = '';
 }
 ;
+
 
 
 ?>

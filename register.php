@@ -108,7 +108,7 @@
 		$result = $stmt->get_result();
 
 		if ($result->num_rows > 0) {
-			echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			echo '<div id="alertMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
 		<strong>Warning!</strong>Username already exists!.
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		  <span aria-hidden="true">&times;</span>
@@ -116,7 +116,7 @@
 	  </div>';
 		} else {
 			if ($pass != $repass) {
-				echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				echo '<div id="alertMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
 			<strong>Failed!</strong>Confirm password not matched!.
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			  <span aria-hidden="true">&times;</span>
@@ -131,7 +131,7 @@
 
 				$insert_user->bind_param("ssssssssss", $user_id, $email, $username, $enc_pass, $street, $district, $city, $mobile, $fullname, $ward);
 				$insert_user->execute();
-				echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+				echo '<div id="alertMessage" class="alert alert-success alert-dismissible fade show" role="alert">
 			<strong>Success!</strong> Registered account successfully.
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
@@ -385,4 +385,23 @@
 		ele.style.borderColor="green";
 		ele.parentNode.querySelector('small').innerText = "";
 	}
+
+	const timeoutDuration = 3000;
+
+// Get the alert element
+const alertElement = document.getElementById('alertMessage');
+
+// Function to hide the alert after a timeout
+const hideAlert = () => {
+	alertElement.classList.remove('show');
+	setTimeout(() => {
+		alertElement.style.display = 'none';
+	}, 200); // Transition duration in milliseconds
+};
+
+// Hide the alert after the specified duration
+setTimeout(hideAlert, timeoutDuration);
+
+// Add event listener to close button to hide alert immediately if clicked
+alertElement.querySelector('.close').addEventListener('click', hideAlert);
 </script>

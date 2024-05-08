@@ -13,7 +13,6 @@ showreportFilter();
 
 
 
-
 //  // Đặt sự kiện onchange cho select element
 //  $('#myInput2').on('change', function() {
 //       var selectedStatus = $(this).val(); // Lấy giá trị của option được chọn
@@ -101,6 +100,8 @@ function showreportFilter() {
         }
     });
 }
+
+
 
 
 // function selectdata(status){

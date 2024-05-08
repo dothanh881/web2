@@ -27,7 +27,7 @@ if (isset($_POST['Login'])) {
     $username = mysqli_real_escape_string($conn, $username);
 
     // Query template
-    $query = "SELECT user_id, password FROM user WHERE `username`=? AND `is_admin` = 0 AND `status` = 1";
+    $query = "SELECT user_id, password, status FROM user WHERE `username`=? AND `is_admin` = 0 AND `status` = 1";
 
     // Chuẩn bị truy vấn
     $stmt = $conn->prepare($query);
@@ -53,15 +53,30 @@ if (isset($_POST['Login'])) {
         if (password_verify($password, $hash_password)) {
             $_SESSION['username'] = $username;
             $_SESSION['user_id'] = $row['user_id'];
-            header("location: ./index.php");
-            exit; // Ensure script stops here to prevent further execution
+            $_SESSION['status_user'] = $row['status'];
+          
+                // Redirect to index page
+                header("location: ./index.php");
+                exit;
+            }
+           
+        else{
+            
+            echo '<div id="alertMessage" class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
+            <strong>Failed</strong> Incorrect username or password!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+
         }
     } else {
-        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'><strong>Warning!</strong>Username does not exists!.
-            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-              <span aria-hidden='true'>&times;</span>
-            </button>
-          </div>";
+        echo '<div id="alertMessage" class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
+		<strong>Failed</strong> Incorrect username or password!
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>';
     }
 
     // Đóng truy vấn và kết nối
@@ -105,6 +120,7 @@ if (isset($_POST['Login'])) {
 
     <!-- Custom CSS file -->
     <link rel="stylesheet" href="style.css">
+    
 
     <style>
         .color-second {
@@ -118,15 +134,28 @@ if (isset($_POST['Login'])) {
         .color-third-bg {
             background: #269492;
         }
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            /* Đảm bảo message hiển thị trên header */
+
+        }
     </style>
 </head>
 
 <body>
+    <header id="header">
     <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">
         <a class="navbar-brand" href="index.php">Mobile Shopee</a>
 
     </nav>
+    </header>
+    
     <p><br /></p>
+    <br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2"></div>
@@ -140,6 +169,7 @@ if (isset($_POST['Login'])) {
             <div class="col-md-4">
                 <div class="panel panel-primary">
                     <h3 class="text-center">Login</h3>
+                  
                     <div class="panel-body">
                         <!--User Login Form-->
                         <form id="login" method="post" onsubmit="return checkLogin();" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
@@ -177,6 +207,7 @@ if (isset($_POST['Login'])) {
 </body>
 
 </html>
+
 <script>
     
     const nameEle = document.getElementById('fname');
@@ -214,4 +245,24 @@ if (isset($_POST['Login'])) {
         ele.style.borderColor = "green";
         ele.parentNode.querySelector('small').innerText = "";
     }
+
+
+    const timeoutDuration = 5000;
+
+// Get the alert element
+const alertElement = document.getElementById('alertMessage');
+
+// Function to hide the alert after a timeout
+const hideAlert = () => {
+    alertElement.classList.remove('show');
+    setTimeout(() => {
+        alertElement.style.display = 'none';
+    }, 200); // Transition duration in milliseconds
+};
+
+// Hide the alert after the specified duration
+setTimeout(hideAlert, timeoutDuration);
+
+// Add event listener to close button to hide alert immediately if clicked
+alertElement.querySelector('.close').addEventListener('click', hideAlert);
 </script>

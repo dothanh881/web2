@@ -78,7 +78,20 @@
                 success:function(response){
                     $("#message").html(response);
                load_cart_item_number();
-                }
+                 // Thêm setTimeout để ẩn thông báo sau một khoảng thời gian
+            const alertElement = $("#alertMessage");
+            const timeoutDuration = 3000; // 5 giây
+
+            const hideAlert = () => {
+                alertElement.removeClass('show');
+                setTimeout(() => {
+                    alertElement.hide();
+                }, 200); // Thời gian chuyển đổi trong mili giây
+            };
+
+            setTimeout(hideAlert, timeoutDuration);
+        }
+                
             });
         });
 
@@ -120,7 +133,24 @@
     });
 
 
+    const timeoutDuration = 5000;
 
+// Get the alert element
+const alertElement = document.getElementById('alertMessage');
+
+// Function to hide the alert after a timeout
+const hideAlert = () => {
+    alertElement.classList.remove('show');
+    setTimeout(() => {
+        alertElement.style.display = 'none';
+    }, 200); // Transition duration in milliseconds
+};
+
+// Hide the alert after the specified duration
+setTimeout(hideAlert, timeoutDuration);
+
+// Add event listener to close button to hide alert immediately if clicked
+alertElement.querySelector('.close').addEventListener('click', hideAlert);
  
  
 </script>

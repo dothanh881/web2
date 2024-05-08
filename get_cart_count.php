@@ -34,10 +34,14 @@ if (isset($_POST['pid'])) {
         $check_cart_numbers->store_result();
 
         if ($check_cart_numbers->num_rows > 0) {
-            echo '<div class="alert alert-danger alert-dismissible">
-                   <button type="button" class="close" data-dismiss="alert">&times;</button>
-                   <strong>Item already added to your cart!</strong> 
-                 </div>';
+            
+                 echo '<div id="alertMessage" class="alert alert-danger alert-dismissible fade show " role="alert">
+                 <strong>Item already added to your cart!</strong>
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>';
+     
         } else {
             $check_cart_numbers->close();
 
@@ -45,7 +49,7 @@ if (isset($_POST['pid'])) {
             $insert_cart->bind_param("siidss", $user_id, $pid, $qty, $price, $name, $image);
             try {
                 $insert_cart->execute();
-                echo '<div class="alert alert-success alert-dismissible">
+                echo '<div id="alertMessage" class="alert alert-success alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         <strong>Item added to your cart!</strong> 
                       </div>';
