@@ -318,27 +318,43 @@ $sql .= " LIMIT $products_per_page OFFSET $offset";
         </div>
     </div>
     <br><br>
-    <nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        <li class="page-item <?php echo $current_page == 1 ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=1&sCate=<?php echo $key_brand?>" tabindex="-1">First</a>
-        </li>
-        <li class="page-item <?php echo $current_page == 1 ? 'disabled' : ''; ?>">
-            <a class="page-link" href="<?php echo $current_page == 1 ? '#' : '?page=' . ($current_page - 1); ?>&sCate=<?echo $key_brand?>">Previous</a>
-        </li>
-        <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
-            <li class="page-item <?php echo $current_page == $i ? 'active' : ''; ?>">
-                <a class="page-link" href="?page=<?php echo $i; ?>&sCate=<?php echo $key_brand;?>"><?php echo $i; ?></a>
+
+
+    <?php
+        $output = '';
+
+        if($row_result !== 0){
+            $output .= '<nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
+                        <a class="page-link" href="?page=1&sCate=' . urlencode($key_brand) . '" tabindex="-1">First</a>
+                    </li>
+                    <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
+                        <a class="page-link" href="' . ($current_page == 1 ? '#' : '?page=' . ($current_page - 1)) . '&sCate=' . urlencode($key_brand) . '">Previous</a>
+                    </li>';
+            
+            for ($i = 1; $i <= $total_pages; $i++) { 
+                $output .= '<li class="page-item ' . ($current_page == $i ? 'active' : '') . '">
+                    <a class="page-link" href="?page=' . $i . '&sCate=' . urlencode($key_brand) . '">' . $i . '</a>
+                </li>';
+            }
+        
+            $output .= '<li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
+                <a class="page-link" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1)) . '&sCate=' . urlencode($key_brand) . '">Next</a>
             </li>
-        <?php } ?>
-        <li class="page-item <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>">
-            <a class="page-link" href="<?php echo $current_page == $total_pages ? '#' :'?page=' . ($current_page + 1); ?>&sCate=<?php echo $key_brand?>">Next</a>
-        </li>
-        <li class="page-item <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=<?php echo $total_pages; ?>&sCate=<?echo $key_brand?>">Last</a>
-        </li>
-    </ul>
-</nav>
+            <li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
+                <a class="page-link" href="?page=' . $total_pages . '&sCate=' . urlencode($key_brand) . '">Last</a>
+            </li>
+        </ul>
+        </nav>';
+        }
+        
+        echo $output;
+        ?>
+
+      
+
+
 
 
 </div>

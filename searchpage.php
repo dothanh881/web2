@@ -159,19 +159,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // Check for POST request
         }
         
        
+        //paging nav
+$products_per_page = 6;
+  
+$total_products = mysqli_num_rows(mysqli_query($conn, $sql));
+
+$total_pages = ceil($total_products / $products_per_page);
+
+
+$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+$offset = ($current_page - 1) * $products_per_page;
+
+$sql .= " LIMIT $products_per_page OFFSET $offset"; 
+       
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $list_result = $stmt->get_result();
         $row_result = mysqli_num_rows($list_result);
-       
         // \SEARCH FEATURE
         ?>
 
-        <?php 
-        // ADD PRODUCT
-        
-      
-        ?>
         
         <br><br><br>
 <section id="bd_search_result" class="d-flex">
@@ -272,11 +280,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // Check for POST request
 </div>
     <div class="row">
         <div class="grid-search d-flex align-content-end flex-wrap " style="background-color: white;">
-            <?php
-            while ($item = $list_result->fetch_assoc()) {
+        <?php while ($item = $list_result->fetch_assoc()) {
             ?>
                 <div class="grid-item border" style="margin-top:30px">
-                    <div class="item py-2" style="width: 200px;">
+                    <div class="item py-2" style="width: 250px;">
                         <div class="product font-rale">
                         <a href="<?php printf('%s?item_id=%s', 'product.php',  $item['item_id']); ?>"><img src="<?php echo $item['item_image'] ?? "./assets/products/1.png"; ?>" alt="product1" class="img-fluid"></a>
                             <div class="text-center">
@@ -284,17 +291,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // Check for POST request
                                 <div class="price py-2">
                                     <span>$<?= $item['item_price'] ?? 0; ?></span>
                                 </div>
-                           
-                            <form action="" class="form-submit">
-                                    <input type="hidden" name="pid" value="<?= $item['item_id']; ?>">
-                                    <input type="hidden" name="name" value="<?= $item['item_name']; ?>">
-                                    <input type="hidden" name="price" value="<?= $item['item_price']; ?>">
-                                    <input type="hidden" name="image" value="<?= $item['item_image']; ?>">
-                                    <input type="hidden" name="qty" value="1">
-                                    <button type="button" class=" btn btn-warning font-size-12 addItemBtn">Add to Cart</button>
+                            </div>
+                            <form  class="form-submit">
+                                <input type="hidden" name="pid" value="<?= $item['item_id']; ?>">
+                                <input type="hidden" name="name" value="<?= $item['item_name']; ?>">
+                                <input type="hidden" name="price" value="<?= $item['item_price']; ?>">
+                                <input type="hidden" name="image" value="<?= $item['item_image']; ?>">
+                                <input type="hidden" name="qty" value="1">
+                                <div class="text-center">
+                                <button type="button" class="btn btn-warning font-size-12 addItemBtn">Add to Cart</button>
 
-                                </form>
-                                </div>
+                    </div>
+                               
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -304,7 +313,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // Check for POST request
         </div>
     </div>
 
+    <br><br>
+
+<?php 
+$output = "";
+    if($row_result !== 0){
+        $output .= ' <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
+                    <a class="page-link" href="?page=1&search_box=' . $key . '" tabindex="-1">First</a>
+                </li>
+                <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
+                    <a class="page-link" href="' . ($current_page == 1 ? '#' : '?page=' . ($current_page - 1)) . '&search_box=' . $key . '">Previous</a>
+                </li>';
+        for ($i = 1; $i <= $total_pages; $i++) {
+            $output .= '<li class="page-item ' . ($current_page == $i ? 'active' : '') . '">
+                <a class="page-link" href="?page=' . $i . '&search_box=' . $key . '">' . $i . '</a>
+            </li>';
+        }
+        $output .= '<li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
+                    <a class="page-link" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1)) . '&search_box=' . $key . '">Next</a>
+                </li>
+                <li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
+                    <a class="page-link" href="?page=' . $total_pages . '&search_box=' . $key . '">Last</a>
+                </li>
+            </ul>
+        </nav>';
+    }
+    echo $output;
+?>
     
+   
 
 
 </div>
