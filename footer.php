@@ -151,12 +151,41 @@ setTimeout(hideAlert, timeoutDuration);
 
 // Add event listener to close button to hide alert immediately if clicked
 alertElement.querySelector('.close').addEventListener('click', hideAlert);
+
+
+
+function validateForm() {
+    var paymentMethod = document.querySelector('input[name="payment"]:checked');
+    var deliveryAddress = document.querySelector('input[name="address"]:checked');
+
+    if (!paymentMethod) {
+        alert('Please select a payment method.');
+        window.location.href = "checkout.php";
+        return false; // Prevent form submission
+       
+    }
+
+    if (!deliveryAddress) {
+        alert('Please select a delivery address option.');
+        window.location.href = "checkout.php";
+        return false; // Prevent form submission
+        
+    }
+
+   
+    // If everything is valid, the form will be submitted as usual
+    return true;
+}
  
  
 </script>
 <!-- Đưa vào cuối trang HTML -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+          
+    var checkout = document.getElementById("checkout");
+    
+    var infoCheckout = document.querySelector("#info-checkout");
         // Chọn radio buttons
         var availableAddressRadio = document.getElementById("available-address-radio");
         var newAddressRadio = document.getElementById("new-address-radio");
@@ -172,15 +201,144 @@ alertElement.querySelector('.close').addEventListener('click', hideAlert);
         availableAddressRadio.addEventListener("click", function() {
             shipingDetailsAvailable.style.display = "block"; 
             shipingDetails.style.display = "none";
+           
+        // Lấy các phần tử input radio có name là "payment"
+      
+                    
+                    // Lấy thông tin khác và hiển thị ra màn hình
+                    var fullName = shipingDetailsAvailable.dataset.fullname;
+                    var phone = shipingDetailsAvailable.dataset.phone;
+                    var street = shipingDetailsAvailable.dataset.street;
+                    var ward = shipingDetailsAvailable.dataset.ward;
+                    var city = shipingDetailsAvailable.dataset.city;
+                    var district = shipingDetailsAvailable.dataset.district;
+                    var currentDate = new Date();
+                    var day = currentDate.getDate();
+                    var month = currentDate.getMonth() + 1; 
+                    var year = currentDate.getFullYear();
+                    var formattedDate = year + '/' + month + '/' + day;
+                    
+                    // Hiển thị thông tin trên giao diện
+                    infoCheckout.innerHTML = `
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Payment: </h6>
+                                <p></p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Create Date: </h6>
+                                <p>${formattedDate}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Receiver Name:</h6>
+                                <p>${fullName}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Phone:</h6>
+                                <p>${phone}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h6>Address:</h6>
+                            <p>${street}, ${ward}, ${district}, ${city}</p>
+                        </div>`;
+              
+       
+    
 
         });
+
+
 
         newAddressRadio.addEventListener("click", function() {
             shipingDetails.style.display = "block"; 
             shipingDetailsAvailable.style.display = "none";
+                    // Lắng nghe sự kiện "input" trên các trường nhập liệu của form mới
+document.getElementById("newFullname").addEventListener("input", updateInfo);
+document.getElementById("newEmail").addEventListener("input", updateInfo);
+document.getElementById("newPhone").addEventListener("input", updateInfo);
+document.getElementById("newStreet").addEventListener("input", updateInfo);
+document.getElementById("newWard").addEventListener("change", updateInfo);
+document.getElementById("newCity").addEventListener("change", updateInfo);
+document.getElementById("newDistrict").addEventListener("change", updateInfo);
 
+           
+        // Lấy dữ liệu từ các input và select
+        function updateInfo() {
+    // Kiểm tra nếu radio "new-address-radio" đã được chọn
+    if (newAddressRadio.checked) {
+        // Lấy dữ liệu từ các input và select
+       
+        var newFullname = document.getElementById("newFullname").value;
+        var newEmail = document.getElementById("newEmail").value;
+        var newPhone = document.getElementById("newPhone").value;
+        var newStreet = document.getElementById("newStreet").value;
+        var newWard = document.getElementById("newWard").value;
+        var newCity = document.getElementById("newCity").value;
+        var newDistrict = document.getElementById("newDistrict").value;
+        
+        // Lấy ngày hiện tại
+        var currentDate = new Date();
+        var day = currentDate.getDate();
+        var month = currentDate.getMonth() + 1;
+        var year = currentDate.getFullYear();
+        var formattedDate = year + '/' + month + '/' + day;
+        
+        // Hiển thị thông tin mới trên giao diện
+        infoCheckout.innerHTML = `
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Payment:</h6>
+                    <p></p>
+                </div>
+                <div class="col-md-6">
+                    <h6>Create Date:</h6>
+                    <p>${formattedDate}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Receiver Name:</h6>
+                    <p>${newFullname}</p>
+                </div>
+                <div class="col-md-6">
+                    <h6>Phone:</h6>
+                    <p>${newPhone}</p>
+                </div>
+            </div>
+            <div class="row">
+                <h6>Address:</h6>
+                <p>${newStreet}, ${newWard}, ${newDistrict}, ${newCity}</p>
+            </div>`;
+    
+    }
+}
         });
+
+
+
+
+     
+    
+
+
+
+
+
+
+
     });
+
+    
+
+
+
+
+
+
+
 </script>
 
 

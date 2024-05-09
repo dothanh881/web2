@@ -193,21 +193,11 @@ session_start(); ?>
 		        		<label>Status Product</label>
 		        		<select class="form-control status_list" name="status">
 		        			 <option value="<?php echo $status ?> "><?php echo $status ?></option>
-                <?php 
-
-                  if(isset($status)){
-                  $sql = "SELECT distinct(item_status) FROM `product` WHERE item_status != $status ";
-                  $result = $conn->prepare($sql);
-                  $result->execute();
-
-                  $status = $result->get_result();
-
-                  while($row = $status->fetch_assoc()){  ?>
-                    <option value="<?php echo $row['item_status'] ?>"><?php echo $row['item_status'] ?></option>
-
-                  <?php } 
-                  }
-                  ?>
+              
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+                  
 
                   
 		        		</select>

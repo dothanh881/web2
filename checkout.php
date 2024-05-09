@@ -94,7 +94,7 @@ while ($row = $result -> fetch_assoc()){
 					
 
 
-		<form action="" method="post" id="placeOrder">
+		<form action="" method="post" id="placeOrder" onsubmit="return validateForm();">
 
 		<input type="hidden" name="grand_total" value="<?= $grand_total ?>">
 		<input type="hidden" name="order_id" value="<?= $orderid ?>">
@@ -152,7 +152,27 @@ while ($row = $result -> fetch_assoc()){
 								</div>
 
 
-								<div class="payment-method">
+						
+
+						<div class="input-checkbox">
+						<div><strong>Delivery Address</strong></div>
+
+							<input type="radio" name="address" id="available-address-radio" value="available-address" >
+                            <label for="available-address-radio">
+									<span></span>
+									Deliver to available address.
+							</label>
+						</div>
+                        <div class="input-checkbox">
+							<input type="radio" name="address" id="new-address-radio" value="new-address" >
+                           
+                            
+                            <label for="new-address-radio">
+									<span></span>
+									Deliver to new address.
+								</label>
+						</div>
+						<div class="payment-method">
 								<div><strong>Choose Payment Method:</strong></div>
 <!-- 
 
@@ -186,29 +206,10 @@ while ($row = $result -> fetch_assoc()){
 							</div>
 						</div>
 
-
-						<div class="input-checkbox">
-						<div><strong>Delivery Address</strong></div>
-
-							<input type="radio" name="address" id="available-address-radio" >
-                            <label for="shiping-address">
-									<span></span>
-									Deliver to available address.
-							</label>
-						</div>
-                        <div class="input-checkbox">
-							<input type="radio" name="address" id="new-address-radio" >
-                           
-                            
-                            <label for="shiping-address">
-									<span></span>
-									Deliver to new address.
-								</label>
-						</div>
-                     
 						<br>
 
-						<input type="submit" name="submit" class="btn btn-primary" value="Order Place">
+						<input  data-toggle="modal" data-target="#add_product_modal" type="button" name="checkout" id="checkout" class="btn btn-primary" value="Order Place">
+						<a href="cart.php" class="btn btn-secondary">Back</a>
 <br><br>
 
 
@@ -255,7 +256,7 @@ while ($row = $result -> fetch_assoc()){
 							</div>
 							<div class="col-md-6">
 								<label for="new_Ward">Ward</label>
-								<select id="ward" name="new_Ward" class="form-control" >
+								<select id="newWard" name="new_Ward" class="form-control" >
                                     <option value="">Select Ward</option>
 									<option value="Ward 1">Ward 1</option>
 									<option value="Ward 2">Ward 2</option>
@@ -276,8 +277,8 @@ while ($row = $result -> fetch_assoc()){
 						<div class="row">
 							
 						<div class="col-md-6">
-                                <label for="city">City</label>
-                                <select id="city" name="newCity" class="form-control" >
+                                <label for="newCity">City</label>
+                                <select id="newCity" name="newCity" class="form-control" >
                                     <option value="">Select City</option>
                                     <option value="Ho Chi Minh">Ho Chi Minh</option>
                                     
@@ -285,8 +286,8 @@ while ($row = $result -> fetch_assoc()){
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="district">District</label>
-                                <select id="district" name="newDistrict" class="form-control" >
+                                <label for="newDistrict">District</label>
+                                <select id="newDistrict" name="newDistrict" class="form-control" >
                                     <option value="">Select District</option>
 									<option value="District 1">District 1</option>
                                     <option value="District 2">District 2</option>
@@ -342,7 +343,18 @@ if ($result->num_rows == 1) {
 
 						
 				<!-- Shiping Details Available -->
-				<div class="shiping-details-available">
+				<div class="shiping-details-available"
+				data-user-id="<?php echo $row1['user_id']; ?>"
+    data-fullname="<?php echo $row1['fullname']; ?>"
+    data-email="<?php echo $row1['email']; ?>"
+    data-phone="<?php echo $row1['phone_number']; ?>"
+    data-street="<?php echo $row1['street']; ?>"
+    data-ward="<?php echo $row1['ward']; ?>"
+    data-city="<?php echo $row1['city']; ?>"
+    data-district="<?php echo $row1['district']; ?>"
+				
+				
+				>
 							<div class="section-title">
 								<h3 class="title1">Your Address</h3>
 							</div>
@@ -405,10 +417,106 @@ echo '<p class="empty">no product user!</p>';
 
 						</div>
 
+				
+
+	<div class="modal fade" id="add_product_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+	  <div class="section-title text-center">
+
+<h3 class="title">Your Order</h3>
+</div>
+<div class="order-summary">
+<div class="order col">
+	
+	<div><strong>Product</strong></div>
+
+
+		
+	
+	
+
+<div class="row">
+	
+<div class="col-6 text-left">
+	<p>
+	<?php 
+ foreach($items as $item){
+	echo "<div>" . $item . "</div>";
+ }
+
+?>
+	</p>
+</div>
+
+
+<div class="col-6 text-right">
+	<p>
+	<?php
+	 foreach($sum as $su){
+		echo  "<div> $su$</div>";
+	}
+	?>
+</p>
+</div>
+
+
+	
+</div>
+<hr>
+	
+	<div class="row">
+		<div class="col-6">
+		<div><strong>Total:</strong>
+
+		</div>
+		</div>
+		<div class="col-6 text-right">
+	<strong><?php 
+ echo "<p> $grand_total$</p>";
+?></strong>
+		</div>
+	
+
+	</div>
+	<hr>
+
+	<h5><i class="fas fa-info"></i> Info</h5>
+	<br>
+
+	<div id="info-checkout">
+		
+	</div>
+<br><br>
+		
+			<div class="col-12">
+				<input type="submit" name="submit" class="btn btn-primary" value="Confirm">
+				<input type="button" name="cancelCheckout" class="btn btn-secondary" value="Cancel">
+
+        		</div>
+				
 
 
 
-
+			</div>
+        		
+        	
+        	
+        	
+       
+      </div>
+    </div>
+  </div>
+</div> 
+					
 
 		
 					
