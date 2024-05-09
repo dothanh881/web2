@@ -37,7 +37,7 @@ if(isset($_SESSION['user_id'])){
  .section {
         overflow-x: hidden;
     }
-
+	
 </style>
 
 
@@ -82,9 +82,8 @@ while ($row = $result -> fetch_assoc()){
 				<!-- row -->
 				<!-- Order Details -->
 	
-	
-
-<div class="row " id="order">
+				
+<div class="row" id="order" >
 	<div class="col-md-6 " >
 	<div class="order-details border border-secondary " >
 
@@ -93,10 +92,8 @@ while ($row = $result -> fetch_assoc()){
 
 					
 
-
-		<form action="" method="post" id="placeOrder" onsubmit="return validateForm();">
-
-		<input type="hidden" name="grand_total" value="<?= $grand_total ?>">
+							<form action="" method="post" id="placeOrder" onsubmit="return validateForm();">
+							<input type="hidden" name="grand_total" value="<?= $grand_total ?>">
 		<input type="hidden" name="order_id" value="<?= $orderid ?>">
 		<input type="hidden" name="allItems" value="<?= $allItems ?>">
 		<div class="section-title text-center">
@@ -208,7 +205,7 @@ while ($row = $result -> fetch_assoc()){
 
 						<br>
 
-						<input  data-toggle="modal" data-target="#add_product_modal" type="button" name="checkout" id="checkout" class="btn btn-primary" value="Order Place">
+						<input  data-toggle="modal" data-target="#check_modal" type="button" name="checkout" id="checkout" class="btn btn-primary" value="Order Place">
 						<a href="cart.php" class="btn btn-secondary">Back</a>
 <br><br>
 
@@ -318,8 +315,6 @@ while ($row = $result -> fetch_assoc()){
 
 
 
-
-
 						<?php 
 $customer_id = $_SESSION['user_id'];
 $sql = "SELECT * FROM `user` WHERE `user_id` = ? AND is_admin = 0 ";
@@ -414,12 +409,7 @@ echo '<p class="empty">no product user!</p>';
 
 				}?>
 				
-
-						</div>
-
-				
-
-	<div class="modal fade" id="add_product_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade" id="check_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -495,10 +485,13 @@ echo '<p class="empty">no product user!</p>';
 	<div id="info-checkout">
 		
 	</div>
+	<div id="info-payment">
+
+	</div>
 <br><br>
 		
 			<div class="col-12">
-				<input type="submit" name="submit" class="btn btn-primary" value="Confirm">
+				<input type="submit" id="confirm" name="submit" class="btn btn-primary" value="Confirm">
 				<input type="button" name="cancelCheckout" class="btn btn-secondary" value="Cancel">
 
         		</div>
@@ -510,28 +503,44 @@ echo '<p class="empty">no product user!</p>';
         		
         	
         	
-        	
+        
        
       </div>
     </div>
   </div>
 </div> 
-					
+</div>	
+	
+
+
+							</form>
+		
+
+
+						</div>
+
+
+</div>
+
+
+
+
+			</div>
+</div>
 
 		
+			</div>		
+
 					
-
-						</form>
-
+			
 				
-							
-						
-	</div>
+				
+				</div>
 
-		</div>
+
+			</div>
 						
-						
-					</div>
+				
 					<!-- /Order Details -->
 
 
@@ -573,10 +582,8 @@ echo '<p class="empty">no product user!</p>';
 
 
 
-               
-             
-             
-			
+     
+	
 			<!-- /container -->
 		</div>
 	

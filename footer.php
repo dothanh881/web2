@@ -107,7 +107,8 @@
                     $("#order").html(response);
                     load_cart_item_number();
 
-                }
+                },
+            
             });
         });
 
@@ -208,6 +209,7 @@ function validateForm() {
                     // Lấy thông tin khác và hiển thị ra màn hình
                     var fullName = shipingDetailsAvailable.dataset.fullname;
                     var phone = shipingDetailsAvailable.dataset.phone;
+                    var email = shipingDetailsAvailable.dataset.email;
                     var street = shipingDetailsAvailable.dataset.street;
                     var ward = shipingDetailsAvailable.dataset.ward;
                     var city = shipingDetailsAvailable.dataset.city;
@@ -221,9 +223,9 @@ function validateForm() {
                     // Hiển thị thông tin trên giao diện
                     infoCheckout.innerHTML = `
                         <div class="row">
-                            <div class="col-md-6">
-                                <h6>Payment: </h6>
-                                <p></p>
+                        <div class="col-md-6">
+                                <h6>Receiver Name:</h6>
+                                <p>${fullName}</p>
                             </div>
                             <div class="col-md-6">
                                 <h6>Create Date: </h6>
@@ -231,9 +233,10 @@ function validateForm() {
                             </div>
                         </div>
                         <div class="row">
+                          
                             <div class="col-md-6">
-                                <h6>Receiver Name:</h6>
-                                <p>${fullName}</p>
+                                <h6>Email: </h6>
+                                <p>${email}</p>
                             </div>
                             <div class="col-md-6">
                                 <h6>Phone:</h6>
@@ -289,9 +292,9 @@ document.getElementById("newDistrict").addEventListener("change", updateInfo);
         // Hiển thị thông tin mới trên giao diện
         infoCheckout.innerHTML = `
             <div class="row">
-                <div class="col-md-6">
-                    <h6>Payment:</h6>
-                    <p></p>
+            <div class="col-md-6">
+                    <h6>Receiver Name:</h6>
+                    <p>${newFullname}</p>
                 </div>
                 <div class="col-md-6">
                     <h6>Create Date:</h6>
@@ -301,7 +304,7 @@ document.getElementById("newDistrict").addEventListener("change", updateInfo);
             <div class="row">
                 <div class="col-md-6">
                     <h6>Receiver Name:</h6>
-                    <p>${newFullname}</p>
+                    <p>${newEmail}</p>
                 </div>
                 <div class="col-md-6">
                     <h6>Phone:</h6>
@@ -320,21 +323,49 @@ document.getElementById("newDistrict").addEventListener("change", updateInfo);
 
 
 
-     
-    
+        // Chọn radio buttons
+        var cod = document.getElementById("payment-1");
+        var onlinebanking = document.getElementById("payment-2");
+        var inforPayment = document.querySelector("#info-payment");
+       
+       
+        cod.addEventListener("click", function(){
+            
+            inforPayment.innerHTML = `  <div class="row">
+               
+                <div class="col-md-6">
+                    <h6>Payment: Cash On Delivery</h6>
+                   
+                </div>
+            </div>`;
+
+        });
+
+
+        onlinebanking.addEventListener("click", function(){
+            
+            inforPayment.innerHTML = `  <div class="row">
+               
+                <div class="col-md-6">
+                    <h6>Payment: Online Banking</h6>
+                   
+                </div>
+            </div>`;
+
+        });
 
 
 
-
+        document.getElementById("confirm").addEventListener("submit", function() {
+        // Close the modal after form submission
+        $('#check_modal').modal('hide');
+    });
 
 
 
     });
 
     
-
-
-
 
 
 

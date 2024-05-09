@@ -243,11 +243,11 @@ if (isset($_POST['pid'])) {
                                     
                                   </div>';
 
-                                  echo $data;
+                                 
                                  } 
                                              
                                  
-             
+                                 echo $data;
 
             }
            
