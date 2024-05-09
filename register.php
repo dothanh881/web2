@@ -30,15 +30,15 @@
 
 	<style>
 		.color-second {
-			color: #269493;
+			color: #D10024;
 		}
 
 		.color-second-bg {
-			background: #269493;
+			background: #D10024;
 		}
 
 		.color-third-bg {
-			background: #269492;
+			background: #D10024;
 		}
 	</style>
 </head>

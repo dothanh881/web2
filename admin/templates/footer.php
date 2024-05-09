@@ -40,37 +40,31 @@ showreportFilter();
 //     });
 
 
- // Đặt sự kiện onchange cho select element
+ 
  $('#myInput2').on('change', function() {
-        showdata(); // Gọi lại hàm showdata() khi có sự thay đổi
+        showdata(); 
     });
 
-    // Đặt sự kiện onchange cho select element
     $('#myInput1').on('change', function() {
-        showdata(); // Gọi lại hàm showdata() khi có sự thay đổi
+        showdata(); 
     });
 
     $('#fromDate, #toDate').on('change', function() {
-        showdata(); // Gọi lại hàm showdata() khi có sự thay đổi
-      
+        showdata();
     });
 
-    // $('#fromDate1, #toDate1').on('click', function() {
-       
-    //     showreportFilter();
-    // });
-
+  
   
 	
 function showdata() {
-    var fromDate = $('#fromDate').val(); // Lấy giá trị của fromDate
-    var toDate = $('#toDate').val(); // Lấy giá trị của toDate
-    var selectedStatus = $('#myInput2').val(); // Lấy giá trị của option được chọn trong myInput2
-    var selectedDistrict = $('#myInput1').val(); // Lấy giá trị của option được chọn trong myInput1
+    var fromDate = $('#fromDate').val(); //  fromDate
+    var toDate = $('#toDate').val(); //  toDate
+    var selectedStatus = $('#myInput2').val(); //  myInput2
+    var selectedDistrict = $('#myInput1').val(); //  myInput1
 
     $.ajax({
         url: 'show-data.php',
-        method: 'get', // Thay đổi phương thức thành GET
+        method: 'get', 
         data: { fromDate: fromDate, toDate: toDate, selectedStatus: selectedStatus, selectedDistrict: selectedDistrict },
         success: function(data) {
             $("#customer_order_list").html(data);

@@ -25,6 +25,8 @@ session_start(); ?>
         $data = htmlspecialchars($data);
         return $data;
     }
+
+
      
     if(isset($_POST['update_btn'])){
       
@@ -184,10 +186,17 @@ session_start(); ?>
         	
 
       
-     
-    <div class="form-group">
-      <button type="submit" style="height:40px" name="update_btn" class="btn btn-primary">Update</button>
-    </div>
+     <?php
+     $output = "";
+         if (isset($_SESSION['user_id']) ) {
+
+          $output .= ' <div class="form-group">
+          <button type="submit" style="height:40px" name="update_btn" class="btn btn-primary">Update</button>
+        </div>';
+         }
+         echo $output;
+     ?>
+   
     
   </form>
 

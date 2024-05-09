@@ -40,7 +40,7 @@ if (!empty($fromDate) && !empty($toDate)){
    }
    else{
 
-    $order_per_page = 5;
+    $order_per_page = 8;
     $total_orders = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM (
         SELECT 
             `user`.user_id, 
@@ -91,7 +91,7 @@ if ($result->num_rows > 0) {
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Orders Total</th>
-                <th scope="col">Amount Order</th>
+                <th scope="col">Number Orders</th>
                 <th scope="col">View</th>
             </tr>
         </thead>

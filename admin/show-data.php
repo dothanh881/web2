@@ -10,7 +10,7 @@ $toDate = isset($_GET['toDate']) ? $_GET['toDate'] : '';
 
 //paging nav
 
-$order_per_page = 4;
+$order_per_page = 8;
   
 
 $total_orders = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `order`"));
@@ -45,7 +45,6 @@ $filter = [];
    $sql .= " LIMIT $order_per_page OFFSET $offset";
  
 
- // Tính total_pages dựa vào có bộ lọc hay không
 if (!empty($filter)) {
     $sql_count = "SELECT COUNT(*) as total FROM `order` WHERE " . implode(' AND ', $filter);
     $result_count = mysqli_query($conn, $sql_count);
@@ -82,7 +81,7 @@ if ($result->num_rows > 0) {
                        </thead>
                        <tbody>';
 
-   // Hiển thị dữ liệu đơn hàng
+   // displays dữ liệu đơn hàng
    while ($order = $result->fetch_object()) {
        $output .= '<tr>
                        <th scope="row">' . $order->order_id . '</th>
@@ -103,7 +102,7 @@ if ($result->num_rows > 0) {
                </table>
            </div>';
 
-   // Hiển thị phân trang
+   //  phân trang
    $output .= '<div class="container">
    <div class="row mt-3 d-flex justify-content-center ">
        <div class="col-12 d-flex justify-content-center">

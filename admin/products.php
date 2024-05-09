@@ -122,7 +122,7 @@ session_start(); ?>
 <?php
 
 //paging nav
-  $products_per_page = 4;
+  $products_per_page = 6;
   
   $total_products = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `product`"));
 

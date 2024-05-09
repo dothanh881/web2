@@ -31,7 +31,7 @@ class Product
 
     public function getData2($table = 'product', $table1 ='category')
     {
-        $result = $this->conn->query("SELECT * FROM {$table},{$table1} WHERE $table.category_id = $table1.category_id AND (item_status = 1 or item_status = 2)" );
+        $result = $this->conn->query("SELECT * FROM {$table},{$table1} WHERE $table.category_id = $table1.category_id AND (item_status = 1 or item_status = 2) AND {$table}.item_quantity > 0"  );
 
         $resultArray = array();
 
@@ -65,7 +65,7 @@ class Product
     public function getData1($table = 'cart'  ,$user_id)
 {
     // Prepare the SQL statement with a placeholder for user_id
-    $stmt = $this->conn->prepare("SELECT * FROM {$table} WHERE user_id = ? ");
+    $stmt = $this->conn->prepare("SELECT * FROM {$table} WHERE  user_id = ? ");
     
     // Bind the user_id parameter to the prepared statement
     $stmt->bind_param("s", $user_id);

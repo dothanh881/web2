@@ -36,7 +36,7 @@ if (isset($_POST['pid'])) {
         if ($check_cart_numbers->num_rows > 0) {
             
                  echo '<div id="alertMessage" class="alert alert-danger alert-dismissible fade show " role="alert">
-                 <strong>Item already added to your cart!</strong>
+                 <strong class="text-dark">Item already added to your cart!</strong>
                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                    <span aria-hidden="true">&times;</span>
                  </button>

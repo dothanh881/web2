@@ -27,7 +27,7 @@ if (isset($_POST['Login'])) {
     $username = mysqli_real_escape_string($conn, $username);
 
     // Query template
-    $query = "SELECT user_id, password, status FROM user WHERE `username`=? AND `is_admin` = 0 AND `status` = 1";
+    $query = "SELECT * FROM `user` WHERE `username`=? AND `is_admin` = 0 AND `status` =  1";
 
     // Chuẩn bị truy vấn
     $stmt = $conn->prepare($query);
@@ -53,8 +53,7 @@ if (isset($_POST['Login'])) {
         if (password_verify($password, $hash_password)) {
             $_SESSION['username'] = $username;
             $_SESSION['user_id'] = $row['user_id'];
-            $_SESSION['status_user'] = $row['status'];
-          
+            
                 // Redirect to index page
                 header("location: ./index.php");
                 exit;
@@ -124,15 +123,15 @@ if (isset($_POST['Login'])) {
 
     <style>
         .color-second {
-            color: #269493;
+            color: #D10024;
         }
 
         .color-second-bg {
-            background: #269493;
+            background: #D10024;
         }
 
         .color-third-bg {
-            background: #269492;
+            background: #D10024;
         }
         #header {
             position: fixed;

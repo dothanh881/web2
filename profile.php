@@ -4,7 +4,7 @@
 if (isset($_SESSION['username'])) ?>
 <br><br><br>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-5 border-bottom">
-  <h1 class="h2 ">Hello, <?php echo $_SESSION['username'] ?></h1>
+&nbsp; &nbsp; &nbsp;<h1 class="h2 ">Hello, <?php echo $_SESSION['username'] ?></h1>
   <div class="btn-toolbar mb-2 mb-md-0">
 
   </div>
@@ -66,12 +66,12 @@ if (isset($_POST['update_btn'])) {
       $stmt->bind_param("sssssssss", $fullname, $email, $phone, $street, $city, $district, $ward, $enc_pass, $user_id);
 
       $stmt->execute();
-      echo " <div class='alert alert-success alert-dismissible fade show'>
+      echo " <div id='alertMessage' class='alert alert-success alert-dismissible fade show'>
       <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
       <strong>Success!</strong> Information have changed.
     </div>";
     } else {
-      echo "<div class='alert alert-warning alert-dismissible fade show'>
+      echo "<div id='alertMessage' class='alert alert-warning alert-dismissible fade show'>
       <button type='button'class='btn-close' data-bs-dismiss='alert'></button>
       <strong>Warning!</strong> Password incorrect. Please enter again !
     </div>"
@@ -85,12 +85,12 @@ if (isset($_POST['update_btn'])) {
       $stmt->bind_param("sssssss", $fullname, $email, $phone, $street, $city, $district, $user_id);
 
       $stmt->execute();
-      echo " <div class='alert alert-success alert-dismissible fade show'>
+      echo " <div id='alertMessage' class='alert alert-success alert-dismissible fade show'>
       <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
       <strong>Success!</strong> Information have changed.
     </div>";
     } else {
-      echo "<div class='alert alert-warning alert-dismissible fade show'>
+      echo "<div id='alertMessage' class='alert alert-warning alert-dismissible fade show'>
       <button type='button'class='btn-close' data-bs-dismiss='alert'></button>
       <strong>Warning!</strong> Password incorrect. Please enter again !
     </div>"
@@ -227,7 +227,7 @@ if ($result->num_rows == 1) {
     <div class="form-group" style="margin-bottom:20px" id="box-password">
       <label for="password">Password:</label>
       <div class="row-6">
-        <input type="text" class="form-control" placeholder="Enter password" name="password" style="margin-bottom:10px"
+        <input type="password" class="form-control" placeholder="Enter password" name="password" style="margin-bottom:10px"
           required>
       </div>
       <div class="row-6">
