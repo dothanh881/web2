@@ -93,8 +93,8 @@
                         <td>M.R.P:</td>
                         <td><strike>$162.00</strike></td>
                     </tr> -->
-                    <tr class="font-rale font-size-14">
-                        <td>Price:</td>
+                    <tr class="font-baloo font-size-14">
+                        <td>Price: </td>
                         <td class="font-size-20 text-danger">$<span><?php echo $item['item_price'] ?? 0; ?></span><small class="text-dark font-size-12">&nbsp;&nbsp;</small></td>
                     </tr>
                     

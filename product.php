@@ -14,7 +14,7 @@ if(isset($_SESSION['user_id'])){
  }else{
     $user_id = '';
 
-    header('location:login.php');
+    header('location:./login.php');
     
  };
  
@@ -28,12 +28,12 @@ if(isset($_SESSION['user_id'])){
 
 <?php
     /*  include products */
-    include ('Template/_products.php');
+    include ('./Template/_products.php');
     /*  include products */
     
 
     /*  include top sale section */
-    include ('Template/_top-sale.php');
+    include ('./Template/_top-sale.php');
     /*  include top sale section */
 
 

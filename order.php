@@ -27,7 +27,7 @@ if(isset($_SESSION['user_id'])){
 			
 <div class="row">
   <div class="col-10">
-  <h5><i class="fas fa-info"></i> Filter</h5>
+  <h5><i class="fas fa-filter"></i> Filter</h5>
       <br>
   </div>
 
@@ -48,7 +48,7 @@ if(isset($_SESSION['user_id'])){
         <div class=" col-md-6 col-lg-3 search-p ">
         <div id="DataTables_Table_0_filter" class="dataTables_filter">
             <label>
-                <select  id="myInput2" name="selectedStatus"  class="form-control"  >
+                <select  id="myInput2" name="selectedStatus"   class="form-select" aria-label="Default select example"  >
                     <option value="select">Filter Order Status here</option>
                     <option value="Pending">Pending</option>
                     <option value="Processing">Processing</option>

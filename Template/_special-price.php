@@ -24,19 +24,21 @@ $in_cart = $Cart->getCartId($user_id, $product->getData('cart'));
     <div class="container">
         <h4 class="font-rubik font-size-20">Special Price</h4>
        
-        <div id="filters" class="button-group text-right font-baloo font-size-16">
-            <button class="btn is-checked" data-filter="*">All Brand</button>
-            <?php
-            array_map(function ($brand) {
-                printf('<button class="btn" data-filter=".%s">%s</button>', $brand, $brand);
-            }, $unique);
-            ?>
+        <div  class="select-group text-right font-baloo font-size-16">
+        <select class="filters-select">
+    <option value="*">All Brand</option>
+    <?php
+    foreach ($unique as $brand) {
+        printf('<option value="%s">%s</option>', $brand, $brand);
+    }
+    ?>
+</select>
         </div>
         <div class="grid">
             <?php array_map(function ($item) use ($in_cart) { ?>
                 <div class="grid-item border  <?php echo $item['category_name'] ?? "Brand"; ?>">
                     <div class="item py-2" style="width: 230px;">
-                        <div class="product font-rale">
+                        <div class="product font-rubik">
                             <a href="<?php printf('%s?item_id=%s', 'product.php', $item['item_id']); ?>"><img
                                     src="<?php echo $item['item_image'] ?? "./assets/products/13.png"; ?>" alt="product1"
                                     class="img-fluid"></a>

@@ -153,6 +153,49 @@ session_start(); ?>
       	</div>
       </div>
       
+<br><br>
+
+<div class="row">
+  <div class="col-10">
+  <h5><i class="fas fa-filter"></i> Filter</h5>
+        <hr>
+  </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-lg-4 search-p " >
+        <div id="DataTables_Table_0_filter" class="dataTables_filter">
+            <label>
+                <select  id="myInput2" name="selectedStatus"  class="form-control"  >
+                    <option value="select">Filter Status Product</option>
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="complete">Complete</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </label>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4 search-p">
+        <div id="DataTables_Table_1_filter" class="dataTables_filter">
+            <label>
+                <select class="form-control" name="selectedDistrict" id="myInput1"   aria-controls="DataTables_Table_1">
+                    <option value="All">Filter Category</option>
+                    <option value="district 1">District 1</option>
+                                  
+                                   
+                    <!-- Thêm các tùy chọn khác tương ứng với các quận bạn muốn lọc -->
+                </select>
+            </label>
+        </div>
+    </div>
+</div>
+
+
+
+<br><br>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>

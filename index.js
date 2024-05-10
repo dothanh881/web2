@@ -38,12 +38,15 @@ $(document).ready(function(){
     });
 
     // filter items on button click
-    $(".button-group").on("click", "button", function(){
-        var filterValue = $(this).attr('data-filter');
-        $grid.isotope({ filter: filterValue});
-    })
-
-
+   
+    $('.filters-select').on('change', function() {
+        // Lấy giá trị của filter từ giá trị của option được chọn
+        var filterValue = $(this).val();
+        
+        // Áp dụng filter lên grid của Isotope
+        $grid.isotope({ filter: filterValue });
+    });
+      
     // new phones owl carousel
     $("#new-phones .owl-carousel").owlCarousel({
         loop: true,

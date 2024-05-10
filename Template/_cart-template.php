@@ -113,7 +113,7 @@ if(isset($_SESSION['user_id'])){
                         <!-- product qty -->
                         <div class="qty d-flex pt-2">
                           
-                        <div class="d-flex font-rale w-35">
+                        <div class="d-flex font-baloo w-35">
                         <form action="" method="post">
                             <input type="hidden" name="update_quantity_id" value="<?php echo $item['item_id']  ?>">
                             <input type="number" name="update_quantity" class="qty" min="1"  value="<?php echo $item['cart_quantity'] ?>">
@@ -150,7 +150,7 @@ if(isset($_SESSION['user_id'])){
             <!-- subtotal section-->
             <div class="col-sm-3">
                 <div class="sub-total border text-center mt-2">
-                    <h6 class="font-size-12 font-rale text-success py-3"><i class="fas fa-check"></i> Your order is eligible for FREE Delivery.</h6>
+                    <h6 class="font-size-14 font-baloo text-success py-3"><i class="fas fa-check"></i> Your order is eligible for FREE Delivery.</h6>
                     <div class="border-top py-4">
                         <h5 class="font-baloo font-size-20">Subtotal ( <?php echo isset($subTotal) ? count($subTotal) : 0; ?> item):&nbsp; <span class="text-danger">$<span class="text-danger" id="deal-price"><?php echo isset($subTotal) ? $Cart->getSum($subTotal) : 0; ?></span> </span> </h5>
                       

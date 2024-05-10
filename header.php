@@ -3,25 +3,14 @@
 session_name('customer_session');
 session_start();
 
-include('connect.php');
 
-if (isset($_SESSION['user_id'])){
+if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 
-    $stmt = $conn ->prepare("SELECT * FROM `user` WHERE user_id = ?");
-    $stmt -> bind_param("s", $user_id);
-    $stmt -> execute();
-    $res = $stmt -> get_result();
-    if($res -> num_rows == 1){
-        $row = $res -> fetch_assoc();
-        $user_status = $row['status'];
-    }
-    
-        
-    
 } else {
     $user_id = '';
 }
+;
 
 
 ?>
@@ -34,7 +23,7 @@ if (isset($_SESSION['user_id'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Shopee </title>
+    <title>Mobile Shopee</title>
 
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -114,7 +103,7 @@ if (isset($_SESSION['user_id'])){
         }
 
         .color-third-bg {
-            background: #269493;
+            background: #269492;
         }
 
         #popup {
@@ -209,7 +198,7 @@ if (isset($_SESSION['user_id'])){
 
                     <div class="form-container ml-3">
                         <form method="post" action="searchpage.php" class="d-flex" onsubmit="return check();" >
-                            <input type="text" name="search_box" placeholder="Search name's product..." class="form-control " id="search">
+                            <input type="text" name="search_box" placeholder="search here..." class="form-control " id="search">
                             <button type="submit" class="btn btn-success" id="search_btn" name="search_btn" >Search</button>
                             <div id="popup" class="hidden">
                                 <div class="popup-content">
@@ -228,7 +217,7 @@ if (isset($_SESSION['user_id'])){
                     <div class="dropdown ">
                         <a class="px-3 mr-4 border-right border-left dropdown-toggle text-light " type="button"
                             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Hi <?php echo $_SESSION['username']  ?> 
+                            Hi <?php echo $_SESSION['username'] ?>
                         </a>
 
                         <div class="dropdown-menu drop" aria-labelledby="dropdownMenuButton">
@@ -274,20 +263,10 @@ if (isset($_SESSION['user_id'])){
         function check() {
 
             if (search.value == '') {
-                popup.style.display = 'block';
-                
                 return false;
             }
         }
-        closeButton.addEventListener('click', () => {
-            popup.style.display = 'none';
-        });
-// Kiểm tra status nếu  = 0  thì logout
 
-    <?php if ($user_status == 0): ?>
-        alert("Your account have been blocked for unusual behavior!");
-        window.location.href = "logout.php";
-    <?php endif; ?>
     </script>
     <!-- start #main-site -->
     <main id="main-site">

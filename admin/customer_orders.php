@@ -46,9 +46,9 @@ session_start();
 
 <div class="row">
     <div class="col-md-6 col-lg-4 search-p " >
-        <div id="DataTables_Table_0_filter" class="dataTables_filter">
+       
             <label>
-                <select  id="myInput2" name="selectedStatus"  class="form-control"  >
+                <select  id="myInput2" name="selectedStatus"  class="form-control" aria-label="Default select example" >
                     <option value="select">Order Status</option>
                     <option value="pending">Pending</option>
                     <option value="processing">Processing</option>
@@ -56,13 +56,13 @@ session_start();
                     <option value="cancelled">Cancelled</option>
                 </select>
             </label>
-        </div>
+        
     </div>
 
     <div class="col-md-6 col-lg-4 search-p">
-        <div id="DataTables_Table_1_filter" class="dataTables_filter">
+        
             <label>
-                <select class="form-control" name="selectedDistrict" id="myInput1"   aria-controls="DataTables_Table_1">
+                <select class="form-control" aria-label="Default select example" name="selectedDistrict" id="myInput1"   >
                     <option value="All">All district</option>
                     <option value="district 1">District 1</option>
                                     <option value="district 2">District 2</option>
@@ -89,7 +89,7 @@ session_start();
                     <!-- Thêm các tùy chọn khác tương ứng với các quận bạn muốn lọc -->
                 </select>
             </label>
-        </div>
+      
     </div>
 </div>
 

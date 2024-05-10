@@ -20,7 +20,16 @@ if ( isset($_SESSION["user_id"]) ) {
             $page = end($uriAr);
 
           ?>
+
 <li class="nav-item">
+            <a class="nav-link <?php echo ($page == '' || $page == 'index_admin.php') ? 'active' : ''; ?>" href="index_admin.php">
+            <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span data-feather="home"></span>
+              Admin  <span class="sr-only">(current)</span>
+            </a>
+          </li>
+<li class="nav-item">
+
+
 
             <a class="nav-link <?php echo ($page == 'dashboard.php') ? 'active' : ''; ?>" href="dashboard.php">
             <i class="fa fa-home" aria-hidden="true"></i>
@@ -56,12 +65,7 @@ if ( isset($_SESSION["user_id"]) ) {
               Customers
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link <?php echo ($page == '' || $page == 'index_admin.php') ? 'active' : ''; ?>" href="index_admin.php">
-            <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span data-feather="home"></span>
-              Admin  <span class="sr-only">(current)</span>
-            </a>
-          </li>
+        
           
         </ul>
 

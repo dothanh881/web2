@@ -68,13 +68,8 @@ if(isset($_SESSION['user_id'])){
                     <a href="order-detail.php?order<?php echo $row['order_id'] ?>">Click here for order details</a>
                 </div>
             </div>
-        <?php else: ?>
-            <div class="row" id="order">
-                <div class="text-center">
-                    <h1 class="display-4 mt-2 text-danger">Error!</h1>
-                    <h2 class="text-success">Order Not Found!</h2>
-                </div>
-            </div>
+        <?php  ?>
+            
         <?php endif; ?>
     </div>
 </div>
