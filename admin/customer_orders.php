@@ -119,16 +119,15 @@ session_start();
 <script>
     
 $(document).on('click', '.page-link', function(e) {
-    e.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt
+    e.preventDefault(); 
 
-    var page = $(this).attr('href').split('page=')[1]; // Lấy số trang từ href
+    var page = $(this).attr('href').split('page=')[1]; // Lấy  trang từ href
 
-    // Thực hiện Ajax để tải dữ liệu mới
     $.ajax({
         url: 'show-data.php?page=' + page,
         method: 'GET',
         success: function(data) {
-            $("#customer_order_list").html(data); // Hiển thị dữ liệu mới
+            $("#customer_order_list").html(data);
         }
     });
 });

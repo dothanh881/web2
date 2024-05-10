@@ -141,7 +141,7 @@ session_start(); ?>
   <div class="row">
     <div class="col-6">
         <div class="form-group">
-          <label for="price">Unit Price:</label>
+          <label for="price">Unit Price ($):</label>
           <input type="number" class="form-control"  step="0.01" name="item_price" value="<?php echo  $row1['item_price'] ?>">
       </div>
    
@@ -192,11 +192,29 @@ session_start(); ?>
     <div class="form-group">
 		        		<label>Status Product</label>
 		        		<select class="form-control status_list" name="status">
-		        			 <option value="<?php echo $status ?> "><?php echo $status ?></option>
+		        			 <option value="<?php echo $status ?> ">
+                   
+                   <?php
+                   if($status == 2){
+                    echo $status . "  (sold)";
+                   }
+                   
+                   
+                   else if ($status == 1){
+                    echo $status . "  (published)";
+                   }
+                   
+                   else if ($status == 0){
+                    echo $status . "  (unpublished - in stock)";
+                   }
+                   
+                   ?>
+                  
+                  </option>
               
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
+              <option value="0">0  (unpublished - in stock)</option>
+              <option value="1">1  (published)</option>
+
                   
 
                   

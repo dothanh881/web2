@@ -102,6 +102,11 @@ session_start(); ?>
           $stmt1 = $conn->prepare($sql1);
           $stmt1->bind_param("i", $delete_id);
           $stmt1->execute();
+          echo '<div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Success!</strong> Product status has been updated to "In stock".
+      </div>';
+
       }
   }
 

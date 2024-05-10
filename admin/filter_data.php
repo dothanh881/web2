@@ -34,7 +34,6 @@ if ($result->num_rows > 0) {
 <?php
     }
 } else {
-    // Hiển thị thông báo nếu không có dữ liệu
     echo "<tr><td colspan='7'>No data available</td></tr>";
 }
 ?>
