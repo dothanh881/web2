@@ -62,6 +62,7 @@
 <script src="index.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+        showdata();
         $(".addItemBtn").click(function(e){
             e.preventDefault();
             var $form = $(this).closest(".form-submit");
@@ -369,6 +370,34 @@ document.getElementById("newDistrict").addEventListener("change", updateInfo);
 
     
 
+    $('#myInput2').on('change', function() {
+        showdata(); 
+    });
+
+  
+
+    $('#fromDate, #toDate').on('change', function() {
+        showdata();
+    });
+
+  
+
+	
+function showdata() {
+    var fromDate = $('#fromDate').val(); //  fromDate
+    var toDate = $('#toDate').val(); //  toDate
+    var selectedStatus = $('#myInput2').val(); //  myInput2
+    
+    console.log(selectedStatus);
+    $.ajax({
+        url: 'show-data.php',
+        method: 'get', 
+        data: { fromDate: fromDate, toDate: toDate, selectedStatus: selectedStatus },
+        success: function(data) {
+            $("#order_list").html(data);
+        }
+    });
+}
 
 
 

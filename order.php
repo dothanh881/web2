@@ -25,32 +25,39 @@ if(isset($_SESSION['user_id'])){
 <br>
 <div class="container ">
 			
-         <div class="row">
-    
-       
+<div class="row">
+  <div class="col-10">
+  <h5><i class="fas fa-info"></i> Filter</h5>
+      <br>
+  </div>
 
-          <div class="col-md-6 col-lg-4 form-group date-check">
-            <label for="datefrom">From</label>
-            <input type="date" id="datefrom" name="datefrom" class="form-control">
-          </div>
-      
-          <div class="col-md-6 col-lg-4 form-group date-check">
-            <label for="dateto">To</label>
-            <input type="date" id="dateto" name="dateto" class="form-control">
-          </div>
-         </div>
-
+</div>
+        
+<div class="row">
+    <div class="col-md-6 col-lg-4 form-group date-check">
+        <label for="fromDate">From</label>
+        <input type="date" id="fromDate" name="fromDate" class="form-control">
+    </div>
+    <div class="col-md-6 col-lg-4 form-group date-check">
+        <label for="toDate">To</label>
+        <input type="date" id="toDate" name="toDate" class="form-control">
+    </div>
+</div>
       <div class="row">
 
         <div class=" col-md-6 col-lg-3 search-p ">
-          <div id="DataTables_Table_0_filter" class="dataTables_filter">
-            <label><input type="search" id="myInput" class="form-control" placeholder="Order Number" aria-controls="DataTables_Table_0">
+        <div id="DataTables_Table_0_filter" class="dataTables_filter">
+            <label>
+                <select  id="myInput2" name="selectedStatus"  class="form-control"  >
+                    <option value="select">Filter Order Status here</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Processing">Processing</option>
+                    <option value="Complete">Complete</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
             </label>
         </div>
-          <div class="search-btnn ">
-            <button class="dt-button add-new btn btn-primary" type="button"><span><span class="d-none d-sm-inline-block">Search</span></span></button>
-
-          </div>
+          
         </div>
 
       
@@ -61,46 +68,8 @@ if(isset($_SESSION['user_id'])){
     
 
 <div class="container">
-   <div class="row">
-      <div class="title"><strong>My Order</strong></div>
-      <div class="col-md-10 text-center">
-      <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Order Number</th>
-      <th scope="col">Order Status</th>
-      <th scope="col">Order Date</th>
-      <th scope="col">Order Total</th>
-      <th scope="col">Order Detail</th>
-    </tr>
-  </thead>
-  <tbody>
-<?php
-   $stmt = $conn ->prepare("SELECT * FROM `order` WHERE user_id = ?");
-   $stmt -> bind_param("s", $user_id);
-   $stmt -> execute();
-   $result = $stmt ->get_result();
-
-   while($order = $result->fetch_object()){
-   ?>
-
-
-    <tr>
-      <th scope="row">#<?php echo $order->order_id ?></th>
-      <td><?php echo $order->order_status ?></td>
-      <td><?php echo $order->order_date ?></td>
-      <td>$<?php echo $order->order_total_price ?></td>
-      <td><a href="order-detail.php?order=<?=$order->order_id ?>">Details</a></td>
-
-    </tr>
-
-    <?php } ?>
+   <div class="row" id="order_list">
    
-  </tbody>
-</table>
-
-
-      </div>
    </div>
 </div>
 
@@ -121,3 +90,21 @@ if(isset($_SESSION['user_id'])){
 <?php
 include("footer.php");
 ?>
+<script>
+    
+$(document).on('click', '.page-link', function(e) {
+    e.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt
+
+    var page = $(this).attr('href').split('page=')[1]; // Lấy số trang từ href
+
+    // Thực hiện Ajax để tải dữ liệu mới
+    $.ajax({
+        url: 'show-data.php?page=' + page,
+        method: 'GET',
+        success: function(data) {
+            $("#order_list").html(data); // Hiển thị dữ liệu mới
+        }
+    });
+});
+
+</script>

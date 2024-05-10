@@ -106,15 +106,15 @@ if (isset($_SESSION['user_id'])){
 
 
         .color-second {
-            color: #D70018;
+            color: #269493;
         }
 
         .color-second-bg {
-            background: #D70018;
+            background: #269493;
         }
 
         .color-third-bg {
-            background: #D70018;
+            background: #269493;
         }
 
         #popup {

@@ -123,15 +123,15 @@ if (isset($_POST['Login'])) {
 
     <style>
         .color-second {
-            color: #D10024;
+            color: #269493;
         }
 
         .color-second-bg {
-            background: #D10024;
+            background: #269493;
         }
 
         .color-third-bg {
-            background: #D10024;
+            background: #269493;
         }
         #header {
             position: fixed;
