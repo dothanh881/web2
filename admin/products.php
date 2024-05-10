@@ -169,10 +169,10 @@ session_start(); ?>
             <label>
                 <select  id="myInput2" name="selectedStatus"  class="form-control"  >
                     <option value="select">Filter Status Product</option>
-                    <option value="pending">Pending</option>
-                    <option value="processing">Processing</option>
-                    <option value="complete">Complete</option>
-                    <option value="cancelled">Cancelled</option>
+                    <option value="0">0 (unpublished - in stock)</option>
+                    <option value="1">1 (published)</option>
+                    <option value="2">2 (sold)</option>
+                   
                 </select>
             </label>
         </div>
@@ -181,12 +181,20 @@ session_start(); ?>
     <div class="col-md-6 col-lg-4 search-p">
         <div id="DataTables_Table_1_filter" class="dataTables_filter">
             <label>
-                <select class="form-control" name="selectedDistrict" id="myInput1"   aria-controls="DataTables_Table_1">
+                <select class="form-control" name="selectedCategort" id="myInput1"   aria-controls="DataTables_Table_1">
                     <option value="All">Filter Category</option>
-                    <option value="district 1">District 1</option>
+                    <?php 
+                      $stmt = $conn -> prepare("SELECT * FROM `category`");
+                      $stmt -> execute();
+                      $result = $stmt -> get_result();
+                      while($row = $result -> fetch_assoc()){
+                        echo '<option value="' . $row['category_name'] . '">' . $row['category_name'] . '</option>';
+
+                      }
+                    
+                    ?>
                                   
                                    
-                    <!-- Thêm các tùy chọn khác tương ứng với các quận bạn muốn lọc -->
                 </select>
             </label>
         </div>
@@ -195,7 +203,7 @@ session_start(); ?>
 
 
 
-<br><br>
+<br><br><br>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
