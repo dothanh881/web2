@@ -37,6 +37,7 @@ if(isset($_SESSION['user_id'])){
  .section {
         overflow-x: hidden;
     }
+
 	
 </style>
 
@@ -83,7 +84,7 @@ while ($row = $result -> fetch_assoc()){
 				<!-- Order Details -->
 	
 				
-<div class="row" id="order" >
+<div class="row "  >
 	<div class="col-md-6 " >
 	<div class="order-details border border-secondary " >
 
@@ -93,6 +94,7 @@ while ($row = $result -> fetch_assoc()){
 					
 
 							<form action="" method="post" id="placeOrder" onsubmit="return validateForm();">
+							
 							<input type="hidden" name="grand_total" value="<?= $grand_total ?>">
 		<input type="hidden" name="order_id" value="<?= $orderid ?>">
 		<input type="hidden" name="allItems" value="<?= $allItems ?>">
@@ -205,7 +207,7 @@ while ($row = $result -> fetch_assoc()){
 
 						<br>
 
-						<input  data-toggle="modal" data-target="#check_modal" type="button" name="checkout" id="checkout" class="btn btn-primary" value="Order Place">
+						<input data-toggle="modal" data-target="#mi-modal"  type="button" name="checkout"  id="btn-checkout" class="btn btn-primary" value="Order Place">
 						<a href="cart.php" class="btn btn-secondary">Back</a>
 <br><br>
 
@@ -409,177 +411,164 @@ echo '<p class="empty">no product user!</p>';
 
 				}?>
 				
-				<div class="modal fade" id="check_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-	  <div class="section-title text-center">
 
-<h3 class="title">Your Order</h3>
-</div>
-<div class="order-summary">
-<div class="order col">
-	
-	<div><strong>Product</strong></div>
+ 			
+		
+
+						</div>
+						
+			
+
+
 
 
 		
-	
-	
-
-<div class="row">
-	
-<div class="col-6 text-left">
-	<p>
-	<?php 
- foreach($items as $item){
-	echo "<div>" . $item . "</div>";
- }
-
-?>
-	</p>
-</div>
-
-
-<div class="col-6 text-right">
-	<p>
-	<?php
-	 foreach($sum as $su){
-		echo  "<div> $su$</div>";
-	}
-	?>
-</p>
-</div>
-
-
-	
-</div>
-<hr>
-	
-	<div class="row">
-		<div class="col-6">
-		<div><strong>Total:</strong>
-
-		</div>
-		</div>
-		<div class="col-6 text-right">
-	<strong><?php 
- echo "<p> $grand_total$</p>";
-?></strong>
-		</div>
-	
-
-	</div>
-	<hr>
-
-	<h5><i class="fas fa-info"></i> Info</h5>
-	<br>
-
-	<div id="info-checkout">
-		
-	</div>
-	<div id="info-payment">
-
-	</div>
-<br><br>
-		
-			<div class="col-12">
-				<input type="submit" id="confirm" name="submit" class="btn btn-primary" value="Confirm">
-				<input type="button" name="cancelCheckout" class="btn btn-secondary" value="Cancel">
-
-        		</div>
+			
+				
 				
 
+			
 
 
-			</div>
-        		
-        	
-        	
-        
-       
-      </div>
-    </div>
-  </div>
-</div> 
-</div>	
+
+
+
+
+
+
+
+
+
+
+
+
 	
+	
+						</div>
+	
+						<div class="modal  " id="mi-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <!-- Modal Header -->
+               <div class="modal-header">
+                  <h4 class="modal-title">Modal Heading</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <!-- Modal body -->
+            <div class="modal-body">
+                 
+			   <div class="section-title text-center">
+
+						<h3 class="title">Your Order</h3>
+						</div>
+						<div class="order-summary">
+						<div class="order col">
+							
+							<div><strong>Product</strong></div>
 
 
-							</form>
-		
+								
+							
+							
 
+						<div class="row">
+							
+						<div class="col-6 text-left">
+							<p>
+							<?php 
+						foreach($items as $item){
+							echo "<div>" . $item . "</div>";
+						}
 
+						?>
+							</p>
 						</div>
 
 
-</div>
+						<div class="col-6 text-right">
+							<p>
+							<?php
+							foreach($sum as $su){
+								echo  "<div> $su$</div>";
+							}
+							?>
+						</p>
+						</div>
 
 
+							
+						</div>
+						<hr>
+							
+							<div class="row">
+								<div class="col-6">
+								<div><strong>Total:</strong>
 
+								</div>
+								</div>
+								<div class="col-6 text-right">
+							<strong><?php 
+						echo "<p> $grand_total$</p>";
+						?></strong>
+								</div>
+							
 
-			</div>
-</div>
+							</div>
+							<hr>
 
+							<h5><i class="fas fa-info"></i> Info</h5>
+							<br>
+
+							<div id="info-checkout">
+								
+							</div>
+							<div id="info-payment">
+
+							</div>
+						<br><br>
+
+										
+									</div>
+										
+									
+									
+								
+							
+							</div>
+
+               </div>
+               <!-- Modal footer -->
+               <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="modal-btn-no" data-dismiss="modal" >Cancel</button>
+     
 		
-			</div>		
-
-					
-			
-				
-				
-				</div>
-
-
-			</div>
+		
+							
 						
+		<button type="submit" id="modal-btn-si" name="submit"class="btn btn-primary" >Confirm </button>
+		
+	
+	
+	
+
+
+			
+	</form>	
+	  
+      </div>
+
+            </div>
+         </div>
+      </div>
+
+  
+	
+   
+
+
+	
+
 				
-					<!-- /Order Details -->
-
-
-						<!-- /Shiping Details -->
-      
-			
-				
-	
-	
-
-                </div>
-
-			
-	
-
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-			
-	
-			
-                </div>
-				
-				
-
 
 
      
@@ -597,3 +586,7 @@ echo '<p class="empty">no product user!</p>';
 <?php 
 include('footer.php');
 ?>
+<script>
+
+
+</script>

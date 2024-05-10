@@ -96,24 +96,29 @@
         });
 
 
-        $("#placeOrder").submit(function(e){
+        $("#placeOrder").submit(function(e) {
+    e.preventDefault();
 
-            e.preventDefault();
-            $.ajax({
-                url: 'get_cart_count.php',
-                method: 'post',
-                data: $( 'form' ).serialize()+"&action=order",
-                success: function(response){
-                    $("#order").html(response);
-                    load_cart_item_number();
+    // Lấy giá trị của $orderid từ input hidden trong form
+    var orderid = $("input[name='order_id']").val();
 
-                },
-            
-            });
-        });
-
-
-
+    // Tạo dữ liệu gửi đi kèm với yêu cầu Ajax
+    var formData = $('form').serialize() + "&action=order";
+    $.ajax({
+        url: 'get_cart_count.php',
+        method: 'post',
+        data: formData, // Đã bao gồm dữ liệu form, không cần thêm formData vào đây
+        success: function(response) {
+            // Phản hồi từ get_cart_count.php
+            // Thay vì sử dụng biến orderid mới, chúng ta sử dụng biến orderid đã lấy được từ input hidden
+            window.location.href = `success-checkout.php?order=${orderid}`;
+            load_cart_item_number(); // Bạn cần đảm bảo rằng hàm load_cart_item_number() đã được định nghĩa và hoạt động đúng
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+});
 
 
 
@@ -355,11 +360,8 @@ document.getElementById("newDistrict").addEventListener("change", updateInfo);
         });
 
 
+      
 
-        document.getElementById("confirm").addEventListener("submit", function() {
-        // Close the modal after form submission
-        $('#check_modal').modal('hide');
-    });
 
 
 
