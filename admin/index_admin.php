@@ -148,4 +148,3 @@ include("./../functions.php");
 
 <?php include "./templates/footer.php"; ?>
 
-<script type="text/javascript" src="./js/admin.js"></script>

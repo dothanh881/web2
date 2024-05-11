@@ -249,56 +249,81 @@ function input_filter($data){
   return $data;
 }
 
+
 if(isset($_POST['add-product'])){
-  // Xử lý tên file hình ảnh
-  $tmp_name =  $_FILES["item_image"]["tmp_name"];
-  $fldimageurl = "./assets/products/" . basename($_FILES["item_image"]["name"]);
+  // Check if the file upload field is set and not empty
+  if(isset($_FILES["item_image"]) && $_FILES["item_image"]["error"] == UPLOAD_ERR_OK){
+      // Process the uploaded image file
+      $tmp_name = $_FILES["item_image"]["tmp_name"];
+      $fldimageurl = "./assets/products/" . basename($_FILES["item_image"]["name"]);
 
-  // Di chuyển tệp tải lên vào thư mục đích
-  if(move_uploaded_file($tmp_name, __DIR__ . "/../" . $fldimageurl)){
-      // Lấy dữ liệu từ form và tiến hành xử lý
-      $item_name =   input_filter($_POST['item_name']);
-      $item_category =  input_filter($_POST['category']);
-      $item_desc =  input_filter($_POST['item_desc']);
-      $item_qty =  input_filter($_POST['item_qty']);
-      $item_price = $_POST['item_price'];
-      $item_rom =  input_filter($_POST['item_rom']);
-      $item_ram =  input_filter($_POST['item_ram']);
-      $item_color =  input_filter($_POST['item_color']);
-      $item_screen =  input_filter($_POST['item_screen']);
-      $item_image =  mysqli_real_escape_string($conn, $fldimageurl);
+     
+   
+      // Move the uploaded file to the destination directory
+      if(move_uploaded_file($tmp_name, __DIR__ . "\\..\\" . $fldimageurl)){
+          // Sanitize and process form data
+          $item_name = input_filter($_POST['item_name']);
+          $item_category = input_filter($_POST['category']);
+          $item_desc = input_filter($_POST['item_desc']);
+          $item_qty = input_filter($_POST['item_qty']);
+          $item_price = $_POST['item_price'];
+          $item_rom = input_filter($_POST['item_rom']);
+          $item_ram = input_filter($_POST['item_ram']);
+          $item_color = input_filter($_POST['item_color']);
+          $item_screen = input_filter($_POST['item_screen']);
 
-      // Tiến hành thêm sản phẩm vào cơ sở dữ liệu
-      $sql = "INSERT INTO `product` (category_id, item_name, item_quantity, item_price, item_color, item_image, item_discription, item_rom, item_ram, size_screen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-      $stmt = $conn->prepare($sql);
+          // Escape the image URL to prevent SQL injection
+          $item_image = mysqli_real_escape_string($conn, $fldimageurl);
 
-      if($stmt){
-          $stmt->bind_param("isidsssiid", $item_category, $item_name, $item_qty, $item_price, $item_color, $item_image, $item_desc, $item_rom, $item_ram, $item_screen);
-          if($stmt->execute()) {
-            echo '<div class="alert alert-success alert-dismissible fade show fixed-top mt-5 " role="alert">
-            <strong>Success</strong>Add product successfully!.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            </div>';
-              
+          // Prepare and execute the SQL query to insert product into the database
+          $sql = "INSERT INTO `product` (category_id, item_name, item_quantity, item_price, item_color, item_image, item_discription, item_rom, item_ram, size_screen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          $stmt = $conn->prepare($sql);
+
+          if($stmt){
+              $stmt->bind_param("isidsssiid", $item_category, $item_name, $item_qty, $item_price, $item_color, $item_image, $item_desc, $item_rom, $item_ram, $item_screen);
+              if($stmt->execute()) {
+                  echo '<div id="alertMessage" class="alert alert-success alert-dismissible fade show fixed-top mt-5 " role="alert">
+                      <strong>Success</strong> Product added successfully! 
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>';
+              } else {
+                  echo '<div id="alertMessage" class="alert alert-danger alert-dismissible fade show fixed-top mt-5 " role="alert">
+                      <strong>Error</strong> Failed to add product: ' . $stmt->error . '.
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>';
+              }
           } else {
-              echo "Error " . $stmt->error;
+              echo '<div id="alertMessage" class="alert alert-danger alert-dismissible fade show fixed-top mt-5 " role="alert">
+                  <strong>Error</strong> Failed to prepare statement: ' . $conn->error . '.
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>';
           }
-      } 
+      } else {
+          echo '<div id="alertMessage" class="alert alert-danger alert-dismissible fade show fixed-top mt-5 " role="alert">
+              <strong>Error</strong> Failed to upload image.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>';
+      }
   } else {
-    echo '<div class="alert alert-danger alert-dismissible fade show fixed-top mt-5 " role="alert">
-    <strong>Failed</strong>Image up failed!.
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    </div>';
+      echo '<div id="alertMessage" class="alert alert-danger alert-dismissible fade show fixed-top mt-5 " role="alert">
+          <strong>Error</strong> No image uploaded or an error occurred.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>';
   }
 }
-  
-
-
 ?>
+
+
 
 
 
@@ -468,6 +493,24 @@ if(isset($_POST['add-product'])){
             reader.readAsDataURL(file);
         });
     });
+
+    const timeoutDuration = 5000;
+
+// Get the alert element
+const alertElement = document.getElementById('alertMessage');
+
+// Function to hide the alert after a timeout
+const hideAlert = () => {
+    alertElement.classList.remove('show');
+    setTimeout(() => {
+        alertElement.style.display = 'none';
+    }, 200); // Transition duration in milliseconds
+};
+
+// Hide the alert after the specified duration
+setTimeout(hideAlert, timeoutDuration);
+
+// Add event listener to close button to hide alert immediately if clicked
+alertElement.querySelector('.close').addEventListener('click', hideAlert);
 </script>
 
-<script type="text/javascript" src="./js/products.js"></script>

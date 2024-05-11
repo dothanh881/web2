@@ -76,7 +76,7 @@ include ('./../functions.php');
                 $_SESSION['user_id'] = $row['user_id'];
                  // $_SESSION['user_id'] = $row['user_id'];
                  $admin = $_SESSION['admin'];
-                header("location: ./index_admin.php");
+                header("location: ./dashboard.php");
                 exit; // Ensure script stops here to prevent further execution
             } else {
                 echo "<div id='alertMessage' class='alert alert-danger alert-dismissible fade show' role='alert'><strong>Warning!</strong>Your password is not correct. Please enter again !
@@ -131,7 +131,6 @@ include ('./../functions.php');
 
 <?php include "./templates/footer.php"; ?>
 
-<script type="text/javascript" src="./js/main.js"></script>
 <script>
 
     var nameEle = document.getElementById('username');

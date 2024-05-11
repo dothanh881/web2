@@ -111,3 +111,27 @@ session_start(); ?>
 
 
 <?php include_once("./templates/footer.php"); ?>
+
+<script>
+
+
+const timeoutDuration = 5000;
+
+// Get the alert element
+const alertElement = document.getElementById('alertMessage');
+
+// Function to hide the alert after a timeout
+const hideAlert = () => {
+    alertElement.classList.remove('show');
+    setTimeout(() => {
+        alertElement.style.display = 'none';
+    }, 200); // Transition duration in milliseconds
+};
+
+// Hide the alert after the specified duration
+setTimeout(hideAlert, timeoutDuration);
+
+// Add event listener to close button to hide alert immediately if clicked
+alertElement.querySelector('.close').addEventListener('click', hideAlert);
+
+</script>

@@ -42,7 +42,7 @@ if(isset($_POST['add_cate'])){
     
       if($result->num_rows > 0 ){
 
-        echo '<div class="alert alert-success alert-dismissible">
+        echo '<div id="alertMessage" class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Category already exist!</strong> 
         
@@ -59,7 +59,7 @@ if(isset($_POST['add_cate'])){
 
           $insert_stmt->bind_param("s", $cate_name);
           if($insert_stmt->execute()){
-            echo '<div class="alert alert-success alert-dismissible">
+            echo '<div id="alertMessage" class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>Add category successfully!</strong> 
           </div>';
@@ -214,5 +214,24 @@ if(isset($_GET['delete'])) {
 <?php include_once("./templates/footer.php"); ?>
 
 
+<script>
+  const timeoutDuration = 5000;
 
-<script type="text/javascript" src="./js/categories.js"></script>
+// Get the alert element
+const alertElement = document.getElementById('alertMessage');
+
+// Function to hide the alert after a timeout
+const hideAlert = () => {
+    alertElement.classList.remove('show');
+    setTimeout(() => {
+        alertElement.style.display = 'none';
+    }, 200); // Transition duration in milliseconds
+};
+
+// Hide the alert after the specified duration
+setTimeout(hideAlert, timeoutDuration);
+
+// Add event listener to close button to hide alert immediately if clicked
+alertElement.querySelector('.close').addEventListener('click', hideAlert);
+
+</script>

@@ -94,4 +94,3 @@ include("./../functions.php");
    
 
 <?php include("./templates/footer.php"); ?>
-<script type="text/javascript" src="./js/customers.js"></script>

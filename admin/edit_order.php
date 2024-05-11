@@ -33,7 +33,7 @@ session_start(); ?>
       $stmt -> bind_param("ss", $order_status, $order_id);
       $stmt -> execute();
 
-      echo '<div class="alert alert-success alert-dismissible">
+      echo '<div id="alertMessage" class="alert alert-success alert-dismissible">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <strong>Update successfully!</strong> 
     </div>';
@@ -43,7 +43,7 @@ session_start(); ?>
    
   }
   else{
-     echo '<div class="alert alert-danger alert-dismissible">
+     echo '<div id="alertMessage" class="alert alert-danger alert-dismissible">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <strong>Unsuccessfully!</strong> 
     </div>';
@@ -273,5 +273,23 @@ if(isset($_GET['order']))
     }
 });
 
-   
+const timeoutDuration = 5000;
+
+// Get the alert element
+const alertElement = document.getElementById('alertMessage');
+
+// Function to hide the alert after a timeout
+const hideAlert = () => {
+    alertElement.classList.remove('show');
+    setTimeout(() => {
+        alertElement.style.display = 'none';
+    }, 200); // Transition duration in milliseconds
+};
+
+// Hide the alert after the specified duration
+setTimeout(hideAlert, timeoutDuration);
+
+// Add event listener to close button to hide alert immediately if clicked
+alertElement.querySelector('.close').addEventListener('click', hideAlert);
+
 </script>
