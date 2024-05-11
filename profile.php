@@ -4,7 +4,7 @@
 if (isset($_SESSION['username'])) ?>
 <br><br><br>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-5 border-bottom">
-&nbsp; &nbsp; &nbsp;<h1 class="h2 ">Hello, <?php echo $_SESSION['username'] ?></h1>
+  <h1 class="h2 ">Hello, <?php echo $_SESSION['username'] ?></h1>
   <div class="btn-toolbar mb-2 mb-md-0">
 
   </div>
@@ -37,17 +37,17 @@ function input_filter($data)
   return $data;
 }
 
-if (isset($_POST['update_btn'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $user_id = $_POST['user_id'];
   $fullname = input_filter($_POST['fullname']);
   $email = input_filter($_POST['email']);
   $phone = input_filter($_POST['phone']);
-  $password = input_filter($_POST['password']);
   $street = input_filter($_POST['street']);
   $city = $_POST['city'];
   $district = $_POST['district'];
   $ward = $_POST['ward'];
+  $password = input_filter($_POST['password']);
 
   $fullname = mysqli_real_escape_string($conn, $fullname);
   $email = mysqli_real_escape_string($conn, $email);
@@ -56,57 +56,48 @@ if (isset($_POST['update_btn'])) {
   $pass = mysqli_real_escape_string($conn, $password);
 
   if (array_key_exists('newPassword', $_POST)) {
-    $newPassword = input_filter($_POST['newPassword']);
-    $newPass = mysqli_real_escape_string($conn, $newPassword);
-    $sql = "UPDATE `user` SET fullname = ?, email = ?, phone_number = ?, street = ?, city = ?, district = ?, ward = ?, password = ? WHERE user_id = ?";
-    if (password_verify($pass, $passDB['password'])) {
+    $newPass = input_filter($_POST['newPassword']);
+    $newPass = mysqli_real_escape_string($conn, $newPass);
+
+    if (password_verify($pass, $passDB['password']) ) {
+      $sql = "UPDATE `user` SET fullname = ?, email = ?, phone_number = ?, street = ?, city = ?, district = ?, ward = ?, password = ? WHERE user_id = ?";
+
       $enc_pass = password_hash($newPass, PASSWORD_DEFAULT);
       $stmt = $conn->prepare($sql);
 
       $stmt->bind_param("sssssssss", $fullname, $email, $phone, $street, $city, $district, $ward, $enc_pass, $user_id);
 
       $stmt->execute();
-      echo " <div id='alertMessage' class='alert alert-success alert-dismissible fade show'>
+      echo " <div class='alert alert-success alert-dismissible fade show'>
       <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
       <strong>Success!</strong> Information have changed.
     </div>";
     } else {
-      echo "<div id='alertMessage' class='alert alert-warning alert-dismissible fade show'>
+      echo "<div class='alert alert-warning alert-dismissible fade show'>
       <button type='button'class='btn-close' data-bs-dismiss='alert'></button>
-      <strong>Warning!</strong> Password incorrect. Please enter again !
+      <strong>Warning!</strong> Password incorrect . Please enter again !
     </div>"
       ;
     }
   } else{
-    $sql = "UPDATE `user` SET fullname = ?, email = ?, phone_number = ?, street = ?, city = ?, district = ? WHERE user_id = ?";
+    $sql = "UPDATE `user` SET fullname = ?, email = ?, phone_number = ?, street = ?, ward=?, city = ?, district = ? WHERE user_id = ?";
     if (password_verify($pass, $passDB['password'])) {
       $stmt = $conn->prepare($sql);
 
-      $stmt->bind_param("sssssss", $fullname, $email, $phone, $street, $city, $district, $user_id);
+      $stmt->bind_param("ssssssss", $fullname, $email, $phone, $street,$ward, $city, $district, $user_id);
 
       $stmt->execute();
-      echo " <div id='alertMessage' class='alert alert-success alert-dismissible fade show'>
+      echo " <div class='alert alert-success alert-dismissible fade show'>
       <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
       <strong>Success!</strong> Information have changed.
     </div>";
     } else {
-      echo "<div id='alertMessage' class='alert alert-warning alert-dismissible fade show'>
+      echo "<div class='alert alert-warning alert-dismissible fade show'>
       <button type='button'class='btn-close' data-bs-dismiss='alert'></button>
       <strong>Warning!</strong> Password incorrect. Please enter again !
-    </div>"
-      ;
-
+    </div>" ;
     }
   }
-
-
-
-
-
-
-
-
-
 }
 // Get db for each product to edit
 $customer_id = $_SESSION['user_id'];
@@ -227,7 +218,7 @@ if ($result->num_rows == 1) {
     <div class="form-group" style="margin-bottom:20px" id="box-password">
       <label for="password">Password:</label>
       <div class="row-6">
-        <input type="password" class="form-control" placeholder="Enter password" name="password" style="margin-bottom:10px"
+        <input type="password" class="form-control" placeholder="Enter password" id="password" name="password" style="margin-bottom:10px"
           required>
       </div>
       <div class="row-6">
@@ -252,42 +243,52 @@ if ($result->num_rows == 1) {
 </div>
 </div>
 <script>
-  function checkPassword() {
-    // Get the password value (assuming it's a text input field)
-    const password = document.getElementsByName('password')[0].value.trim();
-    const input_repass = document.getElementsById('input-re-password');
+   function checkPassword() {
+    // Get the password and re-typed password values
+    var password = document.getElementById('password').value.trim();
+    var newPassword = document.getElementById('newPassword'); // Check for existence
+    var re_newPassword = document.getElementById('re-newPassword'); // Check for existence
 
     // Check if the password is empty
-    if (password === '') {
+    if (!password) {
       alert("Please enter your password.");
-      return false; // Prevent form submission if password is empty
+      return false;
     }
-    if (input_repass) {
-      const valNewPass = document.getElementsByName('newPassword')[0].value.trim();
-      const valRe_NewPassword = document.getElementsByName('re-newPassword')[0].value.trim();
-      if (valNewPass === '') {
-        alert("Please enter your new password.")
+
+    // Validate new password and re-typed password (only if elements exist)
+    if (newPassword && re_newPassword) {
+      if (!newPassword.value.trim()) {
+        alert("Please enter your new password.");
         return false;
       }
-      if (valRe_NewPassword === '') {
-        alert("Please re-enter your new password.")
-        return false;
-      }
-      if (valNewPass !== valRe_NewPassword) {
-        alert("The new passwords do not match.");
+      if (!re_newPassword.value.trim() || newPassword.value !== re_newPassword.value) {
+        setError(re_newPassword,"New password is not confirm !")
         return false;
       }
     }
-    return true;
+
+    // Rest of your form submission logic (assuming you have a submit button)
   }
+
   document.getElementById('click-re-password').addEventListener('click', function (e) {
     e.preventDefault();
     var link = document.getElementById('click-re-password');
     var inputContainer = document.getElementById('box-password');
     link.style.display = 'none';
-    inputContainer.innerHTML += '<div id="input-re-password" ><label for="newPassword">New Password:</label><input type="password" class="form-control" placeholder="Enter new password" name="newPassword" style="margin-bottom:10px" required><input type="password" class="form-control" placeholder="Confirm new password" name="re-newPassword" required></div>';
+    inputContainer.innerHTML += '<div id="input-re-password" ><div><label for="newPassword">New Password:</label><input type="password" class="form-control" placeholder="Enter new password" id="newPassword" name="newPassword" style="margin-bottom:10px" required> <small></small></div><div><input type="password" class="form-control" placeholder="Confirm new password" id="re-newPassword" name="re-newPassword" required><small></small></div></div>';
 inputContainer.style.display='block';
   });
+  function setError(ele, message) {
+		let parentEle = ele.parentNode;
+		parentEle.querySelector('small').innerText = message;
+		ele.style.borderColor = "red";
+		parentEle.querySelector('small').style.color = "red";
+	}
+
+	function setSuccess(ele) {
+		ele.style.borderColor = "green";
+		ele.parentNode.querySelector('small').innerText = "";
+	}
 </script>
 
 

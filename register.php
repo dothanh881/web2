@@ -38,7 +38,7 @@
 		}
 
 		.color-third-bg {
-			background: #269493;
+			background: #269492;
 		}
 	</style>
 </head>
@@ -115,30 +115,30 @@
 		</button>
 	  </div>';
 		} else {
-			if ($pass != $repass) {
-				echo '<div id="alertMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
-			<strong>Failed!</strong>Confirm password not matched!.
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			  <span aria-hidden="true">&times;</span>
-			</button>
-		  </div>';
-			} else {
-				$enc_pass = password_hash($pass, PASSWORD_DEFAULT);
+			// 	if ($pass != $repass) {
+			// 		echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			// 	<strong>Failed!</strong>Confirm password not matched!.
+			// 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			// 	  <span aria-hidden="true">&times;</span>
+			// 	</button>
+			//   </div>';
+			// 	} else {
+			$enc_pass = password_hash($pass, PASSWORD_DEFAULT);
 
 
-				$insert_user = $conn->prepare("INSERT INTO `user` (`user_id`, `email`, `username`, `password`, `street`, `district`, `city`, `phone_number`, `fullname`, `ward` ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			$insert_user = $conn->prepare("INSERT INTO `user` (`user_id`, `email`, `username`, `password`, `street`, `district`, `city`, `phone_number`, `fullname`, `ward` ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 
-				$insert_user->bind_param("ssssssssss", $user_id, $email, $username, $enc_pass, $street, $district, $city, $mobile, $fullname, $ward);
-				$insert_user->execute();
-				echo '<div id="alertMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+			$insert_user->bind_param("ssssssssss", $user_id, $email, $username, $enc_pass, $street, $district, $city, $mobile, $fullname, $ward);
+			$insert_user->execute();
+			echo '<div id="alertMessage" class="alert alert-success alert-dismissible fade show" role="alert">
 			<strong>Success!</strong> Registered account successfully.
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 			</button>
 		    </div>';
-			}
 		}
+		// }
 		$stmt->close();
 		$conn->close();
 	}
@@ -307,96 +307,125 @@
 
 </html>
 <script>
+	// const phoneRegex = /^0[1-9]{9}$/;
+	// const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 	const usernameElement = document.getElementById('user_name');
-	const emailElenment = document.getElementById('email');
-	const mobileElenment = document.getElementById('mobile');
-	const passwordElenment = document.getElementById('password');
-	const repasswordElenment = document.getElementById('repassword');
-	const fullnameElenment = document.getElementById('fullname');
-	const streetElenment = document.getElementById('street');
+	const emailElement = document.getElementById('email');
+	const mobileElement = document.getElementById('mobile');
+	const passwordElement = document.getElementById('password');
+	const repasswordElement = document.getElementById('repassword');
+	const fullnameElement = document.getElementById('fullname');
+	const streetElement = document.getElementById('street');
 
-	function check() {
-		const phoneRegex = /^0[1-9]{9}$/;
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-		var username = usernameElement.value.trim();
-		var email = emailElenment.value.trim();
-		var mobile = mobileElenment.value.trim();
-		var password = passwordElenment.value.trim();
-		var repassword = repasswordElenment.value.trim();
-		var fullname = fullnameElenment.value.trim();
-		var street = streetElenment.value.trim();
-		var countError = 0;
+	usernameElement.onblur= function () {
+		const username = usernameElement.value.trim();
 		if (!username) {
-			setError(usernameElement, "Please enter user name again !");
-			countError ++
+			setError(usernameElement, "Please enter your name again !");
 		} else {
 			setSuccess(usernameElement);
 		}
-		if (!emailRegex.test(email)) {
-			setError(emailElenment, "Please enter mail again !");
-			countError ++
+	};
+	emailElement.onblur=function () {
+		const email = emailElement.value.trim();
+		const emailRegex = /^\s*[^@\s]+@[^\s@\s]+\.[^\s@\s]*\s*$/;
+		if (!email || !emailRegex.test(email)) {
+			setError(emailElement, "Please enter your email again ! It is not the correct format");
 		} else {
-			setSuccess(emailElenment);
+			setSuccess(emailElement);
 		}
-		if (!phoneRegex.test(mobile)) {
-			setError(mobileElenment, "The phone number is not in the correct format !");
-			countError ++
+	};
+	mobileElement.onblur = function () {
+		const mobile = mobileElement.value.trim();
+		const phoneRegex = /^0[1-9]{9}$/;
+		if (!mobile || !phoneRegex.test(mobile)) {
+			setError(mobileElement, "The phone number is not in the correct format !");
 		} else {
-			setSuccess(mobileElenment);
+			setSuccess(mobileElement);
 		}
+	};
+	passwordElement.onblur = function () {
+		const password = passwordElement.value.trim();
 		if (!password) {
-			setError(passwordElenment, "Password can not just have space !");
-			countError ++
+			setError(passwordElement, "Please enter password again !");
 		} else {
-			setSuccess(passwordElenment);
+			setSuccess(passwordElement);
 		}
-		if (!repassword) {
-			setError(repasswordElenment, "Password can not just have space !");
-			countError ++
+	};
+	repasswordElement.onblur = function () {
+		const passwordElement = document.getElementById('password');
+		const password = passwordElement.value.trim();
+		const repassword = repasswordElement.value.trim();
+		if (!repassword || password !== repassword) {
+			setError(repasswordElement, "Re-password not confirm !");
 		} else {
-			setSuccess(repasswordElenment);
+			setSuccess(repasswordElement);
 		}
+	};
+	fullnameElement.onblur = function () {
+		const fullname = fullnameElement.value.trim();
 		if (!fullname) {
-			setError(fullnameElenment, "Full name can not be empty !");
-			countError ++
+			setError(fullnameElement, "Please enter full name again !");
 		} else {
-			setSuccess(fullnameElenment);
+			setSuccess(fullnameElement);
 		}
+	};
+
+	streetElement.onblur = function () {
+		const street = streetElement.value.trim();
 		if (!street) {
-			setError(streetElenment, "Street can not be empty !");
-			countError ++
+			setError(streetElement, "Please enter street again !");
+
 		} else {
-			setSuccess(streetElenment);
+			setSuccess(streetElement);
 		}
-		if (countError > 0) {
-			return false;
-		}
-	}
+	};
+
+
+	function check() {
+  let hasErrors = false; // Flag to track if errors are found
+
+  // Get all input elements in the form (assuming you have a form element)
+  const inputs = document.querySelectorAll('input');
+
+  for (const input of inputs) {
+    if (input.style.borderColor === 'red') { // Check if border color is red
+      hasErrors = true;
+      break; // Exit the loop if an error is found (optional)
+    }
+  }
+
+  if (hasErrors) {
+    alert("Please fix the errors before submitting the form!");
+    return false; // Prevent form submission (optional)
+  }
+}
+
 
 	function setError(ele, message) {
 		let parentEle = ele.parentNode;
 		parentEle.querySelector('small').innerText = message;
-		ele.style.borderColor="red";
+		ele.style.borderColor = "red";
 		parentEle.querySelector('small').style.color = "red";
 	}
 
 	function setSuccess(ele) {
-		ele.style.borderColor="green";
+		ele.style.borderColor = "green";
 		ele.parentNode.querySelector('small').innerText = "";
 	}
 
-	const timeoutDuration = 3000;
+
+	const timeoutDuration = 5000;
 
 // Get the alert element
 const alertElement = document.getElementById('alertMessage');
 
 // Function to hide the alert after a timeout
 const hideAlert = () => {
-	alertElement.classList.remove('show');
-	setTimeout(() => {
-		alertElement.style.display = 'none';
-	}, 200); // Transition duration in milliseconds
+    alertElement.classList.remove('show');
+    setTimeout(() => {
+        alertElement.style.display = 'none';
+    }, 200); // Transition duration in milliseconds
 };
 
 // Hide the alert after the specified duration
@@ -404,4 +433,5 @@ setTimeout(hideAlert, timeoutDuration);
 
 // Add event listener to close button to hide alert immediately if clicked
 alertElement.querySelector('.close').addEventListener('click', hideAlert);
+
 </script>

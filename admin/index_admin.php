@@ -82,16 +82,16 @@ include("./../functions.php");
     if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != $admin->user_id) { 
       // Checking if session variable is set and not equal to current admin's ID
       if($admin->status == 1){
-        echo '<p><a href="active_admin.php?user_id='.$admin->user_id.'&status=0" class="btn btn-success">Active</a></p>';
+        echo '<p><a href="active_admin.php?user_id='.$admin->user_id.'&status=0" class="btn btn-success"><i class="fas fa-lock-open"></i>&nbsp;&nbsp;Active</a></p>';
       } else {
-        echo '<p><a href="active_admin.php?user_id='.$admin->user_id.'&status=1" class="btn btn-danger">Inactive</a></p>';
+        echo '<p><a href="active_admin.php?user_id='.$admin->user_id.'&status=1" class="btn btn-danger"><i class="fas fa-lock"></i>&nbsp;&nbsp;Inactive</a></p>';
       } 
     } else {
       // Disabling options for the current admin
       if($admin->status == 1){
-        echo '<p><button class="btn btn-success" disabled>Active</button></p>';
+        echo '<p><button class="btn btn-success" disabled><i class="fas fa-lock-open"></i>&nbsp;&nbsp;Active</button></p>';
       } else {
-        echo '<p><button class="btn btn-danger" disabled>Inactive</button></p>';
+        echo '<p><button class="btn btn-danger" disabled><i class="fas fa-lock"></i>&nbsp;&nbsp;Inactive</button></p>';
       } 
     }
   ?>

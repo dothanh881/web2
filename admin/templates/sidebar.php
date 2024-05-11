@@ -21,29 +21,23 @@ if ( isset($_SESSION["user_id"]) ) {
 
           ?>
 
-<li class="nav-item">
-            <a class="nav-link <?php echo ($page == '' || $page == 'index_admin.php') ? 'active' : ''; ?>" href="index_admin.php">
-            <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span data-feather="home"></span>
-              Admin  <span class="sr-only">(current)</span>
-            </a>
-          </li>
+
 <li class="nav-item">
 
 
 
             <a class="nav-link <?php echo ($page == 'dashboard.php') ? 'active' : ''; ?>" href="dashboard.php">
             <i class="fa fa-home" aria-hidden="true"></i>
- &nbsp;&nbsp; <span data-feather="users"></span>
+ &nbsp;&nbsp; <span data-feather="home"></span>
 
               DashBoard
             </a>
           </li>
 
-        
           <li class="nav-item">
-            <a class="nav-link <?php echo ($page == 'customer_orders.php') ? 'active' : ''; ?>" href="customer_orders.php">
-            <i class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span data-feather="clipboard"></span>
-              Orders
+            <a class="nav-link <?php echo ($page == 'customers.php') ? 'active' : ''; ?>" href="customers.php">
+            <i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; <span data-feather="users"></span>
+              Customers
             </a>
           </li>
           <li class="nav-item">
@@ -54,18 +48,27 @@ if ( isset($_SESSION["user_id"]) ) {
           </li>
         
           <li class="nav-item">
+            <a class="nav-link <?php echo ($page == 'customer_orders.php') ? 'active' : ''; ?>" href="customer_orders.php">
+            <i class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span data-feather="clipboard"></span>
+              Orders
+            </a>
+          </li>
+       
+        
+          <li class="nav-item">
             <a class="nav-link <?php echo ($page == 'categories.php') ? 'active' : ''; ?>" href="categories.php">
             <i class="fa fa-bars"></i>&nbsp;&nbsp;&nbsp;&nbsp; <span data-feather="layers"></span>
               Categories
             </a>
           </li>
+          
           <li class="nav-item">
-            <a class="nav-link <?php echo ($page == 'customers.php') ? 'active' : ''; ?>" href="customers.php">
-            <i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; <span data-feather="users"></span>
-              Customers
+            <a class="nav-link <?php echo ($page == '' || $page == 'index_admin.php') ? 'active' : ''; ?>" href="index_admin.php">
+            <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span data-feather="users"></span>
+              Admin  <span class="sr-only">(current)</span>
             </a>
           </li>
-        
+
           
         </ul>
 

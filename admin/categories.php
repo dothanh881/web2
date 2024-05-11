@@ -129,8 +129,8 @@ if(isset($_GET['delete'])) {
             
              
               <td>
-              <a href="edit_category.php?update=<?= $category->category_id?>"  class="btn btn-sm btn-info">Edit</a>
-                  <a href="categories.php?delete=<?= $category->category_id?>" class="btn btn-sm btn-warning" onclick="return confirm('Delete this category?');" >Delete</a>
+              <a href="edit_category.php?update=<?= $category->category_id?>"  class="btn btn-sm btn-primary"> <i class="fas fa-eye"></i>&nbsp;View</a>
+                  <a href="categories.php?delete=<?= $category->category_id?>" class="btn btn-sm btn-danger" onclick="return confirm('Delete this category?');" ><i class="fas fa-trash-alt"></i>&nbsp;Delete</a>
               </td>
             </tr>
           </tbody>

@@ -18,85 +18,6 @@ include ('./../functions.php');
 
 
 
-<?php
-function input_filter($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-if (isset($_POST['Login'])) {
-    // filter user_input
-    $username = input_filter($_POST['username']);
-    $password = input_filter($_POST['password']);
-
-    // Tạo một kết nối đến cơ sở dữ liệu MySQL
-
-    // escaping 
-    $username = mysqli_real_escape_string($conn, $username);
-
-    // Query template
-    $query = "SELECT user_id, password FROM user WHERE `username`=? AND `is_admin` = 1 AND `status` = 1";
-
-    // Chuẩn bị truy vấn
-    $stmt = $conn->prepare($query);
-
-    // Kiểm tra và xử lý lỗi nếu không thể chuẩn bị truy vấn
-    if (!$stmt) {
-        die("Error: " . $conn->error);
-    }
-
-    // Liên kết các biến với truy vấn
-    $stmt->bind_param("s", $username);
-
-    // Thực thi truy vấn
-    $stmt->execute();
-
-    // Lấy kết quả
-    $result = $stmt->get_result();
-
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        $hash_password = $row['password'];
-
-        if (password_verify($password, $hash_password)) {
-            $_SESSION['admin'] = $username;
-            $_SESSION['user_id'] = $row['user_id'];
-            // $_SESSION['user_id'] = $row['user_id'];
-            $admin = $_SESSION['admin'];
-            header("location: index_admin.php");
-            exit; // Ensure script stops here to prevent further execution
-        }
-        else{
-            echo '<div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
-            <strong>Failed!</strong> Username or password incorrect!.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>';
-        }
-    } else {
-        echo '<div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
-		<strong>Failed</strong> Incorrect username or password!
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		  <span aria-hidden="true">&times;</span>
-		</button>
-	  </div>';
-    }
-
-    // Đóng truy vấn và kết nối
-   
-}
-
-
-
-?>
-
-
-
-
 
 
 <?php include "./templates/top.php"; ?>
@@ -104,11 +25,86 @@ if (isset($_POST['Login'])) {
 <?php include "./templates/navbar.php"; ?>
 
 <div class="container">
+    
     <div class="row justify-content-center" style="margin:100px 0;">
         <div class="col-md-4">
+        <?php
+    function input_filter($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    if (isset($_POST['Login'])) {
+        // filter user_input
+        $username = input_filter($_POST['username']);
+        $password = input_filter($_POST['password']);
+
+        // Tạo một kết nối đến cơ sở dữ liệu MySQL
+    
+        // escaping 
+        $username = mysqli_real_escape_string($conn, $username);
+
+        // Query template
+        $query = "SELECT user_id, password FROM user WHERE `username`=? AND `is_admin` = 1 AND `status` = 1";
+
+        // Chuẩn bị truy vấn
+        $stmt = $conn->prepare($query);
+
+        // Kiểm tra và xử lý lỗi nếu không thể chuẩn bị truy vấn
+        if (!$stmt) {
+            die("Error: " . $conn->error);
+        }
+
+        // Liên kết các biến với truy vấn
+        $stmt->bind_param("s", $username);
+
+        // Thực thi truy vấn
+        $stmt->execute();
+
+        // Lấy kết quả
+        $result = $stmt->get_result();
+
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            $hash_password = $row['password'];
+
+            if (password_verify($password, $hash_password)) {
+                $_SESSION['username'] = $username;
+                $_SESSION['user_id'] = $row['user_id'];
+                header("location: ./index.php");
+                exit; // Ensure script stops here to prevent further execution
+            } else {
+                echo "<div id='alertMessage' class='alert alert-danger alert-dismissible fade show' role='alert'><strong>Warning!</strong>Your password is not correct. Please enter again !
+            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+              <span aria-hidden='true'>&times;</span>
+            </button>
+          </div>";
+            }
+        } else {
+            echo "<div id='alertMessage' class='alert alert-danger alert-dismissible fade show' role='alert'><strong>Warning!</strong>Username does not exists !
+            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+              <span aria-hidden='true'>&times;</span>
+            </button>
+          </div>";
+        }
+
+        // Đóng truy vấn và kết nối
+        $stmt->close();
+        $conn->close();
+    }
+
+
+
+
+
+    ?>
             <h4 class="text-center">Admin Login</h4>
             <p class="message"></p>
-            <form id="admin-login-form" method="post" onsubmit="return checkLogin();" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
+            <form id="admin-login-form" method="post" onsubmit="return checkLogin();"
+                action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
@@ -135,28 +131,45 @@ if (isset($_POST['Login'])) {
 
 <script type="text/javascript" src="./js/main.js"></script>
 <script>
-    const nameEle = document.getElementById('username');
-    const passwordEle = document.getElementById('password');
-    function checkLogin() {
-        var count = 0;
+
+    var nameEle = document.getElementById('username');
+    var passwordEle = document.getElementById('password');
+
+
+    nameEle.onblur = function () {
         const name = nameEle.value.trim();
+        if (!name) {
+            setError(nameEle, "Username can not be empty !");
+
+        } else {
+            setSuccess(nameEle);
+        }
+    };
+    passwordEle.onblur = function () {
         const password = passwordEle.value.trim();
-        if (name=='') {
-            setError(nameEle, "User name can not be empty !");
-            count++
+        if (!password) {
+            setError(passwordEle, "Password can not be empty!");
         }
         else {
-            setSuccess(nameEle)
+            setSuccess(passwordEle);
         }
-        if (password=='') {
-            setError(passwordEle, "Password can not be empty !");
-            count++
+    }
+    function checkLogin() {
+        let hasErrors = false; // Flag to track if errors are found
+
+        // Get all input elements in the form (assuming you have a form element)
+        const inputs = document.querySelectorAll('input');
+
+        for (const input of inputs) {
+            if (input.style.borderColor === 'red') { // Check if border color is red
+                hasErrors = true;
+                break; // Exit the loop if an error is found (optional)
+            }
         }
-        else {
-            setSuccess(passwordEle)
-        }
-        if (count > 0) {
-            return false;
+
+        if (hasErrors) {
+            alert("Please fix the errors before submitting the form!");
+            return false; // Prevent form submission (optional)
         }
     }
     function setError(ele, message) {
@@ -170,4 +183,23 @@ if (isset($_POST['Login'])) {
         ele.style.borderColor = "green";
         ele.parentNode.querySelector('small').innerText = "";
     }
+    const timeoutDuration = 5000;
+
+// Get the alert element
+const alertElement = document.getElementById('alertMessage');
+
+// Function to hide the alert after a timeout
+const hideAlert = () => {
+    alertElement.classList.remove('show');
+    setTimeout(() => {
+        alertElement.style.display = 'none';
+    }, 200); // Transition duration in milliseconds
+};
+
+// Hide the alert after the specified duration
+setTimeout(hideAlert, timeoutDuration);
+
+// Add event listener to close button to hide alert immediately if clicked
+alertElement.querySelector('.close').addEventListener('click', hideAlert);
+
 </script>
