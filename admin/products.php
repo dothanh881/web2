@@ -167,11 +167,11 @@ session_start(); ?>
     <div class="col-md-6 col-lg-4 search-p " >
         <div id="DataTables_Table_0_filter" class="dataTables_filter">
             <label>
-                <select  id="myInput2" name="selectedStatus"  class="form-control"  >
+                <select  id="statusFilter" name="selectedStatus"  class="form-control"  >
                     <option value="select">Filter Status Product</option>
                     <option value="0">0 (unpublished - in stock)</option>
                     <option value="1">1 (published)</option>
-                    <option value="2">2 (sold)</option>
+                    <option value="2">2 (published -sold)</option>
                    
                 </select>
             </label>
@@ -181,8 +181,8 @@ session_start(); ?>
     <div class="col-md-6 col-lg-4 search-p">
         <div id="DataTables_Table_1_filter" class="dataTables_filter">
             <label>
-                <select class="form-control" name="selectedCategort" id="myInput1"   aria-controls="DataTables_Table_1">
-                    <option value="All">Filter Category</option>
+                <select class="form-control" name="selectedCategory" id="categoryFilter"   aria-controls="DataTables_Table_1">
+                    <option value="select">Filter Category</option>
                     <?php 
                       $stmt = $conn -> prepare("SELECT * FROM `category`");
                       $stmt -> execute();
@@ -201,49 +201,26 @@ session_start(); ?>
     </div>
 </div>
 
+<br>
+<div class="row">
+  <div class="col-10">
+  <h5><i class="fas fa-search"></i> Search</h5>
+        <hr>
+  </div>
+
+</div>
+<div class="row">
+
+</div>
 
 
 <br><br><br>
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-            
-              <th>Image</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Quantity</th> 
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="product_list">
-            <?php 
+<div class="row" id="product-list">
 
-            $sql = "SELECT * FROM `product`,`category` WHERE `product`.category_id = `category`.category_id LIMIT $products_per_page offset $offset";
-            $stmt = $conn->prepare($sql);
+</div>
 
-            $stmt-> execute();
 
-            $result = $stmt ->get_result();
 
-            while($product = $result->fetch_object()){
-            ?>
-            <tr>
-             
-              <td><img height='100px' src='./../<?= $product->item_image ?>'></td>
-              <td> <?php echo $product->item_name ?></td>
-              <td> <?php echo $product->item_price ?></td>
-              <td> <?php echo $product->item_quantity ?></td>
-           
-              <td>
-              <a href="editproduct.php?update=<?= $product->item_id ?>" class="btn btn-sm btn-info">Edit</a>
-                  <a href="products.php?delete=<?php echo $product->item_id ?>" onclick="return confirm('Delete this product?');" class="btn btn-sm btn-warning">Delete</a>
-              </td>
-            </tr>
-          </tbody>
-          <?php } ?>
-        </table>
-      </div>
     </main>
   </div>
 </div>
@@ -454,27 +431,7 @@ if(isset($_POST['add-product'])){
 
 
 
-<nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        <li class="page-item <?php echo $current_page == 1 ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=1" tabindex="-1">First</a>
-        </li>
-        <li class="page-item <?php echo $current_page == 1 ? 'disabled' : ''; ?>">
-            <a class="page-link" href="<?php echo $current_page == 1 ? '#' : '?page=' . ($current_page - 1); ?>">Previous</a>
-        </li>
-        <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
-            <li class="page-item <?php echo $current_page == $i ? 'active' : ''; ?>">
-                <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-            </li>
-        <?php } ?>
-        <li class="page-item <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>">
-            <a class="page-link" href="<?php echo $current_page == $total_pages ? '#' : '?page=' . ($current_page + 1); ?>">Next</a>
-        </li>
-        <li class="page-item <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=<?php echo $total_pages; ?>">Last</a>
-        </li>
-    </ul>
-</nav>
+
 
 <!-- Edit Product Modal end -->
 

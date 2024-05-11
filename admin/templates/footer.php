@@ -75,7 +75,7 @@ function showdata() {
 
 
 $('button[name="submit"]').on('click', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault(); 
         showreportFilter();
        
     });
@@ -93,6 +93,33 @@ function showreportFilter() {
             $("#customer_report_list").html(result);
         }
     });
+}
+
+
+    showproduct();
+$('#categoryFilter').on('change', function() {
+        showproduct(); 
+    });
+
+    $('#statusFilter').on('change', function() {
+        showproduct(); 
+    });
+
+function showproduct(){
+
+  var selectedStatus = $('#statusFilter').val(); //  
+    var selectedCategory = $('#categoryFilter').val(); // 
+    console.log(selectedCategory);
+    
+    $.ajax({
+        url: 'show-product.php',
+        method: 'get',
+        data:{selectedStatus: selectedStatus, selectedCategory: selectedCategory},
+        success: function(result){
+            $("#product-list").html(result);
+        }
+    });
+
 }
 
 
