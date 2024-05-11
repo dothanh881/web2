@@ -89,6 +89,7 @@ if ($result->num_rows > 0) {
                        </td>
                    </tr>';
     }
+    // a
 
     $output .= '</tbody>
                </table>
