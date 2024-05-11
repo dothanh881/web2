@@ -149,7 +149,6 @@ session_start(); ?>
       	</div>
        
       	<div class="col-2">
-      		<a href="#" data-toggle="modal" data-target="#add_product_modal" class="btn btn-warning btn-sm">Add Product</a>
       	</div>
       </div>
       
@@ -209,17 +208,27 @@ session_start(); ?>
   </div>
 
 </div>
+<form id="searchForm" action="show-product.php" method="get">
 <div class="row">
   <div class="col-md-4">
   <input type="text" name="search_box" placeholder="Search name's product here..." class="form-control " id="search">
   </div>
-  <div class="col-md-2">
-                      <button class="btn btn-primary">Search</button>
+  <div class="col-md-2"> 
+                      <button class="btn btn-primary" type="submit" name="search_box" id="search_box"><i class="fas fa-search"></i> Search</button>
 </div>
 </div>
+
+</form>
 
 
 <br><br><br>
+<div class="row">
+  <div class="col-md-12 text-right">
+  <a href="#" data-toggle="modal" data-target="#add_product_modal" class="btn btn-warning btn-sm">Add Product</a>
+
+  </div>
+</div>
+<br>
 <div class="row" id="product-list">
 
 </div>

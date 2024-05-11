@@ -102,12 +102,12 @@ include("./../functions.php");
                 <?php
                 if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != $admin->user_id) { // Checking if session variable is set and not equal to current admin's ID
                   ?>
-                  <a href="edit_admin.php?admin=<?= $admin->user_id?>" class="btn btn-sm btn-primary"> <i class="far fa-eye"></i>View</a>
+                  <a href="edit_admin.php?admin=<?= $admin->user_id?>" class="btn btn-sm btn-primary"> <i class="far fa-eye"> </i>&nbsp;&nbsp;View</a>
                   <?php
                 } else {
                   // Disabling options for the current admin
                   ?>
-                  <a href="edit_admin.php?admin=<?= $admin->user_id?>" class="btn btn-sm btn-primary"  > <i class="far fa-eye"></i>View</a>
+                  <a href="edit_admin.php?admin=<?= $admin->user_id?>" class="btn btn-sm btn-primary"  > <i class="far fa-eye"></i>&nbsp;&nbsp;View</a>
                   <button class="btn btn-sm btn-danger"   disabled>Delete</button>
                   <?php
                 }

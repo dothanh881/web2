@@ -38,6 +38,53 @@ include("./../functions.php");
         <h2>Customers</h2>
       </div>
     </div>
+
+    <br><br>
+    <div class="row">
+  <div class="col-10">
+  <h5><i class="fas fa-filter"></i> Filter</h5>
+        <hr>
+  </div>
+
+</div>
+    <div class="row">
+    <div class="col-md-6 col-lg-4 search-p " >
+        <div id="DataTables_Table_0_filter" class="dataTables_filter">
+            <label>
+                <select  id="statusFilterCustomer" name="selectedStatusCustomer"  class="form-control"  >
+                    <option value="select">Filter Status Customer</option>
+                    <option value="0">0 (Inactive - Blocked)</option>
+                    <option value="1">1 (Active)</option>
+                 
+                   
+                </select>
+            </label>
+        </div>
+    </div>
+    </div>
+
+    <br>    <hr>
+    <div class="row">
+  <div class="col-10">
+  <h5><i class="fas fa-search"></i> Search</h5>
+    
+  </div>
+
+</div>
+
+<form id="searchFormCustomer" action="show-customer.php" method="get">
+<div class="row">
+  <div class="col-md-4">
+  <input type="text" name="search_box" placeholder="Search name's customer here..." class="form-control " id="search">
+  </div>
+  <div class="col-md-2"> 
+                      <button class="btn btn-primary" type="submit" name="search_box_customer" id="search_box_customer"><i class="fas fa-search"></i> Search</button>
+</div>
+</div>
+
+</form>
+
+    <br><br>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
         <thead>
@@ -64,16 +111,16 @@ include("./../functions.php");
               <td>
                 <?php 
                 if($cust->status == 1){
-                  echo '<p><a href="active.php?user_id='.$cust->user_id.'&status=0" class="btn btn-success">Active</a></p>';
+                  echo '<p><a href="active.php?user_id='.$cust->user_id.'&status=0" class="btn btn-success"><i class="fas fa-lock-open"></i>&nbsp;&nbsp;Active</a></p>';
                   
                 }
                 else{
-                  echo '<p><a href="active.php?user_id='.$cust->user_id.'&status=1" class="btn btn-danger">Inactive</a></p>';
+                  echo '<p><a href="active.php?user_id='.$cust->user_id.'&status=1" class="btn btn-danger"><i class="fas fa-lock"></i>&nbsp;Inactive</a></p>';
                 }
                 ?>
               </td>
               <td>
-                <a href="edit_customer.php?customer=<?php echo $cust->user_id ?>" class="btn btn-sm btn-info">Edit</a>
+                <a href="edit_customer.php?customer=<?php echo $cust->user_id ?>" class="btn btn-sm btn-primary"><i class="far fa-eye"> </i>&nbsp;&nbsp;View</a>
                
               </td>
             </tr>

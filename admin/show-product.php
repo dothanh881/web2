@@ -5,6 +5,7 @@ include("./../functions.php");
 
 $status = isset($_GET['selectedStatus']) ? $_GET['selectedStatus'] : 'select';
 $category = isset($_GET['selectedCategory']) ? $_GET['selectedCategory'] : 'select';
+$searchbox = isset($_GET['searchName']) ? $_GET['searchName'] : '';
 
 
 //paging nav
@@ -30,6 +31,9 @@ $filter = [];
     if ($category !== 'select'){
       $filter[] = "`category`.`category_name` =  '$category'";
    }
+   if ($searchbox !== ''){
+    $filter[] = "`product`.`item_name` LIKE  '%$searchbox%'";
+ }
     
    if(!empty($filter)){
     
@@ -87,8 +91,8 @@ if ($result->num_rows > 0) {
     <td>'.$product->item_status.'</td>
     <td>'.$product->item_quantity.'</td>
     <td>
-        <a href="editproduct.php?update='.$product->item_id.'" class="btn btn-sm btn-info">Edit</a>
-        <a href="products.php?delete='.$product->item_id.'" onclick="return confirm(\'Delete this product?\');" class="btn btn-sm btn-warning">Delete</a>
+        <a href="editproduct.php?update='.$product->item_id.'" class="btn btn-sm btn-info"><i class="far fa-eye"> </i>&nbsp; View</a>
+        <a href="products.php?delete='.$product->item_id.'" onclick="return confirm(\'Delete this product?\');" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"> </i>&nbsp;&nbsp;Delete</a>
     </td>
 </tr>';
    }
@@ -104,22 +108,22 @@ if ($result->num_rows > 0) {
            <nav aria-label="Page navigation">
                <ul class="pagination justify-content-center">
                    <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
-                       <a class="page-link" href="?page=1' . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '')  . '" tabindex="-1">First</a>
+                       <a class="page-link" href="?page=1' . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '')  . ($searchbox !='' ? '&searchName=' .$searchbox : '' ).'" tabindex="-1">First</a>
                    </li>
                    <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
-                       <a class="page-link" href="' . ($current_page == 1 ? '#' : '?page=' . ($current_page - 1) . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '') ) . '">Previous</a>
+                       <a class="page-link" href="' . ($current_page == 1 ? '#' : '?page=' . ($current_page - 1) . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '') ) . ($searchbox !='' ? '&searchName=' .$searchbox : '' ). '">Previous</a>
                    </li>';
 for ($i = 1; $i <= $total_pages; $i++) {
    $output .= '<li class="page-item ' . ($current_page == $i ? 'active' : '') . '">
-       <a class="page-link" href="?page=' . $i . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '') . '">' . $i . '</a>
+       <a class="page-link" href="?page=' . $i . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '') . ($searchbox !='' ? '&searchName=' .$searchbox : '' ). '">' . $i . '</a>
    </li>';
 }
 
 $output .= '<li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
-   <a class="page-link" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1) . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '') ) . '">Next</a>
+   <a class="page-link" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1) . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '') ) . ($searchbox !='' ? '&searchName=' .$searchbox : '' ). '">Next</a>
 </li>
 <li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
-   <a class="page-link" href="?page=' . $total_pages . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '')  . '">Last</a>
+   <a class="page-link" href="?page=' . $total_pages . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '')  . ($searchbox !='' ? '&searchName=' .$searchbox : '' ). '">Last</a>
 </li>
 </ul>
 </nav></div>

@@ -105,16 +105,22 @@ $('#categoryFilter').on('change', function() {
         showproduct(); 
     });
 
+    $('#searchForm').on('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        showproduct();
+    });
+
+
 function showproduct(){
 
   var selectedStatus = $('#statusFilter').val(); //  
     var selectedCategory = $('#categoryFilter').val(); // 
-    console.log(selectedCategory);
+    var searchName = $('input[name="search_box"]').val();    
     
     $.ajax({
         url: 'show-product.php',
         method: 'get',
-        data:{selectedStatus: selectedStatus, selectedCategory: selectedCategory},
+        data:{selectedStatus: selectedStatus, selectedCategory: selectedCategory, searchName: searchName},
         success: function(result){
             $("#product-list").html(result);
         }
@@ -123,7 +129,7 @@ function showproduct(){
 }
 
 
-
+    
 
 // function selectdata(status){
 
