@@ -72,9 +72,11 @@ include ('./../functions.php');
             $hash_password = $row['password'];
 
             if (password_verify($password, $hash_password)) {
-                $_SESSION['username'] = $username;
+                $_SESSION['admin'] = $username;
                 $_SESSION['user_id'] = $row['user_id'];
-                header("location: ./index.php");
+                 // $_SESSION['user_id'] = $row['user_id'];
+                 $admin = $_SESSION['admin'];
+                header("location: ./index_admin.php");
                 exit; // Ensure script stops here to prevent further execution
             } else {
                 echo "<div id='alertMessage' class='alert alert-danger alert-dismissible fade show' role='alert'><strong>Warning!</strong>Your password is not correct. Please enter again !
