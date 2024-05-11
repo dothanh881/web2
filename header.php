@@ -198,7 +198,7 @@ if (isset($_SESSION['user_id'])) {
 
                     <div class="form-container ml-3">
                         <form method="post" action="searchpage.php" class="d-flex" onsubmit="return check();" >
-                            <input type="text" name="search_box" placeholder="search here..." class="form-control " id="search">
+                            <input type="text" name="search_box" placeholder="Search name's product here..." class="form-control " id="search">
                             <button type="submit" class="btn btn-success" id="search_btn" name="search_btn" >Search</button>
                             <div id="popup" class="hidden">
                                 <div class="popup-content">

@@ -243,7 +243,7 @@ session_start(); ?>
 
 <div class="row">
 <div class="col-md-4  ">
-    <button type="submit" name="submit" class="btn btn-primary">Filter</button>
+    <button type="submit" id="filter-date" name="submit" class="btn btn-primary">Filter</button>
   </div>
 </div>
 
@@ -269,7 +269,8 @@ session_start(); ?>
   
 </div>
 
-
+<br><br>
+<br><br>
 
   </div>
 </div>

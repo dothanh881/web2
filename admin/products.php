@@ -210,7 +210,12 @@ session_start(); ?>
 
 </div>
 <div class="row">
-
+  <div class="col-md-4">
+  <input type="text" name="search_box" placeholder="Search name's product here..." class="form-control " id="search">
+  </div>
+  <div class="col-md-2">
+                      <button class="btn btn-primary">Search</button>
+</div>
 </div>
 
 

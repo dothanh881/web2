@@ -74,7 +74,7 @@ function showdata() {
 
 
 
-$('button[name="submit"]').on('click', function(event) {
+$('#filter-date').on('click', function(event) {
         event.preventDefault(); 
         showreportFilter();
        
