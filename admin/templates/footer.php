@@ -128,8 +128,33 @@ function showproduct(){
 
 }
 
+showcustomer();
+    $('#statusFilterCustomer').on('change', function() {
+        showcustomer(); 
+    });
+
+    $('#searchFormCustomer').on('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        showcustomer();
+    });
 
     
+function showcustomer(){
+
+var selectedStatus = $('#statusFilterCustomer').val(); //  
+ 
+  var searchName = $('input[name="search_box_customer"]').val();    
+  
+  $.ajax({
+      url: 'show-customer.php',
+      method: 'get',
+      data:{selectedStatus: selectedStatus, searchName: searchName},
+      success: function(result){
+          $("#customer-list").html(result);
+      }
+  });
+
+}
 
 // function selectdata(status){
 

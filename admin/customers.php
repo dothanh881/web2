@@ -75,7 +75,7 @@ include("./../functions.php");
 <form id="searchFormCustomer" action="show-customer.php" method="get">
 <div class="row">
   <div class="col-md-4">
-  <input type="text" name="search_box" placeholder="Search name's customer here..." class="form-control " id="search">
+  <input type="text" name="search_box_customer" placeholder="Search name's customer here..." class="form-control " id="search">
   </div>
   <div class="col-md-2"> 
                       <button class="btn btn-primary" type="submit" name="search_box_customer" id="search_box_customer"><i class="fas fa-search"></i> Search</button>
@@ -85,75 +85,13 @@ include("./../functions.php");
 </form>
 
     <br><br>
-    <div class="table-responsive">
-      <table class="table table-striped table-sm">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Mobile</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="customer_list">
-          <?php
-          $sql = "SELECT * FROM `user` WHERE is_admin = 0 LIMIT $products_per_page offset $offset";
-          $stmt = $conn->prepare($sql);
-          $stmt->execute();
-          $res = $stmt->get_result();
-          while ($cust = $res->fetch_object()) {
-          ?>
-            <tr>
-              <td><?php echo $cust->fullname ?></td>
-              <td><?php echo $cust->email ?></td>
-              <td><?php echo $cust->phone_number ?></td>
-              <td>
-                <?php 
-                if($cust->status == 1){
-                  echo '<p><a href="active.php?user_id='.$cust->user_id.'&status=0" class="btn btn-success"><i class="fas fa-lock-open"></i>&nbsp;&nbsp;Active</a></p>';
-                  
-                }
-                else{
-                  echo '<p><a href="active.php?user_id='.$cust->user_id.'&status=1" class="btn btn-danger"><i class="fas fa-lock"></i>&nbsp;Inactive</a></p>';
-                }
-                ?>
-              </td>
-              <td>
-                <a href="edit_customer.php?customer=<?php echo $cust->user_id ?>" class="btn btn-sm btn-primary"><i class="far fa-eye"> </i>&nbsp;&nbsp;View</a>
-               
-              </td>
-            </tr>
-          <?php
-          }
-          ?>
-        </tbody>
-      </table>
-    </div>
-  </div>
+
+<div class="row" id="customer-list">
+
 </div>
-<nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        <li class="page-item <?php echo $current_page == 1 ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=1" tabindex="-1">First</a>
-        </li>
-        <li class="page-item <?php echo $current_page == 1 ? 'disabled' : ''; ?>">
-            <a class="page-link" href="<?php echo $current_page == 1 ? '#' : '?page=' . ($current_page - 1); ?>">Previous</a>
-        </li>
-        <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
-            <li class="page-item <?php echo $current_page == $i ? 'active' : ''; ?>">
-                <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-            </li>
-        <?php } ?>
-        <li class="page-item <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>">
-            <a class="page-link" href="<?php echo $current_page == $total_pages ? '#' : '?page=' . ($current_page + 1); ?>">Next</a>
-        </li>
-        <li class="page-item <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=<?php echo $total_pages; ?>">Last</a>
-        </li>
-    </ul>
-</nav>
 
 
-<?php include_once("./templates/footer.php"); ?>
+   
+
+<?php include("./templates/footer.php"); ?>
 <script type="text/javascript" src="./js/customers.js"></script>
