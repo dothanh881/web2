@@ -92,7 +92,7 @@ if(isset($_SESSION['user_id'])){
         <div class="row">
             <div class="col-sm-9">
                 <?php
-                    foreach ($product->getData1('cart', $user_id) as $item) :
+                    foreach ($product->getData1('cart', 'product', $user_id) as $item) :
                         $cart = $product->getProduct1( $user_id,$item['item_id'],'cart');
                         $subTotal[] = array_map(function ($item){
                             $newQuantity = $item['cart_quantity'];

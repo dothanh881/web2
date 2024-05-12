@@ -142,14 +142,14 @@ session_start(); ?>
     <div class="col-6">
         <div class="form-group">
           <label for="price">Unit Price ($):</label>
-          <input type="number" class="form-control"  step="0.01" name="item_price" value="<?php echo  $row1['item_price'] ?>">
+          <input type="number" class="form-control"   step="0.01" name="item_price" value="<?php echo  $row1['item_price'] ?>">
       </div>
    
     </div>
     <div class="col-6">
         <div class="form-group">
           <label for="qty">Product Quantity:</label>
-          <input type="number" class="form-control" name="item_qty" value="<?php echo  $row1['item_quantity'] ?>">
+          <input type="number" class="form-control" min="0" name="item_qty" value="<?php echo  $row1['item_quantity'] ?>">
       </div>
    
     </div>
