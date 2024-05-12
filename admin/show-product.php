@@ -15,14 +15,14 @@ $products_per_page = 6;
 
 $total_products = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `product`"));
 // Khi người dùng thực hiện truy vấn mới
+// Khi người dùng thực hiện truy vấn mới
 if (isset($_GET['page'])) {
     // Lưu trữ giá trị current_page trong session
-    $_SESSION['current_page'] = $_GET['page'];
+    $_SESSION['current_page_show_product'] = $_GET['page'];
 }
 
 // Kiểm tra xem session đã lưu trữ giá trị current_page hay chưa
-$current_page = isset($_SESSION['current_page']) ? $_SESSION['current_page'] : 1;
-
+$current_page = isset($_SESSION['current_page_show_product']) ? $_SESSION['current_page_show_product'] : 1;
 
 $offset = ($current_page - 1) * $products_per_page;
 $sql = "SELECT * FROM `product`, `category` WHERE `product`.category_id = `category`.category_id   ";
@@ -36,9 +36,11 @@ $filter = [];
    }
     if ($category !== 'select'){
       $filter[] = "`category`.`category_name` =  '$category'";
+
    }
    if ($searchbox !== ''){
     $filter[] = "`product`.`item_name` LIKE  '%$searchbox%'";
+
  }
     
    if(!empty($filter)){
@@ -108,33 +110,33 @@ if ($result->num_rows > 0) {
            </div>';
 
    //  phân trang
-   $output .= '<div class="container">
-   <div class="row mt-3 d-flex justify-content-center ">
-       <div class="col-12 d-flex justify-content-center">
-           <nav aria-label="Page navigation">
-               <ul class="pagination justify-content-center">
-                   <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
-                       <a class="page-link" href="?page=1' . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '')  . ($searchbox !='' ? '&searchName=' .$searchbox : '' ).'" tabindex="-1">First</a>
-                   </li>
-                   <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
-                       <a class="page-link" href="' . ($current_page == 1 ? '#' : '?page=' . ($current_page - 1) . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '') ) . ($searchbox !='' ? '&searchName=' .$searchbox : '' ). '">Previous</a>
-                   </li>';
-for ($i = 1; $i <= $total_pages; $i++) {
-   $output .= '<li class="page-item ' . ($current_page == $i ? 'active' : '') . '">
-       <a class="page-link" href="?page=' . $i . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '') . ($searchbox !='' ? '&searchName=' .$searchbox : '' ). '">' . $i . '</a>
-   </li>';
-}
+    $output .= '<div class="container">
+    <div class="row mt-3 d-flex justify-content-center ">
+        <div class="col-12 d-flex justify-content-center">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
+                        <a class="page-link" href="?page=1' . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '')  . ($searchbox !='' ? '&searchName=' .$searchbox : '' ).'" tabindex="-1">First</a>
+                    </li>
+                    <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
+                        <a class="page-link" href="' . ($current_page == 1 ? '#' : '?page=' . ($current_page - 1) . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '') ) . ($searchbox !='' ? '&searchName=' .$searchbox : '' ). '">Previous</a>
+                    </li>';
+    for ($i = 1; $i <= $total_pages; $i++) {
+    $output .= '<li class="page-item ' . ($current_page == $i ? 'active' : '') . '">
+        <a class="page-link" href="?page=' . $i . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '') . ($searchbox !='' ? '&searchName=' .$searchbox : '' ). '">' . $i . '</a>
+    </li>';
+    }
 
-$output .= '<li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
-   <a class="page-link" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1) . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '') ) . ($searchbox !='' ? '&searchName=' .$searchbox : '' ). '">Next</a>
-</li>
-<li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
-   <a class="page-link" href="?page=' . $total_pages . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '')  . ($searchbox !='' ? '&searchName=' .$searchbox : '' ). '">Last</a>
-</li>
-</ul>
-</nav></div>
-</div>
-</div>';
+    $output .= '<li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
+    <a class="page-link" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1) . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '') ) . ($searchbox !='' ? '&searchName=' .$searchbox : '' ). '">Next</a>
+    </li>
+    <li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
+    <a class="page-link" href="?page=' . $total_pages . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($category != 'select' ? '&selectedCategory=' . $category : '')  . ($searchbox !='' ? '&searchName=' .$searchbox : '' ). '">Last</a>
+    </li>
+    </ul>
+    </nav></div>
+    </div>
+    </div>';
 }else{
    echo '
    <div class="table-responsive">

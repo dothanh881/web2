@@ -76,7 +76,7 @@ include ('./../functions.php');
                 $_SESSION['user_id'] = $row['user_id'];
                  // $_SESSION['user_id'] = $row['user_id'];
                  $admin = $_SESSION['admin'];
-                header("location: ./dashboard.php");
+                header("location: ./index_admin.php");
                 exit; // Ensure script stops here to prevent further execution
             } else {
                 echo "<div id='alertMessage' class='alert alert-danger alert-dismissible fade show' role='alert'><strong>Warning!</strong>Your password is not correct. Please enter again !

@@ -167,7 +167,7 @@ if (!empty($conditions)) {
     $sql .= " AND " . implode(' AND ', $conditions); // Combine conditions
 }
 
-echo $sql;
+
 //paging nav
 $products_per_page = 6;
 

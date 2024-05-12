@@ -116,7 +116,7 @@ function showproduct(){
   var selectedStatus = $('#statusFilter').val(); //  
     var selectedCategory = $('#categoryFilter').val(); // 
     var searchName = $('input[name="search_box"]').val();    
-    
+
     $.ajax({
         url: 'show-product.php',
         method: 'get',

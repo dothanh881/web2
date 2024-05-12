@@ -21,6 +21,12 @@ if ( isset($_SESSION["user_id"]) ) {
 
           ?>
 
+<li class="nav-item">
+            <a class="nav-link <?php echo ($page == '' || $page == 'index_admin.php') ? 'active' : ''; ?>" href="index_admin.php">
+            <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span data-feather="users"></span>
+              Admin  <span class="sr-only">(current)</span>
+            </a>
+          </li>
 
 <li class="nav-item">
 
@@ -62,13 +68,7 @@ if ( isset($_SESSION["user_id"]) ) {
             </a>
           </li>
           
-          <li class="nav-item">
-            <a class="nav-link <?php echo ($page == '' || $page == 'index_admin.php') ? 'active' : ''; ?>" href="index_admin.php">
-            <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span data-feather="users"></span>
-              Admin  <span class="sr-only">(current)</span>
-            </a>
-          </li>
-
+        
           
         </ul>
 

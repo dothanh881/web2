@@ -3,8 +3,9 @@
 
 if (isset($_SESSION['username'])) ?>
 <br><br><br>
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-5 border-bottom">
-  <h1 class="h2 ">Hello, <?php echo $_SESSION['username'] ?></h1>
+
+<div class="d-flex text-center justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-5 border-bottom">
+  <h1  class="h2 text-center ">&nbsp;&nbsp;&nbsp;Hello, <?php echo $_SESSION['username'] ?></h1>
   <div class="btn-toolbar mb-2 mb-md-0">
 
   </div>
@@ -68,12 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $stmt->bind_param("sssssssss", $fullname, $email, $phone, $street, $city, $district, $ward, $enc_pass, $user_id);
 
       $stmt->execute();
-      echo " <div class='alert alert-success alert-dismissible fade show'>
+      echo " <div id='alertMessage' class='alert alert-success alert-dismissible fade show'>
       <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
       <strong>Success!</strong> Information have changed.
     </div>";
     } else {
-      echo "<div class='alert alert-warning alert-dismissible fade show'>
+      echo "<div  id='alertMessage' class='alert alert-warning alert-dismissible fade show'>
       <button type='button'class='btn-close' data-bs-dismiss='alert'></button>
       <strong>Warning!</strong> Password incorrect . Please enter again !
     </div>"
@@ -87,12 +88,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $stmt->bind_param("ssssssss", $fullname, $email, $phone, $street,$ward, $city, $district, $user_id);
 
       $stmt->execute();
-      echo " <div class='alert alert-success alert-dismissible fade show'>
+      echo " <div  id='alertMessage' class='alert alert-success alert-dismissible fade show'>
       <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
       <strong>Success!</strong> Information have changed.
     </div>";
     } else {
-      echo "<div class='alert alert-warning alert-dismissible fade show'>
+      echo "<div id='alertMessage' class='alert alert-warning alert-dismissible fade show'>
       <button type='button'class='btn-close' data-bs-dismiss='alert'></button>
       <strong>Warning!</strong> Password incorrect. Please enter again !
     </div>" ;
@@ -289,6 +290,25 @@ inputContainer.style.display='block';
 		ele.style.borderColor = "green";
 		ele.parentNode.querySelector('small').innerText = "";
 	}
+
+  const timeoutDuration = 5000;
+
+// Get the alert element
+const alertElement = document.getElementById('alertMessage');
+
+// Function to hide the alert after a timeout
+const hideAlert = () => {
+    alertElement.classList.remove('show');
+    setTimeout(() => {
+        alertElement.style.display = 'none';
+    }, 200); // Transition duration in milliseconds
+};
+
+// Hide the alert after the specified duration
+setTimeout(hideAlert, timeoutDuration);
+
+// Add event listener to close button to hide alert immediately if clicked
+alertElement.querySelector('.close').addEventListener('click', hideAlert);
 </script>
 
 

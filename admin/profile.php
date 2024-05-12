@@ -168,6 +168,72 @@ if ($result->num_rows == 1) {
 ?>
 
 
+<script>
+   function checkPassword() {
+    // Get the password and re-typed password values
+    var password = document.getElementById('password').value.trim();
+    var newPassword = document.getElementById('newPassword'); // Check for existence
+    var re_newPassword = document.getElementById('re-newPassword'); // Check for existence
 
+    // Check if the password is empty
+    if (!password) {
+      alert("Please enter your password.");
+      return false;
+    }
+
+    // Validate new password and re-typed password (only if elements exist)
+    if (newPassword && re_newPassword) {
+      if (!newPassword.value.trim()) {
+        alert("Please enter your new password.");
+        return false;
+      }
+      if (!re_newPassword.value.trim() || newPassword.value !== re_newPassword.value) {
+        setError(re_newPassword,"New password is not confirm !")
+        return false;
+      }
+    }
+
+    // Rest of your form submission logic (assuming you have a submit button)
+  }
+
+  document.getElementById('click-re-password').addEventListener('click', function (e) {
+    e.preventDefault();
+    var link = document.getElementById('click-re-password');
+    var inputContainer = document.getElementById('box-password');
+    link.style.display = 'none';
+    inputContainer.innerHTML += '<div id="input-re-password" ><div><label for="newPassword">New Password:</label><input type="password" class="form-control" placeholder="Enter new password" id="newPassword" name="newPassword" style="margin-bottom:10px" required> <small></small></div><div><input type="password" class="form-control" placeholder="Confirm new password" id="re-newPassword" name="re-newPassword" required><small></small></div></div>';
+inputContainer.style.display='block';
+  });
+  function setError(ele, message) {
+		let parentEle = ele.parentNode;
+		parentEle.querySelector('small').innerText = message;
+		ele.style.borderColor = "red";
+		parentEle.querySelector('small').style.color = "red";
+	}
+
+	function setSuccess(ele) {
+		ele.style.borderColor = "green";
+		ele.parentNode.querySelector('small').innerText = "";
+	}
+
+  const timeoutDuration = 5000;
+
+// Get the alert element
+const alertElement = document.getElementById('alertMessage');
+
+// Function to hide the alert after a timeout
+const hideAlert = () => {
+    alertElement.classList.remove('show');
+    setTimeout(() => {
+        alertElement.style.display = 'none';
+    }, 200); // Transition duration in milliseconds
+};
+
+// Hide the alert after the specified duration
+setTimeout(hideAlert, timeoutDuration);
+
+// Add event listener to close button to hide alert immediately if clicked
+alertElement.querySelector('.close').addEventListener('click', hideAlert);
+</script>
+</script>
 <?php include_once("./templates/footer.php"); ?>
-<script type="text/javascript" src="./js/customers.js"></script>
