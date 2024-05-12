@@ -33,7 +33,7 @@ if ( isset($_SESSION["user_id"]) ) {
 
 
             <a class="nav-link <?php echo ($page == 'dashboard.php') ? 'active' : ''; ?>" href="dashboard.php">
-            <i class="fa fa-home" aria-hidden="true"></i>
+            <i class="fas fa-chart-area"></i>
  &nbsp;&nbsp; <span data-feather="home"></span>
 
               Statistic

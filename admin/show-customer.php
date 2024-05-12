@@ -15,7 +15,6 @@ $customers_per_page = 4;
 $total_customers = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `user` WHERE is_admin = 0"));
 
 
-// Khi người dùng thực hiện truy vấn mới
 
 
 // Kiểm tra xem session đã lưu trữ giá trị current_page hay chưa

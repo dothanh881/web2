@@ -90,7 +90,7 @@ session_start(); ?>
           $stmt->bind_param("i", $delete_id);
           $stmt->execute();
 
-          echo '<div class="alert alert-success alert-dismissible">
+          echo '<div  id="alertMessage" class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
           <strong>Delete successfully!</strong> 
         </div>';
@@ -102,7 +102,7 @@ session_start(); ?>
           $stmt1 = $conn->prepare($sql1);
           $stmt1->bind_param("i", $delete_id);
           $stmt1->execute();
-          echo '<div class="alert alert-success alert-dismissible">
+          echo '<div id="alertMessage" class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
           <strong>Success!</strong> Product status has been updated to "In stock".
       </div>';
@@ -262,13 +262,11 @@ if(isset($_POST['add-product'])){
         </div>';
         exit; // Stop further execution
     }
-      // Process the uploaded image file
       $tmp_name = $_FILES["item_image"]["tmp_name"];
       $fldimageurl = "./assets/products/" . basename($_FILES["item_image"]["name"]);
 
      
        
-      // Move the uploaded file to the destination directory
       if(move_uploaded_file($tmp_name, __DIR__ ."/../". $fldimageurl)){
           // Sanitize and process form data
           $item_name = input_filter($_POST['item_name']);
@@ -284,7 +282,6 @@ if(isset($_POST['add-product'])){
           // Escape the image URL to prevent SQL injection
           $item_image = mysqli_real_escape_string($conn, $fldimageurl);
 
-          // Prepare and execute the SQL query to insert product into the database
           $sql = "INSERT INTO `product` (category_id, item_name, item_quantity, item_price, item_color, item_image, item_discription, item_rom, item_ram, size_screen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
           $stmt = $conn->prepare($sql);
 
@@ -315,7 +312,7 @@ if(isset($_POST['add-product'])){
           }
       } else {
           echo '<div id="alertMessage"  class="alert alert-danger alert-dismissible fade show fixed-top mt-5 " role="alert">
-              <strong>Error</strong> Failed to upload image. '.$fldimageurl.' and '.$tmp_name.'
+              <strong>Error</strong> Failed to upload image. 
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>
@@ -503,7 +500,7 @@ if(isset($_POST['add-product'])){
         });
     });
 
-    const timeoutDuration = 5000;
+    const timeoutDuration = 3000;
 
 // Get the alert element
 const alertElement = document.getElementById('alertMessage');
