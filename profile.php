@@ -16,6 +16,13 @@ if (isset($_SESSION['username'])) ?>
 
 
 <?php
+function input_filter($data)
+{
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
 
 $customer_id = $_SESSION['user_id'];
 $sql = "SELECT password FROM `user` WHERE `user_id` = ? AND is_admin = 0 ";
@@ -30,13 +37,7 @@ $result = $select->get_result();
 
 $passDB = $result->fetch_assoc();
 //xuly
-function input_filter($data)
-{
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -244,6 +245,14 @@ if ($result->num_rows == 1) {
 </div>
 </div>
 <script>
+    document.getElementById('click-re-password').addEventListener('click', function (e) {
+    e.preventDefault();
+    var link = document.getElementById('click-re-password');
+    var inputContainer = document.getElementById('box-password');
+    link.style.display = 'none';
+    inputContainer.innerHTML += '<div id="input-re-password" ><div><label for="newPassword">New Password:</label><input type="password" class="form-control" placeholder="Enter new password" id="newPassword" name="newPassword" style="margin-bottom:10px" required> <small></small></div><div><input type="password" class="form-control" placeholder="Confirm new password" id="re-newPassword" name="re-newPassword" required><small></small></div></div>';
+inputContainer.style.display='block';
+  });
    function checkPassword() {
     // Get the password and re-typed password values
     var password = document.getElementById('password').value.trim();
@@ -271,14 +280,7 @@ if ($result->num_rows == 1) {
     // Rest of your form submission logic (assuming you have a submit button)
   }
 
-  document.getElementById('click-re-password').addEventListener('click', function (e) {
-    e.preventDefault();
-    var link = document.getElementById('click-re-password');
-    var inputContainer = document.getElementById('box-password');
-    link.style.display = 'none';
-    inputContainer.innerHTML += '<div id="input-re-password" ><div><label for="newPassword">New Password:</label><input type="password" class="form-control" placeholder="Enter new password" id="newPassword" name="newPassword" style="margin-bottom:10px" required> <small></small></div><div><input type="password" class="form-control" placeholder="Confirm new password" id="re-newPassword" name="re-newPassword" required><small></small></div></div>';
-inputContainer.style.display='block';
-  });
+
   function setError(ele, message) {
 		let parentEle = ele.parentNode;
 		parentEle.querySelector('small').innerText = message;

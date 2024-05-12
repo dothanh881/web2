@@ -8,8 +8,8 @@ include("./../functions.php");
 
 
 
-$fromDate = isset($_POST['fromDate1']) ? $_POST['fromDate1'] : '';
-$toDate = isset($_POST['toDate1']) ? $_POST['toDate1'] : '';
+$fromDate = isset($_GET['fromDate1']) ? $_GET['fromDate1'] : '';
+$toDate = isset($_GET['toDate1']) ? $_GET['toDate1'] : '';
 
 $sql = "SELECT `user`.user_id, `user`.username , `user`.email, `user`.`phone_number`, 
 SUM(`order`.order_total_price) AS total_order_price,

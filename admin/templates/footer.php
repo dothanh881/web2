@@ -87,7 +87,7 @@ function showreportFilter() {
 
     $.ajax({
         url: 'show_report_filter.php',
-        method: 'post',
+        method: 'get',
         data: {fromDate1: fromDate1, toDate1: toDate1},
         success: function(result) {
             $("#customer_report_list").html(result);

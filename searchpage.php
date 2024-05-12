@@ -122,13 +122,13 @@ shuffle($product_shuffle);
 <?php
 // SEARCH FEATURES
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {  // Check for POST request
-    $key = isset($_POST['search_box']) ? addslashes($_POST['search_box']) : '';
-    $key_brand = $_POST['sCate'] ?? 'All categories';
-    $key_maxPrice = $_POST['price_T'] ?? 100000;
-    $key_minPrice = $_POST['price_F'] ?? 0;
-    $key_rom = $_POST['sRom'] ?? 'All Rom';
-    $key_screen = $_POST['sScreen'] ?? 'All Screen';
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {  // Check for POST request
+    $key = isset($_GET['search_box']) ? addslashes($_GET['search_box']) : '';
+    $key_brand = $_GET['sCate'] ?? 'All categories';
+    $key_maxPrice = $_GET['price_T'] ?? 100000;
+    $key_minPrice = $_GET['price_F'] ?? 0;
+    $key_rom = $_GET['sRom'] ?? 'All Rom';
+    $key_screen = $_GET['sScreen'] ?? 'All Screen';
 }
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $key = isset($_GET['search_box']) ? addslashes($_GET['search_box']) : '';
@@ -138,8 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $key_rom = $_GET['sRom'] ?? 'All Rom';
     $key_screen = $_GET['sScreen'] ?? 'All Screen';
 }
-echo $key_minPrice;
-echo $key_maxPrice;
+
 $sql = "SELECT * FROM `product`,`category` WHERE 1 AND `product`.category_id = `category`.category_id  "; // Start with a base condition
 $conditions = [];
 if ($key !== '') {
@@ -329,29 +328,7 @@ $row_result = mysqli_num_rows($list_result);
 
         <?php
         $output = "";
-        if ($row_result !== 0 && $_SERVER['REQUEST_METHOD'] === 'POST') {
-            $output .= ' <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
-                    <a class="page-link" href="?page=1&search_box=' . $key . '" tabindex="-1">First</a>
-                </li>
-                <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
-                    <a class="page-link" href="' . ($current_page == 1 ? '#' : '?page=' . ($current_page - 1)) . '&search_box=' . $key . '">Previous</a>
-                </li>';
-            for ($i = 1; $i <= $total_pages; $i++) {
-                $output .= '<li class="page-item ' . ($current_page == $i ? 'active' : '') . '">
-                <a class="page-link" href="?page=' . $i . '&search_box=' . $key . '">' . $i . '</a>
-            </li>';
-            }
-            $output .= '<li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
-                    <a class="page-link" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1)) . '&search_box=' . $key . '">Next</a>
-                </li>
-                <li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
-                    <a class="page-link" href="?page=' . $total_pages . '&search_box=' . $key . '">Last</a>
-                </li>
-            </ul>
-        </nav>';
-        }
+        
         if($row_result !== 0 && $_SERVER['REQUEST_METHOD'] === 'GET'){
             $output .= ' <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">

@@ -3,16 +3,25 @@
 session_name('customer_session');
 session_start();
 
+include('connect.php');
 
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['user_id'])){
     $user_id = $_SESSION['user_id'];
+
+    $stmt = $conn ->prepare("SELECT * FROM `user` WHERE user_id = ?");
+    $stmt -> bind_param("s", $user_id);
+    $stmt -> execute();
+    $res = $stmt -> get_result();
+    if($res -> num_rows == 1){
+        $row = $res -> fetch_assoc();
+        $user_status = $row['status'];
+    }
+
+    
 
 } else {
     $user_id = '';
 }
-;
-
-
 ?>
 
 
@@ -57,6 +66,18 @@ if (isset($_SESSION['user_id'])) {
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <style>
+
+        .shoppingbtn{
+            width: 200px;
+        }
+        
+        .clearbtn{
+            width: 200px;
+        }
+        
+        .checkoutbtn{
+            width: 200px;
+        }
         #message {
             position: fixed;
             /* Thiết lập vị trí cố định */
@@ -197,8 +218,8 @@ if (isset($_SESSION['user_id'])) {
 
 
                     <div class="form-container ml-3">
-                        <form method="post" action="searchpage.php" class="d-flex" onsubmit="return check();" >
-                            <input type="text" name="search_box" placeholder="Search name's product here..." class="form-control " id="search">
+                        <form method="get" action="searchpage.php" class="d-flex" onsubmit="return check();" >
+                            <input type="text" name="search_box" placeholder="Search name's product " class="form-control " id="search">
                             <button type="submit" class="btn btn-success" id="search_btn" name="search_btn" >Search</button>
                             <div id="popup" class="hidden">
                                 <div class="popup-content">
@@ -267,6 +288,10 @@ if (isset($_SESSION['user_id'])) {
             }
         }
 
+        <?php if ($user_status == 0): ?>
+        alert("Your account have been blocked for unusual behavior!");
+        window.location.href = "logout.php";
+    <?php endif; ?>
     </script>
     <!-- start #main-site -->
     <main id="main-site">

@@ -25,7 +25,92 @@ include("./../functions.php");
     </div>
     
 
+<?php
 
+function input_filter($data)
+{
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+$sql = "SELECT password FROM `user` WHERE `user_id` = ? AND is_admin = 1 ";
+
+$select = $conn->prepare($sql);
+
+$select->bind_param("s", $user_id);
+
+$select->execute();
+
+$result = $select->get_result();
+
+$passDB = $result->fetch_assoc();
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+  $user_id = $_POST['user_id'];
+  $fullname = input_filter($_POST['fullname']);
+  $email = input_filter($_POST['email']);
+  $phone = input_filter($_POST['phone']);
+  $street = input_filter($_POST['street']);
+  $city = $_POST['city'];
+  $district = $_POST['district'];
+  $ward = $_POST['ward'];
+  $password = input_filter($_POST['password']);
+
+  $fullname = mysqli_real_escape_string($conn, $fullname);
+  $email = mysqli_real_escape_string($conn, $email);
+  $phone = mysqli_real_escape_string($conn, $phone);
+  $street = mysqli_real_escape_string($conn, $street);
+  $pass = mysqli_real_escape_string($conn, $password);
+
+  if (array_key_exists('newPassword', $_POST)) {
+    $newPass = input_filter($_POST['newPassword']);
+    $newPass = mysqli_real_escape_string($conn, $newPass);
+
+    if (password_verify($pass, $passDB['password']) ) {
+      $sql = "UPDATE `user` SET fullname = ?, email = ?, phone_number = ?, street = ?, city = ?, district = ?, ward = ?, password = ? WHERE user_id = ? AND is_admin = 1";
+
+      $enc_pass = password_hash($newPass, PASSWORD_DEFAULT);
+      $stmt = $conn->prepare($sql);
+
+      $stmt->bind_param("sssssssss", $fullname, $email, $phone, $street, $city, $district, $ward, $enc_pass, $user_id);
+
+      $stmt->execute();
+      echo " <div id='alertMessage' class='alert alert-success alert-dismissible fade show'>
+      <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+      <strong>Success!</strong> Information have changed.
+    </div>";
+    } else {
+      echo "<div  id='alertMessage' class='alert alert-warning alert-dismissible fade show'>
+      <button type='button'class='btn-close' data-bs-dismiss='alert'></button>
+      <strong>Warning!</strong> Password incorrect . Please enter again !
+    </div>"
+      ;
+    }
+  } else{
+    $sql = "UPDATE `user` SET fullname = ?, email = ?, phone_number = ?, street = ?, ward=?, city = ?, district = ? WHERE user_id = ? AND is_admin = 1";
+    if (password_verify($pass, $passDB['password'])) {
+      $stmt = $conn->prepare($sql);
+
+      $stmt->bind_param("ssssssss", $fullname, $email, $phone, $street,$ward, $city, $district, $user_id);
+
+      $stmt->execute();
+      echo " <div  id='alertMessage' class='alert alert-success alert-dismissible fade show'>
+      <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+      <strong>Success!</strong> Information have changed.
+    </div>";
+    } else {
+      echo "<div id='alertMessage' class='alert alert-warning alert-dismissible fade show'>
+      <button type='button'class='btn-close' data-bs-dismiss='alert'></button>
+      <strong>Warning!</strong> Password incorrect. Please enter again !
+    </div>" ;
+    }
+  }
+}
+?>
 
 <?php
 
@@ -50,7 +135,7 @@ if ($result->num_rows == 1) {
 
 
 
-  <form method="post" enctype='multipart/form-data' class="container" onsubmit="return checkPassword()">
+  <form method="post" enctype='multipart/form-data' class="container" onsubmit="return checkPassword();">
     <div class="form-group">
       <input type="text" class="form-control" name="user_id" value="<?php echo $row1['user_id'] ?>" hidden>
     </div>
@@ -149,9 +234,9 @@ if ($result->num_rows == 1) {
         <input type="password" class="form-control" placeholder="Enter password" name="password" style="margin-bottom:10px"
           required>
       </div>
-      <div class="row-6">
+      <!-- <div class="row-6">
         <a href="#" id="click-re-password">Change your password ?</a>
-      </div>
+      </div> -->
     </div>
 
 
@@ -236,4 +321,4 @@ setTimeout(hideAlert, timeoutDuration);
 alertElement.querySelector('.close').addEventListener('click', hideAlert);
 </script>
 </script>
-<?php include_once("./templates/footer.php"); ?>
+<?php include("./templates/footer.php"); ?>

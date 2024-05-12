@@ -221,7 +221,7 @@ session_start(); ?>
 
 </div>
 
-<form action="show_report_filter.php" method="post"> 
+<form action="show_report_filter.php" method="get"> 
 <div class="row">
   
 
