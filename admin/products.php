@@ -240,7 +240,7 @@ if(isset($_POST['add-product'])){
   if(isset($_FILES["item_image"]) && $_FILES["item_image"]["error"] == UPLOAD_ERR_OK){
 
 
-    $maxFileSize = 2 * 1024 * 1024; // 5MB
+    $maxFileSize = 2 * 1024 * 1024; // 2MB
     if($_FILES['item_image']['size'] > $maxFileSize) {
         echo '<div  id="alertMessage" class="alert alert-danger alert-dismissible fade show fixed-top mt-5 " role="alert">
             <strong>Error</strong> File size exceeds 2MB limit.

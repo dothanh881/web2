@@ -52,6 +52,9 @@ session_start();
         .color-third-bg {
             background: #D96666;
         }
+        .btnd{
+			background-color: #f2cdce;
+		}
     </style>
 </head>
 
@@ -168,7 +171,7 @@ session_start();
                             <div class="text-center">
                                 <div class="row">
                                     <div class="col-md-4 offset-md-4"> <!-- Centered column with offset -->
-                                        <input type="submit" class="btn btn-success" name="Login" style="width: 100%;"
+                                        <input type="submit" class="btn btnd" name="Login" style="width: 100%;"
                                             value="Login">
                                     </div>
                                 </div>

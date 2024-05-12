@@ -7,7 +7,7 @@
 
 1.
 username: admin
-Password: admin123
+Password: admin
 
 2.
 username: admin12

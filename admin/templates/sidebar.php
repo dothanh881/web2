@@ -36,7 +36,7 @@ if ( isset($_SESSION["user_id"]) ) {
             <i class="fa fa-home" aria-hidden="true"></i>
  &nbsp;&nbsp; <span data-feather="home"></span>
 
-              DashBoard
+              Statistic
             </a>
           </li>
 

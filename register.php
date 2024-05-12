@@ -29,6 +29,12 @@
 
 
 	<style>
+		.sbtn{
+			background-color: #D96666;
+		}
+		.btnd{
+			background-color: #f2cdce;
+		}
 		.color-second {
 			color: #D96666;
 		}
@@ -279,7 +285,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<input style="width:100%;" value="Register Now" type="submit" name="register"
-										class="btn btn-success btn-lg">
+										class="btn btnd btn-lg">
 								</div>
 							</div><br>
 							<p>Already have an account?</p>
@@ -287,7 +293,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<input style="width:100%;" value="Login Now" name="signup_button"
-											class="btn btn-warning btn-lg">
+											class="btn sbtn btn-lg">
 									</div>
 								</div>
 							</a>
