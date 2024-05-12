@@ -521,5 +521,38 @@ const hideAlert = () => {
 setTimeout(hideAlert, timeoutDuration);
 
 alertElement.querySelector('.close').addEventListener('click', hideAlert);
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const addProductForm = document.getElementById('add-product-form');
+    const addProductButton = document.querySelector('.add-product');
+
+    const validateForm = () => {
+        const inputs = addProductForm.querySelectorAll('input, select, textarea');
+        let isValid = true;
+
+        inputs.forEach(input => {
+            if (!input.value) {
+                isValid = false;
+                input.classList.add('is-invalid');
+            } else {
+                input.classList.remove('is-invalid');
+            }
+        });
+
+        return isValid;
+    };
+
+    addProductForm.addEventListener('submit', function (event) {
+        if (!validateForm()) {
+            event.preventDefault();
+            return false;
+        }
+    });
+
+    addProductButton.addEventListener('click', function () {
+        validateForm();
+    });
+});
 </script>
 

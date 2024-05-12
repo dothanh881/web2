@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 11, 2024 lúc 05:48 PM
+-- Thời gian đã tạo: Th5 12, 2024 lúc 03:23 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -112,7 +112,9 @@ INSERT INTO `order` (`order_id`, `user_id`, `order_date`, `order_total_price`, `
 ('07452', '8016c59ca618', '2024-05-10', 1129.00, 'cod', 'Processing', 'Ho Chi Minh', 'Go Vap', '50 Pham Van Dong', 'Huynh Duy Khang', 'khanghuynh@gmail.com', '0981332561', 'Ward 11'),
 ('10244', '8016c59ca618', '2024-05-10', 1493.00, 'cod', 'Cancelled', 'Ho Chi Minh', 'Go Vap', '50 Pham Van Dong', 'Huynh Duy Khang', 'khanghuynh@gmail.com', '0981332561', 'Ward 11'),
 ('10847', '8016c59ca618', '2024-05-10', 1493.00, 'cod', 'Processing', 'Ho Chi Minh', 'Go Vap', '50 Pham Van Dong', 'Huynh Duy Khang', 'khanghuynh@gmail.com', '0981332561', 'Ward 11'),
+('11586', '63678124a1a3', '2024-05-12', 605.00, 'cod', 'Complete', 'Ho Chi Minh', 'District 11', 'Lu Gia', 'Trung Nguyen', 'tnguyen@gmail.com', '0981776491', 'Ward 12'),
 ('12228', 'f5889a61ccd0', '2024-05-06', 4644.35, 'cod', 'Complete', 'Ho Chi Minh', 'District 10', '601A Cach Mang Thang Tam', 'Nhien Nguyen', 'nhienng@gmail.com', '0375542863', 'Ward 11'),
+('13586', '22f9988dc289', '2024-05-12', 1493.00, 'cod', 'Complete', 'Ho Chi Minh', 'Tan Phu', 'Le Nga', 'Thanh Nguyen', 'abeil@gmail.com', '0981776491', 'Ward 10'),
 ('16977', 'f5889a61ccd0', '2024-05-10', 1089.00, 'cod', 'Processing', 'Ho Chi Minh ', 'Tan Phu ', '48/42 Le Nga', 'Thanh Do', 'abc@gmail.com', '0123456789', 'Ward 10'),
 ('17847', '8016c59ca618', '2024-05-07', 4556.00, 'cod', 'Complete', 'Ho Chi Minh', 'Tan Binh', '86/71 Au Co', 'Khang Huynh', 'dkhang@gmail.com', '0982256691', 'Ward 9'),
 ('17951', '8016c59ca618', '2024-05-10', 605.00, 'cod', 'Processing', 'Ho Chi Minh', 'Go Vap', '50 Pham Van Dong', 'Huynh Duy Khang', 'khanghuynh@gmail.com', '0981332561', 'Ward 11'),
@@ -124,9 +126,13 @@ INSERT INTO `order` (`order_id`, `user_id`, `order_date`, `order_total_price`, `
 ('30915', 'b690eca96339', '2024-05-07', 5726.12, 'onlinebanking', 'Complete', '', 'Tan Binh', '88/14 Nguyen Thi Nho', 'Nguyen Danh', 'danh@gmail.com', '0985566441', 'Ward 9'),
 ('32893', '4ac4503d26ea', '2024-05-09', 2911.35, 'cod', 'Complete', 'Ho Chi Minh', 'District 10', '42 Thanh Thai', 'Nguyen Ngoc Nhien', 'nguyenngocnhien@gmail.com', '0985566691', 'Ward 12'),
 ('34272', '8016c59ca618', '2024-05-10', 1169.56, 'cod', 'Complete', 'Ho Chi Minh', 'Go Vap', '50 Pham Van Dong', 'Huynh Duy Khang', 'khanghuynh@gmail.com', '0981332561', 'Ward 11'),
+('35395', '22f9988dc289', '2024-05-12', 524.00, 'cod', 'Pending', 'Ho Chi Minh', 'Tan Phu', 'Le Nga', 'Thanh Nguyen', 'abeil@gmail.com', '0981776491', 'Ward 10'),
 ('36261', '8016c59ca618', '2024-05-10', 524.00, 'cod', 'Complete', 'Ho Chi Minh', 'Go Vap', '50 Pham Van Dong', 'Huynh Duy Khang', 'khanghuynh@gmail.com', '0981332561', 'Ward 11'),
+('37626', '22f9988dc289', '2024-05-12', 968.00, 'cod', 'Complete', 'Ho Chi Minh', 'Tan Phu', 'Le Nga', 'Thanh Nguyen', 'abeil@gmail.com', '0981776491', 'Ward 10'),
 ('39815', 'b690eca96339', '2024-05-09', 1048.00, 'onlinebanking', 'Pending', 'Ho Chi Minh', 'District 10', '82 An Duong Vuong', 'Danh Nguyen', 'thanhdanh@gmail.com', '0221545454', 'Ward 10'),
 ('41781', 'f5889a61ccd0', '2024-05-10', 1048.00, 'cod', 'Pending', 'Ho Chi Minh ', 'Tan Phu ', '48/42 Le Nga', 'Thanh Do', 'abc@gmail.com', '0123456789', 'Ward 10'),
+('42473', '34b8a535e37c', '2024-05-12', 1129.00, 'cod', 'Complete', 'Ho Chi Minh  ', 'District 11  ', '237 Ly Thuong Kiet', 'Be Yeu Dau', 'beyeu@gmail.com', '0981445421', 'Ward 10  '),
+('42910', '22f9988dc289', '2024-05-12', 1089.00, 'cod', 'Pending', 'Ho Chi Minh', 'Tan Phu', 'Le Nga', 'Thanh Nguyen', 'abeil@gmail.com', '0981776491', 'Ward 10'),
 ('43033', '53091d01d890', '2024-05-09', 2258.00, 'onlinebanking', 'Complete', 'Ho Chi Minh ', 'District 5 ', '273 An Duong Vuong', 'Thanh Do', 'thanh@gmail.com', '0981776491', 'Ward 8'),
 ('46288', '53091d01d890', '2024-05-06', 4678.12, 'onlinebanking', 'Complete', 'Ho Chi Minh', 'District 11', '14 Dong Nai', 'Duy Khang', 'khanghuynh@gmail.com', '0982256691', 'Ward 10'),
 ('48411', '8016c59ca618', '2024-05-09', 2548.35, 'cod', 'Complete', 'Ho Chi Minh', 'Go Vap', '50 Pham Van Dong', 'Huynh Duy Khang', 'khanghuynh@gmail.com', '0981332561', 'Ward 11'),
@@ -136,9 +142,11 @@ INSERT INTO `order` (`order_id`, `user_id`, `order_date`, `order_total_price`, `
 ('54296', '4ac4503d26ea', '2024-05-07', 6854.00, 'cod', 'Complete', 'Ho Chi Minh', 'District 10', '42 Thanh Thai', 'Nguyen Ngoc Nhien', 'nguyenngocnhien@gmail.com', '0985566691', 'Ward 12'),
 ('55138', 'f5889a61ccd0', '2024-05-07', 2137.00, 'cod', 'Processing', 'Ho Chi Minh', 'District 6', '654/5A Pham Van Chi', 'Phu Thanh', 'thanh@gmail.com', '0981776491', 'Ward 8'),
 ('56739', 'b690eca96339', '2024-05-09', 2905.00, 'cod', 'Complete', 'Ho Chi Minh', 'District 10', '82 An Duong Vuong', 'Danh Nguyen', 'thanhdanh@gmail.com', '0221545454', 'Ward 10'),
+('57490', '22f9988dc289', '2024-05-12', 1234.00, 'cod', 'Pending', 'Ho Chi Minh', 'Tan Phu', 'Le Nga', 'Thanh Nguyen', 'abeil@gmail.com', '0981776491', 'Ward 10'),
 ('59114', 'b690eca96339', '2024-05-09', 1169.56, 'onlinebanking', 'Complete', 'Ho Chi Minh', 'District 3', 'Vo Thi Sau', 'Danh Vo', 'danhvothanh@gmail.com', '0981776491', 'Ward 6'),
 ('60136', 'b690eca96339', '2024-05-10', 989.90, 'cod', 'Complete', 'Ho Chi Minh', 'District 10', '82 An Duong Vuong', 'Danh Nguyen', 'thanhdanh@gmail.com', '0221545454', 'Ward 10'),
 ('62529', 'f5889a61ccd0', '2024-05-10', 605.00, 'cod', 'Pending', 'Ho Chi Minh ', 'Tan Phu ', '48/42 Le Nga', 'Thanh Do', 'abc@gmail.com', '0123456789', 'Ward 10'),
+('63590', '22f9988dc289', '2024-05-12', 201.00, 'cod', 'Pending', 'Ho Chi Minh', 'Tan Phu', 'Le Nga', 'Thanh Nguyen', 'abeil@gmail.com', '0981776491', 'Ward 10'),
 ('64693', 'f5889a61ccd0', '2024-05-09', 3670.00, 'onlinebanking', 'Complete', 'Ho Chi Minh ', 'Tan Phu ', '48/42 Le Nga', 'Thanh Do', 'abc@gmail.com', '0123456789', 'Ward 10'),
 ('64882', 'f5889a61ccd0', '2024-05-06', 2258.00, 'onlinebanking', 'Cancelled', 'Ho Chi Minh ', 'Tan Phu ', '48/42 Le Nga', 'Thanh Do', 'abc@gmail.com', '0123456789', 'Ward 10'),
 ('65079', 'f5889a61ccd0', '2024-05-10', 1459.35, 'cod', 'Pending', 'Ho Chi Minh ', 'Tan Phu ', '48/42 Le Nga', 'Thanh Do', 'abc@gmail.com', '0123456789', 'Ward 10'),
@@ -148,6 +156,7 @@ INSERT INTO `order` (`order_id`, `user_id`, `order_date`, `order_total_price`, `
 ('70752', 'b690eca96339', '2024-05-07', 4296.90, 'onlinebanking', 'Complete', 'Ho Chi Minh', 'District 11', '124  Nguyen Thi Nho', 'Danh', 'danh@gmail.com', '0167558223', 'Ward 12'),
 ('72850', 'f5889a61ccd0', '2024-05-06', 4155.00, 'cod', 'Pending', 'Ho Chi Minh', 'Go Vap', '40 Pham Van Dong', 'Khang Huynh', 'khang@gmail.com', '0144785523', 'Ward 10'),
 ('75004', '8016c59ca618', '2024-05-10', 989.90, 'cod', 'Processing', 'Ho Chi Minh', 'Go Vap', '50 Pham Van Dong', 'Huynh Duy Khang', 'khanghuynh@gmail.com', '0981332561', 'Ward 11'),
+('84253', '22f9988dc289', '2024-05-12', 3702.00, 'cod', 'Complete', 'Ho Chi Minh', 'Tan Phu', 'Le Nga', 'Thanh Nguyen', 'abeil@gmail.com', '0981776491', 'Ward 10'),
 ('85911', 'f5889a61ccd0', '2024-05-06', 484.00, 'onlinebanking', 'Complete', 'Ho Chi Minh', 'Tan Phu', '48/42 Le Nga', 'Thanh Do', 'abc@gmail.com', '123456789', 'Ward 6'),
 ('86252', '53091d01d890', '2024-05-06', 3636.35, 'cod', 'Complete', 'Ho Chi Minh ', 'District 5 ', '273 An Duong Vuong', 'Thanh Do', 'thanh@gmail.com', '0981776491', 'Ward 8'),
 ('88695', 'f5889a61ccd0', '2024-05-10', 1493.00, 'cod', 'Pending', 'Ho Chi Minh ', 'Tan Phu ', '48/42 Le Nga', 'Thanh Do', 'abc@gmail.com', '0123456789', 'Ward 10'),
@@ -192,9 +201,11 @@ INSERT INTO `order_detail` (`order_detail_price`, `order_detail_quantity`, `orde
 (1129.00, 1, '07452', 3, 1129.00),
 (1493.00, 1, '10244', 9, 1493.00),
 (1493.00, 1, '10847', 9, 1493.00),
+(605.00, 1, '11586', 8, 605.00),
 (1459.35, 1, '12228', 1, 1459.35),
 (1048.00, 2, '12228', 5, 2096.00),
 (1089.00, 1, '12228', 13, 1089.00),
+(1493.00, 1, '13586', 9, 1493.00),
 (1089.00, 1, '16977', 13, 1089.00),
 (1089.00, 1, '17847', 7, 1089.00),
 (1129.00, 1, '17847', 10, 1129.00),
@@ -216,9 +227,13 @@ INSERT INTO `order_detail` (`order_detail_price`, `order_detail_quantity`, `orde
 (1459.35, 1, '32893', 1, 1459.35),
 (1452.00, 1, '32893', 2, 1452.00),
 (1169.56, 1, '34272', 4, 1169.56),
+(524.00, 1, '35395', 11, 524.00),
 (524.00, 1, '36261', 11, 524.00),
+(484.00, 2, '37626', 6, 968.00),
 (1048.00, 1, '39815', 5, 1048.00),
 (1048.00, 1, '41781', 5, 1048.00),
+(1129.00, 1, '42473', 3, 1129.00),
+(1089.00, 1, '42910', 13, 1089.00),
 (1129.00, 2, '43033', 10, 2258.00),
 (1129.00, 1, '46288', 3, 1129.00),
 (1169.56, 2, '46288', 4, 2339.12),
@@ -240,9 +255,11 @@ INSERT INTO `order_detail` (`order_detail_price`, `order_detail_quantity`, `orde
 (605.00, 2, '56739', 8, 1210.00),
 (201.00, 1, '56739', 12, 201.00),
 (747.00, 2, '56739', 35, 1494.00),
+(1234.00, 1, '57490', 70, 1234.00),
 (1169.56, 1, '59114', 4, 1169.56),
 (989.90, 1, '60136', 34, 989.90),
 (605.00, 1, '62529', 8, 605.00),
+(201.00, 1, '63590', 12, 201.00),
 (1452.00, 1, '64693', 2, 1452.00),
 (1129.00, 1, '64693', 3, 1129.00),
 (1089.00, 1, '64693', 13, 1089.00),
@@ -258,6 +275,7 @@ INSERT INTO `order_detail` (`order_detail_price`, `order_detail_quantity`, `orde
 (524.00, 1, '72850', 11, 524.00),
 (747.00, 2, '72850', 35, 1494.00),
 (989.90, 1, '75004', 34, 989.90),
+(1234.00, 3, '84253', 70, 3702.00),
 (484.00, 1, '85911', 6, 484.00),
 (1459.35, 1, '86252', 1, 1459.35),
 (1048.00, 1, '86252', 5, 1048.00),
@@ -306,22 +324,22 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`item_id`, `category_id`, `item_name`, `item_quantity`, `item_price`, `item_color`, `item_image`, `item_discription`, `item_status`, `item_rom`, `item_ram`, `size_screen`, `created_at`, `updated_at`) VALUES
-(1, 1, 'iPhone 15 Pro Max', 187, 1560.00, 'Black', './assets/products/img1.png', 'iPhone 15 Pro Max is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone 15 Pro Max possesses Apple most outstanding features.', 2, 512, 8, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(1, 1, 'iPhone 15 Pro Max', 187, 1560.00, 'Black', './assets/products/img1.png', 'iPhone 15 Pro Max is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone 15 Pro Max possesses Apple most outstanding features.', 2, 512, 8, 6.40, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (2, 1, 'iPhone 15 Pro Max', 189, 1452.00, 'Silver', './assets/products/img2.png', 'iPhone 15 Pro Max is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone 15 Pro Max possesses Apple most outstanding features.', 2, 512, 8, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(3, 1, 'iPhone 14 Plus', 187, 1129.00, 'Purple', './assets/products/img3.png', 'The appeal of the new generation iPhone 2022 with a large screen, the best battery ever, impressive night photography and a series of top-notch technologies, the iPhone 14 Plus brings users into advanced mobile experiences.', 2, 256, 6, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(3, 1, 'iPhone 14 Plus', 186, 1129.00, 'Purple', './assets/products/img3.png', 'The appeal of the new generation iPhone 2022 with a large screen, the best battery ever, impressive night photography and a series of top-notch technologies, the iPhone 14 Plus brings users into advanced mobile experiences.', 2, 256, 6, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (4, 1, 'iPhone 14 Plus', 196, 1169.56, 'Yellow', './assets/products/img4.png', 'The appeal of the new generation iPhone 2022 with a large screen, the best battery ever, impressive night photography and a series of top-notch technologies, the iPhone 14 Plus brings users into advanced mobile experiences.', 2, 256, 6, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (5, 1, 'iPhone 13 Pro Max', 187, 1048.00, 'White', './assets/products/img5.png', 'iPhone 13 Pro Max has the best dual camera system ever, the fastest Apple A15 processor in the smartphone world and extremely long battery life, ready to accompany you all day long.', 2, 512, 8, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(6, 1, 'iPhone 12 Pro Max', 187, 484.00, 'Yellow', './assets/products/img6.png', 'In the last months of 2020, Apple officially introduced to users as well as iFans the new generation of iPhone 12 series with a series of breakthrough features, completely transformed design, powerful performance and one of That is the iPhone 12 Pro Max 1', 2, 128, 6, 6.70, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(7, 2, 'Samsung Galaxy S24 Ultra', 189, 1089.00, 'Blue', './assets/products/img7.png', 'Samsung Galaxy S24 Ultra is the smartest Galaxy phone ever with connection power, creative power and entertainment power all powered by Galaxy AI artificial intelligence. Completely new design from the classy Titanium frame, super camera with resolution ', 2, 512, 12, 6.80, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(8, 2, 'Samsung Galaxy S22 Ultra', 174, 605.00, 'Black', './assets/products/img8.png', 'Samsung Galaxy S24 Ultra is the smartest Galaxy phone ever with connection power, creative power and entertainment power all powered by Galaxy AI artificial intelligence. Completely new design from the classy Titanium frame, super camera with resolution ', 2, 256, 12, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(9, 2, 'Samsung Galaxy Z Fold5', 48, 1493.00, 'Blue', './assets/products/img9.png', 'Joining Samsung Galaxy Z Flip 5 flexibly, you will experience a series of exciting breakthrough technologies and a completely new unique design. Where you can freely explore and confidently express your personality. The compactness, fit and fashion of the', 2, 512, 12, 7.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(10, 2, 'Samsung Galaxy S23 Ultra', 176, 1129.00, 'Green', './assets/products/img10.png', 'Proud to be the first Galaxy phone to possess a superb 200MP sensor, the Samsung Galaxy S23 Ultra takes users into a world of cutting-edge photography. The power is also explosive with the most powerful Snapdragon processor for revolutionary gaming ', 2, 512, 12, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(11, 2, 'Samsung Galaxy S23 FE', 189, 524.00, 'Purple', './assets/products/img11.png', 'The Galaxy S23 FE 5G is the best Galaxy FE device Samsung has ever launched. Equipped with premium features from design to outstanding performance, an incredible night camera system. All combine to bring the perfect experience for work and entertainment', 2, 512, 8, 6.40, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(12, 2, 'Samsung Galaxy A14', 200, 201.00, 'Silver', './assets/products/img12.png', 'Adding color and experience to your life, Samsung introduces the cheap Galaxy A14 4G with a series of new improvements. Everything is harmoniously combined from youthful design, 50MP camera system, sharp screen to super large battery', 2, 128, 4, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(13, 2, 'Samsung Galaxy M54', 198, 1089.00, 'Silver', './assets/products/img13.png', 'Following the success of the Galaxy M53 5G, Samsung continues to launch the Samsung Galaxy M54 5G phone model. This launch, Samsung has upgraded performance, battery capacity and improved design to help bring the best product to you.', 1, 256, 8, 6.70, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(14, 1, 'iPhone 15 Plus', 188, 989.90, 'Green', './assets/products/img14.png', 'iPhone 15 Plus 256GB not only stands out thanks to its 6.7-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory. In addition, this new generation of iPhone is also equipped', 2, 256, 6, 6.70, '2024-05-05 22:24:54', '2024-05-05 22:24:54'),
-(15, 1, 'iPhone 15', 180, 747.00, 'Yellow', './assets/products/img15.png', 'iPhone 15 not only stands out thanks to its 6.1-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory. In addition, this new generation of iPhone is also equipped with a pair of modern rear cameras', 2, 128, 6, 6.10, '2024-05-05 22:26:45', '2024-05-05 22:26:45'),
-(16, 1, 'Iphone X', 122, 852.66, 'Black', './assets/products/img17.png', 'good', 0, 128, 6, 6.40, '2024-05-11 11:21:31', '2024-05-11 11:21:31');
+(6, 1, 'iPhone 12 Pro Max', 173, 484.00, 'Yellow', './assets/products/img6.png', 'In the last months of 2020, Apple officially introduced to users as well as iFans the new generation of iPhone 12 series with a series of breakthrough features, completely transformed design, powerful performance and one of That is the iPhone 12 Pro Max.', 2, 128, 6, 6.70, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(7, 2, 'Samsung Galaxy S24 Ultra', 189, 1089.00, 'Blue', './assets/products/img7.png', 'Samsung Galaxy S24 Ultra is the smartest Galaxy phone ever with connection power, creative power and entertainment power all powered by Galaxy AI artificial intelligence. Completely new design from the classy Titanium frame, super camera with resolution.', 2, 512, 12, 6.80, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(8, 2, 'Samsung Galaxy S22 Ultra', 173, 605.00, 'Black', './assets/products/img8.png', 'Samsung Galaxy S24 Ultra is the smartest Galaxy phone ever with connection power, creative power and entertainment power all powered by Galaxy AI artificial intelligence. Completely new design from the classy Titanium frame, super camera with resolution.', 2, 256, 12, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(9, 2, 'Samsung Galaxy Z Fold5', 196, 1493.00, 'Blue', './assets/products/img9.png', 'Joining Samsung Galaxy Z Flip 5 flexibly, you will experience a series of exciting breakthrough technologies and a completely new unique design. Where you can freely explore and confidently express your personality.', 2, 512, 12, 7.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(10, 2, 'Samsung Galaxy S23 Ultra', 176, 1129.00, 'Green', './assets/products/img10.png', 'Proud to be the first Galaxy phone to possess a superb 200MP sensor, the Samsung Galaxy S23 Ultra takes users into a world of cutting-edge photography. The power is also explosive with the most powerful Snapdragon processor for revolutionary gaming.', 2, 512, 12, 6.50, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(11, 2, 'Samsung Galaxy S23 FE', 182, 524.00, 'Purple', './assets/products/img11.png', 'The Galaxy S23 FE 5G is the best Galaxy FE device Samsung has ever launched. Equipped with premium features from design to outstanding performance, an incredible night camera system. All combine to bring the perfect experience for work and entertainment.', 2, 512, 8, 6.40, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(12, 2, 'Samsung Galaxy A14', 194, 201.00, 'Silver', './assets/products/img12.png', 'Adding color and experience to your life, Samsung introduces the cheap Galaxy A14 4G with a series of new improvements. Everything is harmoniously combined from youthful design, 50MP camera system, sharp screen to super large battery.', 2, 128, 4, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(13, 2, 'Samsung Galaxy M54', 196, 1089.00, 'Silver', './assets/products/img13.png', 'Following the success of the Galaxy M53 5G, Samsung continues to launch the Samsung Galaxy M54 5G phone model. This launch, Samsung has upgraded performance, battery capacity and improved design to help bring the best product to you.', 2, 256, 8, 6.70, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(34, 1, 'iPhone 15 Plus', 188, 989.90, 'Green', './assets/products/img14.png', 'iPhone 15 Plus 256GB not only stands out thanks to its 6.7-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory.', 2, 256, 6, 6.70, '2024-05-05 22:24:54', '2024-05-05 22:24:54'),
+(35, 1, 'iPhone 15', 179, 747.00, 'Yellow', './assets/products/img15.png', 'iPhone 15 not only stands out thanks to its 6.1-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory. In addition, this new generation of iPhone is also equipped with a pair of modern rear cameras.', 2, 128, 6, 6.10, '2024-05-05 22:26:45', '2024-05-05 22:26:45'),
+(70, 1, 'Iphone X', 200, 1234.00, 'Red', './assets/products/6.png', 'iPhone X is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone X possesses Apple most outstanding features.', 2, 128, 8, 6.60, '2024-05-12 19:01:01', '2024-05-12 19:01:01');
 
 -- --------------------------------------------------------
 
@@ -351,13 +369,15 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `email`, `username`, `password`, `street`, `district`, `city`, `phone_number`, `status`, `is_admin`, `register_date`, `updated_at`, `fullname`, `ward`) VALUES
-('34b8a535e37c', 'beyeu@gmail.com', 'beyeu', '$2y$10$/9Orx1/p1ajGVFjeYn8veeGXFhzW9NKt8Xfn2Ue3lLIaWvykobB5y', '237 Ly Thuong Kiet', 'District 11 ', 'Ho Chi Minh ', '0981445421', 0, 0, '2024-05-07 11:28:03', '2024-05-07 11:28:03', 'Be Yeu Dau', 'Ward 10 '),
+('22f9988dc289', 'abeil@gmail.com', 'nguyenthanh', '$2y$10$B7G03Op1d/Cbc9rWQ1ufU.PkrZD4/0igEBbTSqIBmrUL94bHIZLtG', 'Le Nga', 'Tan Phu', 'Ho Chi Minh', '0981776491', 1, 0, '2024-05-12 11:38:02', '2024-05-12 11:38:02', 'Thanh Nguyen', 'Ward 10'),
+('34b8a535e37c', 'beyeu@gmail.com', 'beyeu', '$2y$10$l0tZoDufAkqol88O5JNhfuA/TlTvtgrGZK6ahsLECUD0Cx/a1TgnC', '237 Ly Thuong Kiet', 'District 11      ', 'Ho Chi Minh      ', '0981445421', 1, 0, '2024-05-07 11:28:03', '2024-05-07 11:28:03', 'Be Yeu', 'Ward 10      '),
 ('4ac4503d26ea', 'nguyenngocnhien@gmail.com', 'ngnhien91', '$2y$10$i0OpDgk8X99SrnmL0tYYJeV1ACdvgoE9pHG7Nuv8dX9RuEVI7Mn5O', '42 Thanh Thai', 'District 10', 'Ho Chi Minh', '0985566691', 1, 0, '2024-05-07 09:19:09', '2024-05-07 09:19:09', 'Nguyen Ngoc Nhien', 'Ward 12'),
 ('53091d01d890', 'thanh@gmail.com', 'dothanh1', '$2y$10$f0iEZLKTgVpN/mUPXPINCuLvI3u7M9pwkLlH/W2YIOqkChHJVi0Ei', '273 An Duong Vuong', 'District 5 ', 'Ho Chi Minh ', '0981776491', 1, 0, '2024-05-04 22:46:53', '2024-05-04 22:46:53', 'Thanh Do', 'Ward 8'),
-('5d314b93c7b7', 'admin@email.com', 'admin', '$2y$10$u.LVXI1z1AY9eU2gsItc7.i0WsA2cbwxO1vJVm3OwJ4aEFqnOhIn2', '273 An Duong Vuong', 'District 5 ', 'Ho Chi Minh      ', '0981776492', 1, 1, '2024-04-14 21:21:53', '2024-04-14 21:21:53', 'Phu Thanh', 'Ward 8'),
+('5d314b93c7b7', 'admin@email.com', 'admin', '$2y$10$Nt9p/gZUqaHsldfLWkmNReFkqXyxABh4W61sVPmWpoUk7yVc6pLFG', '273 An Duong Vuong', 'District 5  ', 'Ho Chi Minh       ', '0981776492', 1, 1, '2024-04-14 21:21:53', '2024-04-14 21:21:53', 'Phu Thanh', 'Ward 8 '),
+('63678124a1a3', 'tnguyen@gmail.com', 'trungnguyen', '$2y$10$qeWG7Aa3FVDP5fsPYy9pq.EWNcfVo6RFoczUpJciZX/GEBo4Bf6Ai', 'Lu Gia', 'District 11', 'Ho Chi Minh', '0981776491', 1, 0, '2024-05-12 19:56:08', '2024-05-12 19:56:08', 'Trung Nguyen', 'Ward 12'),
 ('8016c59ca618', 'khanghuynh@gmail.com', 'dkhang', '$2y$10$CyhfKE3rKNv0ZWr6ielNC.CqHfOzCBSBiCx9bi4y2KgMCvm2TVTJW', '50 Pham Van Dong', 'Go Vap', 'Ho Chi Minh', '0981332561', 1, 0, '2024-05-07 09:13:36', '2024-05-07 09:13:36', 'Huynh Duy Khang', 'Ward 11'),
-('b690eca96339', 'thanhdanh@gmail.com', 'thanhdanh1', '$2y$10$2Z/ZJOgTLGTnDjEA79uqQeu7C2.MAh/bjXQ5PveRvU7PgUCyfp0DK', '82 An Duong Vuong', 'District 10', 'Ho Chi Minh', '0221545454', 1, 0, '2024-05-06 09:16:03', '2024-05-06 09:16:03', 'Danh Nguyen', 'Ward 10'),
-('f47e925465cc', 'admin1@gmail.com', 'admin12', '$2y$10$Bg.tbal3TSjIACv4HHQosOZrWVh5BzG2a73X4.8J1d2hwH9x1V8Jq', '319 Ly Thuong Kiet', 'District 11', 'Ho Chi Minh', '0165452116', 1, 1, '2024-05-06 14:34:54', '2024-05-06 14:34:54', 'Admin12', 'Ward 10'),
+('b690eca96339', 'thanhdanh@gmail.com', 'thanhdanh1', '$2y$10$2Z/ZJOgTLGTnDjEA79uqQeu7C2.MAh/bjXQ5PveRvU7PgUCyfp0DK', '82 An Duong Vuong', 'District 10', 'Ho Chi Minh', '0221545454', 0, 0, '2024-05-06 09:16:03', '2024-05-06 09:16:03', 'Danh Nguyen', 'Ward 10'),
+('f47e925465cc', 'admin1@gmail.com', 'admin12', '$2y$10$/ZfsUGmZaDqRWtPvauoSI.CzZ4vPCTjmWWwFcGlTqC3qVYtee.Z2q', '319 Ly Thuong Kiet', 'District 11     ', 'Ho Chi Minh     ', '0165452116', 1, 1, '2024-05-06 14:34:54', '2024-05-06 14:34:54', 'Admin12', 'Ward 10     '),
 ('f5889a61ccd0', 'abc@gmail.com', 'user123', '$2y$10$yeceLurYhwpONvWihcG6F.k07fjvzJ5WayKkEqy.qMD5NsnsRX6/K', '48/42 Le Nga', 'Tan Phu   ', 'Ho Chi Minh   ', '0981776491', 1, 0, '2024-04-14 21:16:21', '2024-04-14 21:16:21', 'Thanh Do Phu', 'Ward 10  ');
 
 --
@@ -413,19 +433,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=471;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=487;
 
 --
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

@@ -40,7 +40,7 @@ if (!empty($fromDate) && !empty($toDate)){
    }
    else{
 
-    $order_per_page = 8;
+    $order_per_page = 6;
     $total_orders = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM (
         SELECT 
             `user`.user_id, 

@@ -11,7 +11,7 @@
     } 
     unset($_SESSION['showAlert']);
     
-    ?>;" class="alert alert-success alert-dismissible ">
+    ?>;" class=" id='alertMessage' alert alert-success alert-dismissible ">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         <strong> <?php if(isset($_SESSION['message'])){ echo $_SESSION['message']; }else{ echo 'none'; } unset($_SESSION['message']); ?></strong> 
                       </div>
@@ -54,3 +54,24 @@
     </div>
 </section>
 <!-- !Shopping cart section  -->
+<script>
+        const timeoutDuration = 5000;
+
+// Get the alert element
+const alertElement = document.getElementById('alertMessage');
+
+// Function to hide the alert after a timeout
+const hideAlert = () => {
+    alertElement.classList.remove('show');
+    setTimeout(() => {
+        alertElement.style.display = 'none';
+    }, 200); // Transition duration in milliseconds
+};
+
+// Hide the alert after the specified duration
+setTimeout(hideAlert, timeoutDuration);
+
+// Add event listener to close button to hide alert immediately if clicked
+alertElement.querySelector('.close').addEventListener('click', hideAlert);
+
+</script>
