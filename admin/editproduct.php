@@ -38,7 +38,58 @@ session_start(); ?>
       $item_desc = mysqli_real_escape_string($conn, $item_desc);
       $item_price = mysqli_real_escape_string($conn, $item_price);
     
-      $sql = "UPDATE `product` SET item_name = ?, item_discription = ?, item_price = ?, category_id = ?, item_status = ?, item_rom = ?, item_ram = ?, item_color = ?, size_screen = ?, item_quantity = ? WHERE item_id = ?";
+     
+      // Xử lý ảnh mới
+      $old_image = $_POST['item_image'];
+      $imageNew = $_FILES['item_NewImage']['name'];
+      $proceed_upload = true;
+    
+      
+      if(!empty($imageNew)){
+          $imageNew_temp = $_FILES['item_NewImage']['tmp_name'];
+          $imageNew_size = $_FILES['item_NewImage']['size'];
+          $image_folder = './assets/products/' . $imageNew;
+
+          $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+          $imageNew_type = $_FILES['item_NewImage']['type'];
+    
+          if($imageNew_size > 2000000){
+            echo '<div id="alertMessage" class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Image size too large!</strong> 
+          </div>';
+          $proceed_upload = false;
+          }
+          
+           if( !in_array($imageNew_type, $allowedTypes)){
+            echo '<div id="alertMessage" class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Error!</strong> Only JPG, JPEG, and PNG files are allowed.
+            </div>';
+            $proceed_upload = false;
+          }
+          if( $proceed_upload){
+            $query = "UPDATE `product` SET item_image = ? WHERE item_id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("si", $image_folder, $item_id);
+            $stmt->execute();
+
+          
+        
+
+            $upCart = "UPDATE `cart` SET cart_image = ? WHERE item_id = ?";
+            $query1 = $conn->prepare($upCart);
+            $query1 ->bind_param("si", $image_folder, $item_id );
+            $query1->execute();
+            
+            move_uploaded_file($imageNew_temp, __DIR__ . "/../" . $image_folder);
+          }
+          
+          }
+       else {
+          // Nếu không có ảnh mới được chọn
+          $imageNew = $old_image; // Sử dụng lại ảnh cũ
+          $sql = "UPDATE `product` SET item_name = ?, item_discription = ?, item_price = ?, category_id = ?, item_status = ?, item_rom = ?, item_ram = ?, item_color = ?, size_screen = ?, item_quantity = ? WHERE item_id = ?";
       $updateCart = "UPDATE `cart` SET  cart_price = ?, name = ? WHERE item_id = ?";
     
       $stmt = $conn->prepare($sql);
@@ -46,44 +97,11 @@ session_start(); ?>
       $stmt->bind_param("ssdiiiisdii", $item_name, $item_desc, $item_price, $item_category, $item_status, $item_rom, $item_ram, $item_color, $item_screen , $item_quantity, $item_id);
       $queryCart->bind_param("dsi",  $item_price, $item_name, $item_id);
       $stmt->execute();
+      $queryCart->execute();
       echo '<div id="alertMessage" class="alert alert-success alert-dismissible">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <strong>Update successfully!</strong> 
     </div>';
-      $queryCart->execute();
-      // Xử lý ảnh mới
-      $old_image = $_POST['item_image'];
-      $imageNew = $_FILES['item_NewImage']['name'];
-    
-      if(!empty($imageNew)){
-          $imageNew_temp = $_FILES['item_NewImage']['tmp_name'];
-          $imageNew_size = $_FILES['item_NewImage']['size'];
-          $image_folder = './assets/products/' . $imageNew;
-    
-          if($imageNew_size > 2000000){
-            echo '<div id="alertMessage" class="alert alert-warning alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Image size too large!</strong> 
-          </div>';
-          } else {
-              $query = "UPDATE `product` SET item_image = ? WHERE item_id = ?";
-              $stmt = $conn->prepare($query);
-              $stmt->bind_param("si", $image_folder, $item_id);
-              $stmt->execute();
-
-            
-          
-
-              $upCart = "UPDATE `cart` SET cart_image = ? WHERE item_id = ?";
-              $query1 = $conn->prepare($upCart);
-              $query1 ->bind_param("si", $image_folder, $item_id );
-              $query1->execute();
-              
-              move_uploaded_file($imageNew_temp, __DIR__ . "/../" . $image_folder);
-          }
-      } else {
-          // Nếu không có ảnh mới được chọn
-          $imageNew = $old_image; // Sử dụng lại ảnh cũ
       }
   }
      ?>
