@@ -43,5 +43,9 @@ username: thanhdanh1
 Password: danh
 
 7. 
-username: nguyendanh
+username: nguyenthanh
 Password: abc123
+
+8. 
+username: trungnguyen
+password: abc123

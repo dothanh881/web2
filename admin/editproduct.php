@@ -149,7 +149,7 @@ session_start(); ?>
     <div class="col-6">
         <div class="form-group">
           <label for="qty">Product Quantity:</label>
-          <input type="number" class="form-control" min="0" name="item_qty" value="<?php echo  $row1['item_quantity'] ?>">
+          <input type="number" class="form-control" min="0"  name="item_qty" value="<?php echo  $row1['item_quantity'] ?>">
       </div>
    
     </div>
@@ -280,20 +280,14 @@ while($row = $rom->fetch_assoc()){ ?>
                   <select class="form-control color_list" name="item_color">
                 
                   <option value="<?php echo $color ?>"><?php echo $color ?></option>
-                  <?php 
-            // Đảm bảo rằng $color đã được định nghĩa trước khi sử dụng
-            if(isset($color)){
-                // Thêm dấu ngoặc kép xung quanh giá trị $color trong truy vấn SQL
-                $sql = "SELECT DISTINCT item_color FROM `product` WHERE item_color != '$color'";
-                $result = $conn->prepare($sql);
-                $result->execute();
-                $color_result = $result->get_result();
-
-                while($row = $color_result->fetch_assoc()){ ?>
-                    <option value="<?php echo $row['item_color'] ?>"><?php echo $row['item_color'] ?></option>
-                <?php }
-            }
-            ?>
+                  <option value="Red">Red</option>
+		        			<option value="Blue">Blue</option>
+		        			<option value="Yellow">Yellow</option>
+		        			<option value="Purple">Purple</option>
+		        			<option value="Black">Black</option>
+		        			<option value="White">White</option>
+		        			<option value="Green">Green</option>
+		        			<option value="Silver">Silver</option>
                   </select>
                 </div>
         		</div>
@@ -304,20 +298,12 @@ while($row = $rom->fetch_assoc()){ ?>
 		        		<label>Screen</label>
 		        		<select class="form-control ram_list" name="item_screen">
                 <option value="<?php echo $screen ?>"><?php echo $screen ?></option>
-                <?php 
-            // Đảm bảo rằng $screen đã được định nghĩa trước khi sử dụng
-            if(isset($screen)){
-                
-                $sql = "SELECT DISTINCT size_screen FROM `product` WHERE size_screen != '$screen' ORDER BY size_screen";
-                $result = $conn->prepare($sql);
-                $result->execute();
-                $screen_result = $result->get_result();
-
-                while($row = $screen_result->fetch_assoc()){ ?>
-                    <option value="<?php echo $row['size_screen'] ?>"><?php echo $row['size_screen'] ?></option>
-                <?php }
-            }
-            ?>
+                <script>
+                  var opt;
+                  for(var i = 5.1; i < 7.1; i+=0.1){
+                    document.write(`<option value="${i.toFixed(1)}">${i.toFixed(1)} inches</option>`)
+                  }
+                 </script>
 
 		        		</select>
 		        	</div>
