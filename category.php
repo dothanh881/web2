@@ -327,21 +327,21 @@ $row_result = mysqli_num_rows($list_result);
             $output .= ' <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
                 <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
-                    <a class="page-link" href="?page=1&sCate=' . $key_brand . '" tabindex="-1">First</a>
+                    <a class="page-link" style="color:#D96666;" href="?page=1&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'" tabindex="-1">First</a>
                 </li>
                 <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
-                    <a class="page-link" href="' . ($current_page == 1 ? '#' : '?page=' . ($current_page - 1)) . '&sCate=' . $key_brand . '">Previous</a>
+                    <a class="page-link" style="color:#D96666;" href=" '.($current_page == 1 ? '#' : '?page=' . ($current_page - 1)).'&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'">Previous</a>
                 </li>';
             for ($i = 1; $i <= $total_pages; $i++) {
                 $output .= '<li class="page-item ' . ($current_page == $i ? 'active' : '') . '">
-                <a class="page-link" href="?page=' . $i . '&sCate=' .$key_brand. '">' . $i . '</a>
+                <a class="page-link" style="color:#D96666'.($current_page == $i ? ';background-color:#8C3B3B;border-color:#8C3B3B"' : '').';" href="?page=' . $i . '&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'">' . $i . '</a>
             </li>';
             }
             $output .= '<li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
-                    <a class="page-link" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1)) . '&sCate=' . $key_brand. '">Next</a>
+                    <a class="page-link" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1)).  '&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'"style="color:#D96666;">Next</a>
                 </li>
                 <li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
-                    <a class="page-link" href="?page=' . $total_pages . '&sCate=' . $key_brand. '">Last</a>
+                    <a class="page-link" href="?page=' . $total_pages .  '&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'" style="color:#D96666;">Last</a>
                 </li>
             </ul>
         </nav>';
@@ -350,21 +350,21 @@ $row_result = mysqli_num_rows($list_result);
             $output .= ' <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
                 <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
-                    <a class="page-link" href="?page=1&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'" tabindex="-1">First</a>
+                    <a class="page-link" style="color:#D96666;" href="?page=1&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'" tabindex="-1">First</a>
                 </li>
                 <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
-                    <a class="page-link" href=" '.($current_page == 1 ? '#' : '?page=' . ($current_page - 1)).'&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'">Previous</a>
+                    <a class="page-link" style="color:#D96666;" href=" '.($current_page == 1 ? '#' : '?page=' . ($current_page - 1)).'&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'">Previous</a>
                 </li>';
             for ($i = 1; $i <= $total_pages; $i++) {
                 $output .= '<li class="page-item ' . ($current_page == $i ? 'active' : '') . '">
-                <a class="page-link" href="?page=' . $i . '&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'">' . $i . '</a>
+                <a class="page-link" style="color:#D96666'.($current_page == $i ? ';background-color:#8C3B3B;border-color:#8C3B3B"' : '').';" href="?page=' . $i . '&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'">' . $i . '</a>
             </li>';
             }
             $output .= '<li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
-                    <a class="page-link" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1)).  '&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'">Next</a>
+                    <a class="page-link" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1)).  '&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'"style="color:#D96666;">Next</a>
                 </li>
                 <li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
-                    <a class="page-link" href="?page=' . $total_pages .  '&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'">Last</a>
+                    <a class="page-link" href="?page=' . $total_pages .  '&sCate='.$key_brand.'&price_F='.$key_minPrice.'&price_T='.$key_maxPrice.'&sRom='.$key_rom.'&sScreen='.$key_screen.'" style="color:#D96666;">Last</a>
                 </li>
             </ul>
         </nav>';

@@ -102,23 +102,23 @@ if ($result->num_rows > 0) {
                             <nav aria-label="Page navigation">
                                 <ul class="pagination justify-content-center">
                                     <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
-                                        <a class="page-link" href="?page=1' . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($fromDate != '' && $toDate != '' ? '&fromDate=' . $fromDate . '&toDate=' . $toDate : '') . '" tabindex="-1">First</a>
+                                        <a class="page-link" style="color:#D96666;" href="?page=1' . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($fromDate != '' && $toDate != '' ? '&fromDate=' . $fromDate . '&toDate=' . $toDate : '') . '" tabindex="-1">First</a>
                                     </li>
                                     <li class="page-item ' . ($current_page == 1 ? 'disabled' : '') . '">
-                                        <a class="page-link" href="' . ($current_page == 1 ? '#' : '?page=' . ($current_page - 1) . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($fromDate != '' && $toDate != '' ? '&fromDate=' . $fromDate . '&toDate=' . $toDate : '')) . '">Previous</a>
+                                        <a class="page-link" style="color:#D96666;" href="' . ($current_page == 1 ? '#' : '?page=' . ($current_page - 1) . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($fromDate != '' && $toDate != '' ? '&fromDate=' . $fromDate . '&toDate=' . $toDate : '')) . '">Previous</a>
                                     </li>';
 
     for ($i = 1; $i <= $total_pages; $i++) {
         $output .= '<li class="page-item ' . ($current_page == $i ? 'active' : '') . '">
-                        <a class="page-link" href="?page=' . $i . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($fromDate != '' && $toDate != '' ? '&fromDate=' . $fromDate . '&toDate=' . $toDate : '') . '">' . $i . '</a>
+                        <a class="page-link" style="color:#D96666'.($current_page == $i ? ';background-color:#8C3B3B;border-color:#8C3B3B"' : '').';" href="?page=' . $i . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($fromDate != '' && $toDate != '' ? '&fromDate=' . $fromDate . '&toDate=' . $toDate : '') . '">' . $i . '</a>
                     </li>';
     }
 
     $output .= '<li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
-                    <a class="page-link" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1) . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($fromDate != '' && $toDate != '' ? '&fromDate=' . $fromDate . '&toDate=' . $toDate : '')) . '">Next</a>
+                    <a class="page-link" style="color:#D96666;" href="' . ($current_page == $total_pages ? '#' : '?page=' . ($current_page + 1) . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($fromDate != '' && $toDate != '' ? '&fromDate=' . $fromDate . '&toDate=' . $toDate : '')) . '">Next</a>
                 </li>
                 <li class="page-item ' . ($current_page == $total_pages ? 'disabled' : '') . '">
-                    <a class="page-link" href="?page=' . $total_pages . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($fromDate != '' && $toDate != '' ? '&fromDate=' . $fromDate . '&toDate=' . $toDate : '') . '">Last</a>
+                    <a class="page-link" style="color:#D96666;" href="?page=' . $total_pages . ($status != 'select' ? '&selectedStatus=' . $status : '') . ($fromDate != '' && $toDate != '' ? '&fromDate=' . $fromDate . '&toDate=' . $toDate : '') . '">Last</a>
                 </li>
             </ul>
         </nav>
