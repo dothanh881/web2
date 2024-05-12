@@ -14,9 +14,15 @@ $products_per_page = 6;
   
 
 $total_products = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `product`"));
+// Khi người dùng thực hiện truy vấn mới
+if (isset($_GET['page'])) {
+    // Lưu trữ giá trị current_page trong session
+    $_SESSION['current_page'] = $_GET['page'];
+}
 
+// Kiểm tra xem session đã lưu trữ giá trị current_page hay chưa
+$current_page = isset($_SESSION['current_page']) ? $_SESSION['current_page'] : 1;
 
-$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
 $offset = ($current_page - 1) * $products_per_page;
 $sql = "SELECT * FROM `product`, `category` WHERE `product`.category_id = `category`.category_id   ";

@@ -8,22 +8,6 @@ include("./../functions.php");
 ?>
 
 
-<?php
-
-//paging nav
-  $products_per_page = 6;
-  
-  $total_products = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `user` where is_admin = 0"));
-
-  $total_pages = ceil($total_products / $products_per_page);
-
-
-  $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-  $offset = ($current_page - 1) * $products_per_page;
-
-
-?>
 
 
 

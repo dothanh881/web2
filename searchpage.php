@@ -200,7 +200,7 @@ $row_result = mysqli_num_rows($list_result);
         <form class="b_inputOfSearch" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="get">
             <div class="form-group">
                 Category
-                <select name="sCate" class="form-control" id="sCate">
+                <select name="sCate" class="form-select" id="sCate">
                     <option value="All categories">All categories</option>
                     <?php
                     $brand = $conn->prepare("SELECT category_name FROM `product`,`category` WHERE product.category_id = category.category_id group by category_name");

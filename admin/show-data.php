@@ -15,8 +15,14 @@ $order_per_page = 8;
 
 $total_orders = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `order`"));
 
+// Khi người dùng thực hiện truy vấn mới
+if (isset($_GET['page'])) {
+    // Lưu trữ giá trị current_page trong session
+    $_SESSION['current_page'] = $_GET['page'];
+}
 
-$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+// Kiểm tra xem session đã lưu trữ giá trị current_page hay chưa
+$current_page = isset($_SESSION['current_page']) ? $_SESSION['current_page'] : 1;
 
 $offset = ($current_page - 1) * $order_per_page;
 $sql = "SELECT * FROM `order`   ";

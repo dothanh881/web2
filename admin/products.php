@@ -124,22 +124,7 @@ session_start(); ?>
 
 
 
-<?php
 
-//paging nav
-  $products_per_page = 6;
-  
-  $total_products = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `product`"));
-
-  $total_pages = ceil($total_products / $products_per_page);
-
-
-  $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-  $offset = ($current_page - 1) * $products_per_page;
-
-
-?>
 
 
       <div class="row">
@@ -253,14 +238,38 @@ function input_filter($data){
 if(isset($_POST['add-product'])){
   // Check if the file upload field is set and not empty
   if(isset($_FILES["item_image"]) && $_FILES["item_image"]["error"] == UPLOAD_ERR_OK){
+
+
+    $maxFileSize = 2 * 1024 * 1024; // 5MB
+    if($_FILES['item_image']['size'] > $maxFileSize) {
+        echo '<div  id="alertMessage" class="alert alert-danger alert-dismissible fade show fixed-top mt-5 " role="alert">
+            <strong>Error</strong> File size exceeds 2MB limit.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>';
+        exit; // Stop further execution
+    }
+    
+    // Check file type
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    if(!in_array($_FILES['item_image']['type'], $allowedTypes)) {
+        echo '<div  id="alertMessage" class="alert alert-danger alert-dismissible fade show fixed-top mt-5 " role="alert">
+            <strong>Error</strong> Only JPG, JPEG, and PNG files are allowed.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>';
+        exit; // Stop further execution
+    }
       // Process the uploaded image file
       $tmp_name = $_FILES["item_image"]["tmp_name"];
       $fldimageurl = "./assets/products/" . basename($_FILES["item_image"]["name"]);
 
      
-   
+       
       // Move the uploaded file to the destination directory
-      if(move_uploaded_file($tmp_name, __DIR__ . "\\..\\" . $fldimageurl)){
+      if(move_uploaded_file($tmp_name, __DIR__ ."/../". $fldimageurl)){
           // Sanitize and process form data
           $item_name = input_filter($_POST['item_name']);
           $item_category = input_filter($_POST['category']);
@@ -305,8 +314,8 @@ if(isset($_POST['add-product'])){
               </div>';
           }
       } else {
-          echo '<div id="alertMessage" class="alert alert-danger alert-dismissible fade show fixed-top mt-5 " role="alert">
-              <strong>Error</strong> Failed to upload image.
+          echo '<div id="alertMessage"  class="alert alert-danger alert-dismissible fade show fixed-top mt-5 " role="alert">
+              <strong>Error</strong> Failed to upload image. '.$fldimageurl.' and '.$tmp_name.'
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>

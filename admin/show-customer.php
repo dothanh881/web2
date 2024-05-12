@@ -9,13 +9,20 @@ $searchbox = isset($_GET['searchName']) ? $_GET['searchName'] : '';
 
 //paging nav
 
-$customers_per_page = 6;
+$customers_per_page = 3;
   
 
 $total_customers = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `user` WHERE is_admin = 0"));
 
 
-$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+// Khi người dùng thực hiện truy vấn mới
+if (isset($_GET['page'])) {
+    // Lưu trữ giá trị current_page trong session
+    $_SESSION['current_page'] = $_GET['page'];
+}
+
+// Kiểm tra xem session đã lưu trữ giá trị current_page hay chưa
+$current_page = isset($_SESSION['current_page']) ? $_SESSION['current_page'] : 1;
 
 $offset = ($current_page - 1) * $customers_per_page;
 $sql = "SELECT * FROM `user` WHERE is_admin = 0  ";
