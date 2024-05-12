@@ -236,6 +236,7 @@ function input_filter($data){
 
 
 if(isset($_POST['add-product'])){
+  $proceed_upload = true;
   // Check if the file upload field is set and not empty
   if(isset($_FILES["item_image"]) && $_FILES["item_image"]["error"] == UPLOAD_ERR_OK){
 
@@ -248,7 +249,7 @@ if(isset($_POST['add-product'])){
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>';
-        exit; // Stop further execution
+        $proceed_upload = false; 
     }
     
     // Check file type
@@ -260,8 +261,12 @@ if(isset($_POST['add-product'])){
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>';
-        exit; // Stop further execution
+        $proceed_upload = false; 
+
+
     }
+
+    if($proceed_upload){
       $tmp_name = $_FILES["item_image"]["tmp_name"];
       $fldimageurl = "./assets/products/" . basename($_FILES["item_image"]["name"]);
 
@@ -318,6 +323,8 @@ if(isset($_POST['add-product'])){
               </button>
           </div>';
       }
+    }
+     
   } else {
       echo '<div id="alertMessage" class="alert alert-danger alert-dismissible fade show fixed-top mt-5 " role="alert">
           <strong>Error</strong> No image uploaded or an error occurred.
@@ -502,21 +509,17 @@ if(isset($_POST['add-product'])){
 
     const timeoutDuration = 3000;
 
-// Get the alert element
 const alertElement = document.getElementById('alertMessage');
 
-// Function to hide the alert after a timeout
 const hideAlert = () => {
     alertElement.classList.remove('show');
     setTimeout(() => {
         alertElement.style.display = 'none';
-    }, 200); // Transition duration in milliseconds
+    }, 200); 
 };
 
-// Hide the alert after the specified duration
 setTimeout(hideAlert, timeoutDuration);
 
-// Add event listener to close button to hide alert immediately if clicked
 alertElement.querySelector('.close').addEventListener('click', hideAlert);
 </script>
 

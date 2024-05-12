@@ -319,9 +319,9 @@ INSERT INTO `product` (`item_id`, `category_id`, `item_name`, `item_quantity`, `
 (11, 2, 'Samsung Galaxy S23 FE', 189, 524.00, 'Purple', './assets/products/img11.png', 'The Galaxy S23 FE 5G is the best Galaxy FE device Samsung has ever launched. Equipped with premium features from design to outstanding performance, an incredible night camera system. All combine to bring the perfect experience for work and entertainment', 2, 512, 8, 6.40, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (12, 2, 'Samsung Galaxy A14', 200, 201.00, 'Silver', './assets/products/img12.png', 'Adding color and experience to your life, Samsung introduces the cheap Galaxy A14 4G with a series of new improvements. Everything is harmoniously combined from youthful design, 50MP camera system, sharp screen to super large battery', 2, 128, 4, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (13, 2, 'Samsung Galaxy M54', 198, 1089.00, 'Silver', './assets/products/img13.png', 'Following the success of the Galaxy M53 5G, Samsung continues to launch the Samsung Galaxy M54 5G phone model. This launch, Samsung has upgraded performance, battery capacity and improved design to help bring the best product to you.', 1, 256, 8, 6.70, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(34, 1, 'iPhone 15 Plus', 188, 989.90, 'Green', './assets/products/img14.png', 'iPhone 15 Plus 256GB not only stands out thanks to its 6.7-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory. In addition, this new generation of iPhone is also equipped', 2, 256, 6, 6.70, '2024-05-05 22:24:54', '2024-05-05 22:24:54'),
-(35, 1, 'iPhone 15', 180, 747.00, 'Yellow', './assets/products/img15.png', 'iPhone 15 not only stands out thanks to its 6.1-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory. In addition, this new generation of iPhone is also equipped with a pair of modern rear cameras', 2, 128, 6, 6.10, '2024-05-05 22:26:45', '2024-05-05 22:26:45'),
-(44, 1, 'Iphone X', 122, 852.66, 'Black', './assets/products/img17.png', 'good', 0, 128, 6, 6.40, '2024-05-11 11:21:31', '2024-05-11 11:21:31');
+(14, 1, 'iPhone 15 Plus', 188, 989.90, 'Green', './assets/products/img14.png', 'iPhone 15 Plus 256GB not only stands out thanks to its 6.7-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory. In addition, this new generation of iPhone is also equipped', 2, 256, 6, 6.70, '2024-05-05 22:24:54', '2024-05-05 22:24:54'),
+(15, 1, 'iPhone 15', 180, 747.00, 'Yellow', './assets/products/img15.png', 'iPhone 15 not only stands out thanks to its 6.1-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory. In addition, this new generation of iPhone is also equipped with a pair of modern rear cameras', 2, 128, 6, 6.10, '2024-05-05 22:26:45', '2024-05-05 22:26:45'),
+(16, 1, 'Iphone X', 122, 852.66, 'Black', './assets/products/img17.png', 'good', 0, 128, 6, 6.40, '2024-05-11 11:21:31', '2024-05-11 11:21:31');
 
 -- --------------------------------------------------------
 
@@ -419,13 +419,13 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

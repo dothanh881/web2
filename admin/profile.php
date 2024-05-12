@@ -255,18 +255,15 @@ if ($result->num_rows == 1) {
 
 <script>
    function checkPassword() {
-    // Get the password and re-typed password values
     var password = document.getElementById('password').value.trim();
     var newPassword = document.getElementById('newPassword'); // Check for existence
     var re_newPassword = document.getElementById('re-newPassword'); // Check for existence
 
-    // Check if the password is empty
     if (!password) {
       alert("Please enter your password.");
       return false;
     }
 
-    // Validate new password and re-typed password (only if elements exist)
     if (newPassword && re_newPassword) {
       if (!newPassword.value.trim()) {
         alert("Please enter your new password.");
@@ -278,7 +275,6 @@ if ($result->num_rows == 1) {
       }
     }
 
-    // Rest of your form submission logic (assuming you have a submit button)
   }
 
   document.getElementById('click-re-password').addEventListener('click', function (e) {
@@ -303,10 +299,8 @@ inputContainer.style.display='block';
 
   const timeoutDuration = 5000;
 
-// Get the alert element
 const alertElement = document.getElementById('alertMessage');
 
-// Function to hide the alert after a timeout
 const hideAlert = () => {
     alertElement.classList.remove('show');
     setTimeout(() => {
@@ -314,10 +308,8 @@ const hideAlert = () => {
     }, 200); // Transition duration in milliseconds
 };
 
-// Hide the alert after the specified duration
 setTimeout(hideAlert, timeoutDuration);
 
-// Add event listener to close button to hide alert immediately if clicked
 alertElement.querySelector('.close').addEventListener('click', hideAlert);
 </script>
 </script>
