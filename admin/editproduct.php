@@ -83,6 +83,10 @@ session_start(); ?>
             $query1->execute();
             
             move_uploaded_file($imageNew_temp, __DIR__ . "/../" . $image_folder);
+            echo '<div id="alertMessage" class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Update successfully!</strong> 
+          </div>';
           }
           
           }

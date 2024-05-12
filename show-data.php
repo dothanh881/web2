@@ -31,7 +31,7 @@ $filter = [];
 if($status !== 'select') {
     $filter[] = "order_status = '$status'";
 }
-if($fromDate !== $toDate) {
+if(!empty($fromDate) && !empty($toDate)) {
     $filter[] = "order_date BETWEEN '$fromDate' AND '$toDate'";
 }
 if(!empty($filter)) {
