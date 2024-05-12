@@ -166,7 +166,7 @@ session_start();
                             </div>
 
 
-                            <div><a href="register.php">Create a new account?</a></div>
+                            <div><a href="register.php" style="color:#D96666;">Create a new account?</a></div>
                             <br>
                             <div class="text-center">
                                 <div class="row">

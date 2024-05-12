@@ -63,9 +63,9 @@ if(isset($_SESSION['user_id'])){
             <div class="row" id="order">
                 <div class="text-center">
                     <h1 class="display-4 mt-2 text-danger">Thank You!</h1>
-                    <h2 class="text-success">Your Order Placed Successfully!</h2>
+                    <h2 class="text-success" >Your Order Placed Successfully!</h2>
                     <h4>Order Number: <?php echo $row['order_id'] ?></h4>
-                    <a href="order-detail.php?order=<?= $row['order_id'] ?>">Click here for order details</a>
+                    <a href="order-detail.php?order=<?= $row['order_id'] ?>" style="color:#D96666;">Click here for order details</a>
                 </div>
             </div>
         <?php  ?>

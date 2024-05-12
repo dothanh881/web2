@@ -224,7 +224,7 @@ if ($result->num_rows == 1) {
           required>
       </div>
       <div class="row-6">
-        <a href="#" id="click-re-password">Change your password ?</a>
+        <a href="#" id="click-re-password" style="color:#D96666;">Change your password ?</a>
       </div>
     </div>
 

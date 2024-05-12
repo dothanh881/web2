@@ -180,7 +180,7 @@ alertElement.querySelector('.close').addEventListener('click', hideAlert);
 function validateForm() {
     var paymentMethod = document.querySelector('input[name="payment"]:checked');
     var deliveryAddress = document.querySelector('input[name="address"]:checked');
-
+   
     if (!paymentMethod) {
         alert('Please select a payment method.');
         window.location.href = "checkout.php";
@@ -195,6 +195,7 @@ function validateForm() {
         
     }
 
+   
    
     // If everything is valid, the form will be submitted as usual
     return true;
@@ -303,7 +304,9 @@ document.getElementById("newDistrict").addEventListener("change", updateInfo);
         var newWard = document.getElementById("newWard").value;
         var newCity = document.getElementById("newCity").value;
         var newDistrict = document.getElementById("newDistrict").value;
-        
+
+
+      
         // Lấy ngày hiện tại
         var currentDate = new Date();
         var day = currentDate.getDate();

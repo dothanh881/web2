@@ -106,7 +106,7 @@ if (isset($_POST['pid'])) {
         $data ='';
 
 
-        if( empty($newName)){
+        if( empty($newName) && empty($newCity) && empty($newEmail) && empty($newPhone) && empty($newStreet)){
 
 
          
