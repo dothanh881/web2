@@ -1,1 +1,0 @@
-ajax, xml, cookie session 
