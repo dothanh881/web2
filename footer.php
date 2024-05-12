@@ -32,14 +32,30 @@
                 </div>
             </div>
             <div class="col-lg-2 col-12">
-                <h4 class="font-rubik font-size-20">Account</h4>
-                <div class="d-flex flex-column flex-wrap">
-                    <a href="profile.php" class="font-baloo font-size-14 text-white-50 pb-1">My Account</a>
-                    <a href="order.php" class="font-baloo font-size-14 text-white-50 pb-1">Order History</a>
-                    <a href="#" class="font-baloo font-size-14 text-white-50 pb-1">Wish List</a>
-                    <a href="#" class="font-baloo font-size-14 text-white-50 pb-1">Newslatters</a>
-                </div>
-            </div>
+    <h4 class="font-rubik font-size-20">Account</h4>
+    <div class="d-flex flex-column flex-wrap">
+        <?php
+        if(isset($_SESSION['user_id'])) {
+            // Nếu user_id đã tồn tại trong session, hiển thị các liên kết
+            ?>
+            <a href="profile.php" class="font-baloo font-size-14 text-white-50 pb-1">My Account</a>
+            <a href="order.php" class="font-baloo font-size-14 text-white-50 pb-1">Order History</a>
+            <a href="#" class="font-baloo font-size-14 text-white-50 pb-1">Wish List</a>
+            <a href="#" class="font-baloo font-size-14 text-white-50 pb-1">Newsletters</a>
+            <?php
+        } else {
+            // Nếu không có user_id trong session, hiển thị thông báo cần đăng nhập
+            ?>
+            <a href="#" onclick="alert('Please login to access your account.');" class="font-baloo font-size-14 text-white-50 pb-1">My Account</a>
+            <a href="#"  onclick="alert('Please login to access your account.');" class="font-baloo font-size-14 text-white-50 pb-1">Order History</a>
+            <a href="#"  onclick="alert('Please login to access your account.');" class="font-baloo font-size-14 text-white-50 pb-1">Wish List</a>
+            <a href="#"  onclick="alert('Please login to access your account.');" class="font-baloo font-size-14 text-white-50 pb-1">Newsletters</a>
+            <?php
+        }
+        ?>
+    </div>
+</div>
+
         </div>
     </div>
    
