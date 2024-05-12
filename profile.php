@@ -232,7 +232,7 @@ if ($result->num_rows == 1) {
 
 
     <div class="form-group">
-      <button type="submit" style="height:40px" name="update_btn" class="btn btn-primary">Update</button>
+      <button type="submit" style="height:40px" name="update_btn" class="btn sbtn">Update</button>
     </div>
   </form>
 <?php } else {

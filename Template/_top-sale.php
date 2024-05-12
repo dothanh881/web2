@@ -81,7 +81,7 @@
                            
                           
                            
-                            <button type="button" class="btn btn-warning font-size-12 addItemBtn">Add to Cart</button>
+                            <button type="button" class="btn btnadd font-size-12 addItemBtn">Add to Cart</button>
                           
                        
 

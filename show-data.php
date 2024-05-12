@@ -83,7 +83,7 @@ if ($result->num_rows > 0) {
                        <td>' . $order->order_date . '</td>
                        <td>$' . $order->order_total_price . '</td>
                        <td>
-                           <a href="order-detail.php?order=' . $order->order_id . '" class="btn btn-primary">
+                           <a href="order-detail.php?order=' . $order->order_id . '" class="btn sbtn">
                                <i class="far fa-eye"></i> View
                            </a>
                        </td>

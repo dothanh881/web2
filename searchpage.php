@@ -261,7 +261,7 @@ $row_result = mysqli_num_rows($list_result);
                 </select>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn-sub">Search</button>
+                <button type="submit" class="btn sbtn">Search</button>
             </div>
         </form>
     </div>
@@ -309,7 +309,7 @@ $row_result = mysqli_num_rows($list_result);
                                     <input type="hidden" name="image" value="<?= $item['item_image']; ?>">
                                     <input type="hidden" name="qty" value="1">
                                     <div class="text-center">
-                                        <button type="button" class="btn btn-warning font-size-12 addItemBtn">Add to
+                                        <button type="button" class="btn btnadd font-size-12 addItemBtn">Add to
                                             Cart</button>
 
                                     </div>

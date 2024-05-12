@@ -52,7 +52,7 @@ $in_cart = $Cart->getCartId($user_id, $product->getData('cart'));
                                     <input type="hidden" name="price" value="<?= $item['item_price']; ?>">
                                     <input type="hidden" name="image" value="<?= $item['item_image']; ?>">
                                     <input type="hidden" name="qty" value="1">
-                                    <button type="button" class="btn btn-warning font-size-12 addItemBtn">Add to Cart</button>
+                                    <button type="button" class="btn btnadd font-size-12 addItemBtn">Add to Cart</button>
 
                                 </form>
                             </div>

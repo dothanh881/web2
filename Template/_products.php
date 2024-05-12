@@ -68,7 +68,7 @@
                                     <input type="hidden" name="price" value="<?= $item['item_price']; ?>">
                                     <input type="hidden" name="image" value="<?= $item['item_image']; ?>">
                                     <input type="hidden" name="qty" value="1">
-                                    <button type="button" class="btn btn-warning font-size-16 form-control addItemBtn "><i class="fas fa-cart-plus"></i>  Add to Cart</button>
+                                    <button type="button" class="btn btnadd font-size-16 form-control addItemBtn "><i class="fas fa-cart-plus"></i>  Add to Cart</button>
 
                                 </form>
 

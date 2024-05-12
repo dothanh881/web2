@@ -9,7 +9,7 @@ $searchbox = isset($_GET['searchName']) ? $_GET['searchName'] : '';
 
 //paging nav
 
-$customers_per_page = 3;
+$customers_per_page = 4;
   
 
 $total_customers = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `user` WHERE is_admin = 0"));
