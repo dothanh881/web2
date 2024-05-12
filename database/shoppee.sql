@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 12, 2024 lúc 03:23 PM
+-- Thời gian đã tạo: Th5 12, 2024 lúc 05:26 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -36,6 +36,15 @@ CREATE TABLE `cart` (
   `name` varchar(255) NOT NULL,
   `cart_image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `user_id`, `item_id`, `cart_quantity`, `cart_price`, `name`, `cart_image`) VALUES
+(489, 'f5889a61ccd0', 5, 1, 1048.00, 'iPhone 13 Pro Max', './assets/products/img5.png'),
+(490, 'f5889a61ccd0', 35, 1, 747.00, 'iPhone 15', './assets/products/img15.png'),
+(497, '34b8a535e37c', 6, 1, 984.00, 'iPhone 12 Pro Max', './assets/products/img6.png');
 
 --
 -- Bẫy `cart`
@@ -324,12 +333,12 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`item_id`, `category_id`, `item_name`, `item_quantity`, `item_price`, `item_color`, `item_image`, `item_discription`, `item_status`, `item_rom`, `item_ram`, `size_screen`, `created_at`, `updated_at`) VALUES
-(1, 1, 'iPhone 15 Pro Max', 187, 1560.00, 'Black', './assets/products/img1.png', 'iPhone 15 Pro Max is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone 15 Pro Max possesses Apple most outstanding features.', 2, 512, 8, 6.40, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(1, 1, 'iPhone 15 Pro Max', 187, 1290.00, 'Black', './assets/products/img1.png', 'iPhone 15 Pro Max is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone 15 Pro Max possesses Apple most outstanding features.', 2, 512, 8, 6.40, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (2, 1, 'iPhone 15 Pro Max', 189, 1452.00, 'Silver', './assets/products/img2.png', 'iPhone 15 Pro Max is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone 15 Pro Max possesses Apple most outstanding features.', 2, 512, 8, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (3, 1, 'iPhone 14 Plus', 186, 1129.00, 'Purple', './assets/products/img3.png', 'The appeal of the new generation iPhone 2022 with a large screen, the best battery ever, impressive night photography and a series of top-notch technologies, the iPhone 14 Plus brings users into advanced mobile experiences.', 2, 256, 6, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (4, 1, 'iPhone 14 Plus', 196, 1169.56, 'Yellow', './assets/products/img4.png', 'The appeal of the new generation iPhone 2022 with a large screen, the best battery ever, impressive night photography and a series of top-notch technologies, the iPhone 14 Plus brings users into advanced mobile experiences.', 2, 256, 6, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (5, 1, 'iPhone 13 Pro Max', 187, 1048.00, 'White', './assets/products/img5.png', 'iPhone 13 Pro Max has the best dual camera system ever, the fastest Apple A15 processor in the smartphone world and extremely long battery life, ready to accompany you all day long.', 2, 512, 8, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(6, 1, 'iPhone 12 Pro Max', 173, 484.00, 'Yellow', './assets/products/img6.png', 'In the last months of 2020, Apple officially introduced to users as well as iFans the new generation of iPhone 12 series with a series of breakthrough features, completely transformed design, powerful performance and one of That is the iPhone 12 Pro Max.', 2, 128, 6, 6.70, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(6, 1, 'iPhone 12 Pro Max', 173, 984.00, 'Yellow', './assets/products/img6.png', 'In the last months of 2020, Apple officially introduced to users as well as iFans the new generation of iPhone 12 series with a series of breakthrough features, completely transformed design, powerful performance and one of That is the iPhone 12 Pro Max.', 2, 128, 6, 6.70, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (7, 2, 'Samsung Galaxy S24 Ultra', 189, 1089.00, 'Blue', './assets/products/img7.png', 'Samsung Galaxy S24 Ultra is the smartest Galaxy phone ever with connection power, creative power and entertainment power all powered by Galaxy AI artificial intelligence. Completely new design from the classy Titanium frame, super camera with resolution.', 2, 512, 12, 6.80, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (8, 2, 'Samsung Galaxy S22 Ultra', 173, 605.00, 'Black', './assets/products/img8.png', 'Samsung Galaxy S24 Ultra is the smartest Galaxy phone ever with connection power, creative power and entertainment power all powered by Galaxy AI artificial intelligence. Completely new design from the classy Titanium frame, super camera with resolution.', 2, 256, 12, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (9, 2, 'Samsung Galaxy Z Fold5', 196, 1493.00, 'Blue', './assets/products/img9.png', 'Joining Samsung Galaxy Z Flip 5 flexibly, you will experience a series of exciting breakthrough technologies and a completely new unique design. Where you can freely explore and confidently express your personality.', 2, 512, 12, 7.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
@@ -339,7 +348,7 @@ INSERT INTO `product` (`item_id`, `category_id`, `item_name`, `item_quantity`, `
 (13, 2, 'Samsung Galaxy M54', 196, 1089.00, 'Silver', './assets/products/img13.png', 'Following the success of the Galaxy M53 5G, Samsung continues to launch the Samsung Galaxy M54 5G phone model. This launch, Samsung has upgraded performance, battery capacity and improved design to help bring the best product to you.', 2, 256, 8, 6.70, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (34, 1, 'iPhone 15 Plus', 188, 989.90, 'Green', './assets/products/img14.png', 'iPhone 15 Plus 256GB not only stands out thanks to its 6.7-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory.', 2, 256, 6, 6.70, '2024-05-05 22:24:54', '2024-05-05 22:24:54'),
 (35, 1, 'iPhone 15', 179, 747.00, 'Yellow', './assets/products/img15.png', 'iPhone 15 not only stands out thanks to its 6.1-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory. In addition, this new generation of iPhone is also equipped with a pair of modern rear cameras.', 2, 128, 6, 6.10, '2024-05-05 22:26:45', '2024-05-05 22:26:45'),
-(70, 1, 'Iphone X', 200, 1234.00, 'Red', './assets/products/6.png', 'iPhone X is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone X possesses Apple most outstanding features.', 2, 128, 8, 6.60, '2024-05-12 19:01:01', '2024-05-12 19:01:01');
+(70, 1, 'Iphone X', 200, 825.00, 'Red', './assets/products/8.png', 'iPhone X is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone X possesses Apple most outstanding features.', 2, 128, 8, 6.60, '2024-05-12 19:01:01', '2024-05-12 19:01:01');
 
 -- --------------------------------------------------------
 
@@ -373,8 +382,8 @@ INSERT INTO `user` (`user_id`, `email`, `username`, `password`, `street`, `distr
 ('34b8a535e37c', 'beyeu@gmail.com', 'beyeu', '$2y$10$l0tZoDufAkqol88O5JNhfuA/TlTvtgrGZK6ahsLECUD0Cx/a1TgnC', '237 Ly Thuong Kiet', 'District 11      ', 'Ho Chi Minh      ', '0981445421', 1, 0, '2024-05-07 11:28:03', '2024-05-07 11:28:03', 'Be Yeu', 'Ward 10      '),
 ('4ac4503d26ea', 'nguyenngocnhien@gmail.com', 'ngnhien91', '$2y$10$i0OpDgk8X99SrnmL0tYYJeV1ACdvgoE9pHG7Nuv8dX9RuEVI7Mn5O', '42 Thanh Thai', 'District 10', 'Ho Chi Minh', '0985566691', 1, 0, '2024-05-07 09:19:09', '2024-05-07 09:19:09', 'Nguyen Ngoc Nhien', 'Ward 12'),
 ('53091d01d890', 'thanh@gmail.com', 'dothanh1', '$2y$10$f0iEZLKTgVpN/mUPXPINCuLvI3u7M9pwkLlH/W2YIOqkChHJVi0Ei', '273 An Duong Vuong', 'District 5 ', 'Ho Chi Minh ', '0981776491', 1, 0, '2024-05-04 22:46:53', '2024-05-04 22:46:53', 'Thanh Do', 'Ward 8'),
-('5d314b93c7b7', 'admin@email.com', 'admin', '$2y$10$Nt9p/gZUqaHsldfLWkmNReFkqXyxABh4W61sVPmWpoUk7yVc6pLFG', '273 An Duong Vuong', 'District 5  ', 'Ho Chi Minh       ', '0981776492', 1, 1, '2024-04-14 21:21:53', '2024-04-14 21:21:53', 'Phu Thanh', 'Ward 8 '),
-('63678124a1a3', 'tnguyen@gmail.com', 'trungnguyen', '$2y$10$qeWG7Aa3FVDP5fsPYy9pq.EWNcfVo6RFoczUpJciZX/GEBo4Bf6Ai', 'Lu Gia', 'District 11', 'Ho Chi Minh', '0981776491', 1, 0, '2024-05-12 19:56:08', '2024-05-12 19:56:08', 'Trung Nguyen', 'Ward 12'),
+('5d314b93c7b7', 'admin@email.com', 'admin', '$2y$10$Nt9p/gZUqaHsldfLWkmNReFkqXyxABh4W61sVPmWpoUk7yVc6pLFG', '273 An Duong Vuong', 'district 12', 'Ho Chi Minh         ', '0981776492', 1, 1, '2024-04-14 21:21:53', '2024-04-14 21:21:53', 'Phu Thanh', 'Ward 9'),
+('63678124a1a3', 'tnguyen@gmail.com', 'trungnguyen', '$2y$10$qeWG7Aa3FVDP5fsPYy9pq.EWNcfVo6RFoczUpJciZX/GEBo4Bf6Ai', 'Lu Gia', 'District 11 ', 'Ho Chi Minh ', '0981776491', 1, 0, '2024-05-12 19:56:08', '2024-05-12 19:56:08', 'Trung Nguyen', 'Ward 11'),
 ('8016c59ca618', 'khanghuynh@gmail.com', 'dkhang', '$2y$10$CyhfKE3rKNv0ZWr6ielNC.CqHfOzCBSBiCx9bi4y2KgMCvm2TVTJW', '50 Pham Van Dong', 'Go Vap', 'Ho Chi Minh', '0981332561', 1, 0, '2024-05-07 09:13:36', '2024-05-07 09:13:36', 'Huynh Duy Khang', 'Ward 11'),
 ('b690eca96339', 'thanhdanh@gmail.com', 'thanhdanh1', '$2y$10$2Z/ZJOgTLGTnDjEA79uqQeu7C2.MAh/bjXQ5PveRvU7PgUCyfp0DK', '82 An Duong Vuong', 'District 10', 'Ho Chi Minh', '0221545454', 0, 0, '2024-05-06 09:16:03', '2024-05-06 09:16:03', 'Danh Nguyen', 'Ward 10'),
 ('f47e925465cc', 'admin1@gmail.com', 'admin12', '$2y$10$/ZfsUGmZaDqRWtPvauoSI.CzZ4vPCTjmWWwFcGlTqC3qVYtee.Z2q', '319 Ly Thuong Kiet', 'District 11     ', 'Ho Chi Minh     ', '0165452116', 1, 1, '2024-05-06 14:34:54', '2024-05-06 14:34:54', 'Admin12', 'Ward 10     '),
@@ -433,19 +442,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=487;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=498;
 
 --
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
