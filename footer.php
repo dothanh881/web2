@@ -177,14 +177,27 @@ alertElement.querySelector('.close').addEventListener('click', hideAlert);
 
 
 
+    
+	function setError(ele, message) {
+		let parentEle = ele.parentNode;
+		parentEle.querySelector('small').innerText = message;
+		ele.style.borderColor = "red";
+		parentEle.querySelector('small').style.color = "red";
+	}
+
+	function setSuccess(ele) {
+		ele.style.borderColor = "green";
+		ele.parentNode.querySelector('small').innerText = "";
+	}
 function validateForm() {
     var paymentMethod = document.querySelector('input[name="payment"]:checked');
     var deliveryAddress = document.querySelector('input[name="address"]:checked');
-   
+    var newAddressRadio = document.getElementById("new-address-radio");
+
     if (!paymentMethod) {
         alert('Please select a payment method.');
         window.location.href = "checkout.php";
-        return false; // Prevent form submission
+        return false; 
        
     }
 
@@ -192,24 +205,70 @@ function validateForm() {
         alert('Please select a delivery address option.');
         window.location.href = "checkout.php";
         return false; // Prevent form submission
-        
     }
 
+     if(newAddressRadio.checked){
+               
+        const usernameElement = document.getElementById('newFullname');
+	usernameElement.onblur= function () {
+		const username = usernameElement.value.trim();
+		if (!username) {
+			setError(usernameElement, "Please re-enter the recipient's name !");
+		} else {
+			setSuccess(usernameElement);
+		}
+	};
+	const emailElement = document.getElementById('newEmail');
+	emailElement.onblur=function () {
+		const email = emailElement.value.trim();
+		const emailRegex = /^\s*[^@\s]+@[^\s@\s]+\.[^\s@\s]*\s*$/;
+		if (!email || !emailRegex.test(email)) {
+			setError(emailElement, "Please enter your email again ! It is not the correct format");
+		} else {
+			setSuccess(emailElement);
+		}
+	};
+	const mobileElement = document.getElementById('newPhone');
+	mobileElement.onblur = function () {
+		const mobile = mobileElement.value.trim();
+		const phoneRegex = /^0[1-9]{9}$/;
+		if (!mobile || !phoneRegex.test(mobile)) {
+			setError(mobileElement, "The phone number is not in the correct format !");
+		} else {
+			setSuccess(mobileElement);
+		}
+	};
+	const streetElement = document.getElementById('newStreet');
+	streetElement.onblur = function () {
+		const street = streetElement.value.trim();
+		if (!street) {
+			setError(streetElement, "Please enter street again !");
+
+		} else {
+			setSuccess(streetElement);
+		}
+	};
+
+            
+
+
+
+        }
+    
    
    
-    // If everything is valid, the form will be submitted as usual
     return true;
 }
  
  
 </script>
-<!-- Đưa vào cuối trang HTML -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
           
     var checkout = document.getElementById("checkout");
     
     var infoCheckout = document.querySelector("#info-checkout");
+    var infoCheckout1 = document.querySelector("#info-checkout1");
         // Chọn radio buttons
         var availableAddressRadio = document.getElementById("available-address-radio");
         var newAddressRadio = document.getElementById("new-address-radio");
@@ -281,7 +340,8 @@ function validateForm() {
         newAddressRadio.addEventListener("click", function() {
             shipingDetails.style.display = "block"; 
             shipingDetailsAvailable.style.display = "none";
-                    // Lắng nghe sự kiện "input" trên các trường nhập liệu của form mới
+            var infoCheckout = document.querySelector("#info-checkout");
+
 document.getElementById("newFullname").addEventListener("input", updateInfo);
 document.getElementById("newEmail").addEventListener("input", updateInfo);
 document.getElementById("newPhone").addEventListener("input", updateInfo);
@@ -293,6 +353,8 @@ document.getElementById("newDistrict").addEventListener("change", updateInfo);
            
         // Lấy dữ liệu từ các input và select
         function updateInfo() {
+            var infoCheckout = document.querySelector("#info-checkout");
+
     // Kiểm tra nếu radio "new-address-radio" đã được chọn
     if (newAddressRadio.checked) {
         // Lấy dữ liệu từ các input và select
@@ -315,7 +377,8 @@ document.getElementById("newDistrict").addEventListener("change", updateInfo);
         var formattedDate = year + '/' + month + '/' + day;
         
         // Hiển thị thông tin mới trên giao diện
-        infoCheckout.innerHTML = `
+       
+        infoCheckout1.innerHTML = `
             <div class="row">
             <div class="col-md-6">
                     <h6>Receiver Name:</h6>
@@ -340,7 +403,7 @@ document.getElementById("newDistrict").addEventListener("change", updateInfo);
                 <h6>Address:</h6>
                 <p>${newStreet}, ${newWard}, ${newDistrict}, ${newCity}</p>
             </div>`;
-    
+            infoCheckout.innerHTML = '';
     }
 }
         });

@@ -522,6 +522,9 @@ echo '<p class="empty">no product user!</p>';
 							<div id="info-checkout">
 								
 							</div>
+							<div id="info-checkout1">
+								
+							</div>
 							<div id="info-payment">
 
 							</div>
