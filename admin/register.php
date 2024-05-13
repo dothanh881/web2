@@ -1,4 +1,10 @@
 
+<style>
+
+.btns{
+        background: #f2c2c2;
+    }
+</style>
 <?php
 
 // require functions.php file
@@ -248,7 +254,7 @@ if(isset($_SESSION['user_id'])){
 						
 						<div class="row">
 							<div class="col-md-12">
-								<input style="width:100%;" value="Register Now" type="submit" name="register"class="btn btn-success btn-lg">
+								<input style="width:100%;" value="Register Now" type="submit" name="register"class="btn btns  btn-lg">
 							</div>
 						</div>
 						

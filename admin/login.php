@@ -1,3 +1,10 @@
+<style>
+
+    .btns{
+        background: #8C3b3b;
+    }
+</style>
+
 <?php
 
 
@@ -119,7 +126,7 @@ include ('./../functions.php');
                     <small></small>
                 </div>
                 <input type="hidden" name="admin_login" value="1">
-                <button type="submit" name="Login" class="btn btn-success login-btn">Login</button>
+                <button type="submit" name="Login" class="btn btns login-btn">Login</button>
             </form>
         </div>
     </div>
