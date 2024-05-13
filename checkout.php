@@ -586,7 +586,3 @@ echo '<p class="empty">no product user!</p>';
 <?php 
 include('footer.php');
 ?>
-<script>
-
-
-</script>

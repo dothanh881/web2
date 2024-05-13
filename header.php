@@ -308,10 +308,7 @@ if (isset($_SESSION['user_id'])){
             }
         }
 
-        <?php if ($user_status == 0): ?>
-        alert("Your account have been blocked for unusual behavior!");
-        window.location.href = "./logout.php";
-    <?php endif; ?>
+       
     </script>
     <!-- start #main-site -->
     <main id="main-site">

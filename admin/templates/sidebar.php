@@ -5,7 +5,7 @@ if ( isset($_SESSION["user_id"]) ) {
   $admin = $_SESSION['admin'];
 } else {
   // Xử lý trường hợp không tồn tại 'username' trong $_SESSION
-   header('location:login_admin.php');
+   header('location:login.php');
 }
 ?>
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -22,7 +22,7 @@ if ( isset($_SESSION["user_id"]) ) {
           ?>
 
 <li class="nav-item">
-            <a class="nav-link <?php echo ($page == '' || $page == 'index_admin.php') ? 'active' : ''; ?>" href="index_admin.php">
+            <a class="nav-link <?php echo ($page == '' || $page == 'index.php') ? 'active' : ''; ?>" href="index.php">
             <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span data-feather="users"></span>
               Admin  <span class="sr-only">(current)</span>
             </a>

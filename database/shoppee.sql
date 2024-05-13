@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 12, 2024 lúc 05:26 PM
+-- Thời gian đã tạo: Th5 12, 2024 lúc 06:23 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -42,9 +42,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `user_id`, `item_id`, `cart_quantity`, `cart_price`, `name`, `cart_image`) VALUES
-(489, 'f5889a61ccd0', 5, 1, 1048.00, 'iPhone 13 Pro Max', './assets/products/img5.png'),
-(490, 'f5889a61ccd0', 35, 1, 747.00, 'iPhone 15', './assets/products/img15.png'),
-(497, '34b8a535e37c', 6, 1, 984.00, 'iPhone 12 Pro Max', './assets/products/img6.png');
+(497, '34b8a535e37c', 6, 1, 984.00, 'iPhone 12 Pro Max', './assets/products/img6.png'),
+(500, 'f5889a61ccd0', 35, 1, 747.00, 'iPhone 15', './assets/products/img15.png');
 
 --
 -- Bẫy `cart`
@@ -165,6 +164,7 @@ INSERT INTO `order` (`order_id`, `user_id`, `order_date`, `order_total_price`, `
 ('70752', 'b690eca96339', '2024-05-07', 4296.90, 'onlinebanking', 'Complete', 'Ho Chi Minh', 'District 11', '124  Nguyen Thi Nho', 'Danh', 'danh@gmail.com', '0167558223', 'Ward 12'),
 ('72850', 'f5889a61ccd0', '2024-05-06', 4155.00, 'cod', 'Pending', 'Ho Chi Minh', 'Go Vap', '40 Pham Van Dong', 'Khang Huynh', 'khang@gmail.com', '0144785523', 'Ward 10'),
 ('75004', '8016c59ca618', '2024-05-10', 989.90, 'cod', 'Processing', 'Ho Chi Minh', 'Go Vap', '50 Pham Van Dong', 'Huynh Duy Khang', 'khanghuynh@gmail.com', '0981332561', 'Ward 11'),
+('83885', 'f5889a61ccd0', '2024-05-12', 1795.00, 'cod', 'Pending', 'Ho Chi Minh   ', 'Tan Phu   ', '48/42 Le Nga', 'Thanh Do Phu', 'abc@gmail.com', '0981776491', 'Ward 10  '),
 ('84253', '22f9988dc289', '2024-05-12', 3702.00, 'cod', 'Complete', 'Ho Chi Minh', 'Tan Phu', 'Le Nga', 'Thanh Nguyen', 'abeil@gmail.com', '0981776491', 'Ward 10'),
 ('85911', 'f5889a61ccd0', '2024-05-06', 484.00, 'onlinebanking', 'Complete', 'Ho Chi Minh', 'Tan Phu', '48/42 Le Nga', 'Thanh Do', 'abc@gmail.com', '123456789', 'Ward 6'),
 ('86252', '53091d01d890', '2024-05-06', 3636.35, 'cod', 'Complete', 'Ho Chi Minh ', 'District 5 ', '273 An Duong Vuong', 'Thanh Do', 'thanh@gmail.com', '0981776491', 'Ward 8'),
@@ -284,6 +284,7 @@ INSERT INTO `order_detail` (`order_detail_price`, `order_detail_quantity`, `orde
 (524.00, 1, '72850', 11, 524.00),
 (747.00, 2, '72850', 35, 1494.00),
 (989.90, 1, '75004', 34, 989.90),
+(747.00, 1, '83885', 35, 747.00),
 (1234.00, 3, '84253', 70, 3702.00),
 (484.00, 1, '85911', 6, 484.00),
 (1459.35, 1, '86252', 1, 1459.35),
@@ -333,21 +334,21 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`item_id`, `category_id`, `item_name`, `item_quantity`, `item_price`, `item_color`, `item_image`, `item_discription`, `item_status`, `item_rom`, `item_ram`, `size_screen`, `created_at`, `updated_at`) VALUES
-(1, 1, 'iPhone 15 Pro Max', 187, 1290.00, 'Black', './assets/products/img1.png', 'iPhone 15 Pro Max is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone 15 Pro Max possesses Apple most outstanding features.', 2, 512, 8, 6.40, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(2, 1, 'iPhone 15 Pro Max', 189, 1452.00, 'Silver', './assets/products/img2.png', 'iPhone 15 Pro Max is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone 15 Pro Max possesses Apple most outstanding features.', 2, 512, 8, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(3, 1, 'iPhone 14 Plus', 186, 1129.00, 'Purple', './assets/products/img3.png', 'The appeal of the new generation iPhone 2022 with a large screen, the best battery ever, impressive night photography and a series of top-notch technologies, the iPhone 14 Plus brings users into advanced mobile experiences.', 2, 256, 6, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(4, 1, 'iPhone 14 Plus', 196, 1169.56, 'Yellow', './assets/products/img4.png', 'The appeal of the new generation iPhone 2022 with a large screen, the best battery ever, impressive night photography and a series of top-notch technologies, the iPhone 14 Plus brings users into advanced mobile experiences.', 2, 256, 6, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(5, 1, 'iPhone 13 Pro Max', 187, 1048.00, 'White', './assets/products/img5.png', 'iPhone 13 Pro Max has the best dual camera system ever, the fastest Apple A15 processor in the smartphone world and extremely long battery life, ready to accompany you all day long.', 2, 512, 8, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(6, 1, 'iPhone 12 Pro Max', 173, 984.00, 'Yellow', './assets/products/img6.png', 'In the last months of 2020, Apple officially introduced to users as well as iFans the new generation of iPhone 12 series with a series of breakthrough features, completely transformed design, powerful performance and one of That is the iPhone 12 Pro Max.', 2, 128, 6, 6.70, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(7, 2, 'Samsung Galaxy S24 Ultra', 189, 1089.00, 'Blue', './assets/products/img7.png', 'Samsung Galaxy S24 Ultra is the smartest Galaxy phone ever with connection power, creative power and entertainment power all powered by Galaxy AI artificial intelligence. Completely new design from the classy Titanium frame, super camera with resolution.', 2, 512, 12, 6.80, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(8, 2, 'Samsung Galaxy S22 Ultra', 173, 605.00, 'Black', './assets/products/img8.png', 'Samsung Galaxy S24 Ultra is the smartest Galaxy phone ever with connection power, creative power and entertainment power all powered by Galaxy AI artificial intelligence. Completely new design from the classy Titanium frame, super camera with resolution.', 2, 256, 12, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(9, 2, 'Samsung Galaxy Z Fold5', 196, 1493.00, 'Blue', './assets/products/img9.png', 'Joining Samsung Galaxy Z Flip 5 flexibly, you will experience a series of exciting breakthrough technologies and a completely new unique design. Where you can freely explore and confidently express your personality.', 2, 512, 12, 7.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(10, 2, 'Samsung Galaxy S23 Ultra', 176, 1129.00, 'Green', './assets/products/img10.png', 'Proud to be the first Galaxy phone to possess a superb 200MP sensor, the Samsung Galaxy S23 Ultra takes users into a world of cutting-edge photography. The power is also explosive with the most powerful Snapdragon processor for revolutionary gaming.', 2, 512, 12, 6.50, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(11, 2, 'Samsung Galaxy S23 FE', 182, 524.00, 'Purple', './assets/products/img11.png', 'The Galaxy S23 FE 5G is the best Galaxy FE device Samsung has ever launched. Equipped with premium features from design to outstanding performance, an incredible night camera system. All combine to bring the perfect experience for work and entertainment.', 2, 512, 8, 6.40, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(1, 1, 'iPhone 15 Pro Max', 184, 1290.00, 'Black', './assets/products/img1.png', 'iPhone 15 Pro Max is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone 15 Pro Max possesses Apple most outstanding features.', 2, 512, 8, 6.40, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(2, 1, 'iPhone 15 Pro Max', 186, 1452.00, 'Silver', './assets/products/img2.png', 'iPhone 15 Pro Max is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone 15 Pro Max possesses Apple most outstanding features.', 2, 512, 8, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(3, 1, 'iPhone 14 Plus', 183, 1129.00, 'Purple', './assets/products/img3.png', 'The appeal of the new generation iPhone 2022 with a large screen, the best battery ever, impressive night photography and a series of top-notch technologies, the iPhone 14 Plus brings users into advanced mobile experiences.', 2, 256, 6, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(4, 1, 'iPhone 14 Plus', 195, 1169.56, 'Yellow', './assets/products/img4.png', 'The appeal of the new generation iPhone 2022 with a large screen, the best battery ever, impressive night photography and a series of top-notch technologies, the iPhone 14 Plus brings users into advanced mobile experiences.', 2, 256, 6, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(5, 1, 'iPhone 13 Pro Max', 184, 1048.00, 'White', './assets/products/img5.png', 'iPhone 13 Pro Max has the best dual camera system ever, the fastest Apple A15 processor in the smartphone world and extremely long battery life, ready to accompany you all day long.', 2, 512, 8, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(6, 1, 'iPhone 12 Pro Max', 170, 984.00, 'Yellow', './assets/products/img6.png', 'In the last months of 2020, Apple officially introduced to users as well as iFans the new generation of iPhone 12 series with a series of breakthrough features, completely transformed design, powerful performance and one of That is the iPhone 12 Pro Max.', 2, 128, 6, 6.70, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(7, 2, 'Samsung Galaxy S24 Ultra', 186, 1089.00, 'Blue', './assets/products/img7.png', 'Samsung Galaxy S24 Ultra is the smartest Galaxy phone ever with connection power, creative power and entertainment power all powered by Galaxy AI artificial intelligence. Completely new design from the classy Titanium frame, super camera with resolution.', 2, 512, 12, 6.80, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(8, 2, 'Samsung Galaxy S22 Ultra', 167, 605.00, 'Black', './assets/products/img8.png', 'Samsung Galaxy S24 Ultra is the smartest Galaxy phone ever with connection power, creative power and entertainment power all powered by Galaxy AI artificial intelligence. Completely new design from the classy Titanium frame, super camera with resolution.', 2, 256, 12, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(9, 2, 'Samsung Galaxy Z Fold5', 193, 1493.00, 'Blue', './assets/products/img9.png', 'Joining Samsung Galaxy Z Flip 5 flexibly, you will experience a series of exciting breakthrough technologies and a completely new unique design. Where you can freely explore and confidently express your personality.', 2, 512, 12, 7.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(10, 2, 'Samsung Galaxy S23 Ultra', 170, 1129.00, 'Green', './assets/products/img10.png', 'Proud to be the first Galaxy phone to possess a superb 200MP sensor, the Samsung Galaxy S23 Ultra takes users into a world of cutting-edge photography. The power is also explosive with the most powerful Snapdragon processor for revolutionary gaming.', 2, 512, 12, 6.50, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(11, 2, 'Samsung Galaxy S23 FE', 179, 524.00, 'Purple', './assets/products/img11.png', 'The Galaxy S23 FE 5G is the best Galaxy FE device Samsung has ever launched. Equipped with premium features from design to outstanding performance, an incredible night camera system. All combine to bring the perfect experience for work and entertainment.', 2, 512, 8, 6.40, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
 (12, 2, 'Samsung Galaxy A14', 194, 201.00, 'Silver', './assets/products/img12.png', 'Adding color and experience to your life, Samsung introduces the cheap Galaxy A14 4G with a series of new improvements. Everything is harmoniously combined from youthful design, 50MP camera system, sharp screen to super large battery.', 2, 128, 4, 6.00, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(13, 2, 'Samsung Galaxy M54', 196, 1089.00, 'Silver', './assets/products/img13.png', 'Following the success of the Galaxy M53 5G, Samsung continues to launch the Samsung Galaxy M54 5G phone model. This launch, Samsung has upgraded performance, battery capacity and improved design to help bring the best product to you.', 2, 256, 8, 6.70, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
-(34, 1, 'iPhone 15 Plus', 188, 989.90, 'Green', './assets/products/img14.png', 'iPhone 15 Plus 256GB not only stands out thanks to its 6.7-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory.', 2, 256, 6, 6.70, '2024-05-05 22:24:54', '2024-05-05 22:24:54'),
-(35, 1, 'iPhone 15', 179, 747.00, 'Yellow', './assets/products/img15.png', 'iPhone 15 not only stands out thanks to its 6.1-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory. In addition, this new generation of iPhone is also equipped with a pair of modern rear cameras.', 2, 128, 6, 6.10, '2024-05-05 22:26:45', '2024-05-05 22:26:45'),
+(13, 2, 'Samsung Galaxy M54', 193, 1089.00, 'Silver', './assets/products/img13.png', 'Following the success of the Galaxy M53 5G, Samsung continues to launch the Samsung Galaxy M54 5G phone model. This launch, Samsung has upgraded performance, battery capacity and improved design to help bring the best product to you.', 2, 256, 8, 6.70, '2024-04-14 14:12:47', '2024-04-14 14:12:47'),
+(34, 1, 'iPhone 15 Plus', 185, 989.90, 'Green', './assets/products/img14.png', 'iPhone 15 Plus 256GB not only stands out thanks to its 6.7-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory.', 2, 256, 6, 6.70, '2024-05-05 22:24:54', '2024-05-05 22:24:54'),
+(35, 1, 'iPhone 15', 176, 747.00, 'Yellow', './assets/products/img15.png', 'iPhone 15 not only stands out thanks to its 6.1-inch OLED Super Retina XDR screen but also offers impressive storage capacity with 256GB internal memory. In addition, this new generation of iPhone is also equipped with a pair of modern rear cameras.', 2, 128, 6, 6.10, '2024-05-05 22:26:45', '2024-05-05 22:26:45'),
 (70, 1, 'Iphone X', 200, 825.00, 'Red', './assets/products/8.png', 'iPhone X is the most advanced iPhone with the largest screen, best battery life, strongest configuration and super durable, super light aerospace-standard Titanium frame design. iPhone X possesses Apple most outstanding features.', 2, 128, 8, 6.60, '2024-05-12 19:01:01', '2024-05-12 19:01:01');
 
 -- --------------------------------------------------------
@@ -385,7 +386,7 @@ INSERT INTO `user` (`user_id`, `email`, `username`, `password`, `street`, `distr
 ('5d314b93c7b7', 'admin@email.com', 'admin', '$2y$10$Nt9p/gZUqaHsldfLWkmNReFkqXyxABh4W61sVPmWpoUk7yVc6pLFG', '273 An Duong Vuong', 'district 12', 'Ho Chi Minh         ', '0981776492', 1, 1, '2024-04-14 21:21:53', '2024-04-14 21:21:53', 'Phu Thanh', 'Ward 9'),
 ('63678124a1a3', 'tnguyen@gmail.com', 'trungnguyen', '$2y$10$qeWG7Aa3FVDP5fsPYy9pq.EWNcfVo6RFoczUpJciZX/GEBo4Bf6Ai', 'Lu Gia', 'District 11 ', 'Ho Chi Minh ', '0981776491', 1, 0, '2024-05-12 19:56:08', '2024-05-12 19:56:08', 'Trung Nguyen', 'Ward 11'),
 ('8016c59ca618', 'khanghuynh@gmail.com', 'dkhang', '$2y$10$CyhfKE3rKNv0ZWr6ielNC.CqHfOzCBSBiCx9bi4y2KgMCvm2TVTJW', '50 Pham Van Dong', 'Go Vap', 'Ho Chi Minh', '0981332561', 1, 0, '2024-05-07 09:13:36', '2024-05-07 09:13:36', 'Huynh Duy Khang', 'Ward 11'),
-('b690eca96339', 'thanhdanh@gmail.com', 'thanhdanh1', '$2y$10$2Z/ZJOgTLGTnDjEA79uqQeu7C2.MAh/bjXQ5PveRvU7PgUCyfp0DK', '82 An Duong Vuong', 'District 10', 'Ho Chi Minh', '0221545454', 0, 0, '2024-05-06 09:16:03', '2024-05-06 09:16:03', 'Danh Nguyen', 'Ward 10'),
+('b690eca96339', 'thanhdanh@gmail.com', 'thanhdanh1', '$2y$10$2Z/ZJOgTLGTnDjEA79uqQeu7C2.MAh/bjXQ5PveRvU7PgUCyfp0DK', '82 An Duong Vuong', 'District 10', 'Ho Chi Minh', '0221545454', 1, 0, '2024-05-06 09:16:03', '2024-05-06 09:16:03', 'Danh Nguyen', 'Ward 10'),
 ('f47e925465cc', 'admin1@gmail.com', 'admin12', '$2y$10$/ZfsUGmZaDqRWtPvauoSI.CzZ4vPCTjmWWwFcGlTqC3qVYtee.Z2q', '319 Ly Thuong Kiet', 'District 11     ', 'Ho Chi Minh     ', '0165452116', 1, 1, '2024-05-06 14:34:54', '2024-05-06 14:34:54', 'Admin12', 'Ward 10     '),
 ('f5889a61ccd0', 'abc@gmail.com', 'user123', '$2y$10$yeceLurYhwpONvWihcG6F.k07fjvzJ5WayKkEqy.qMD5NsnsRX6/K', '48/42 Le Nga', 'Tan Phu   ', 'Ho Chi Minh   ', '0981776491', 1, 0, '2024-04-14 21:16:21', '2024-04-14 21:16:21', 'Thanh Do Phu', 'Ward 10  ');
 
@@ -442,7 +443,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=498;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=501;
 
 --
 -- AUTO_INCREMENT cho bảng `category`
