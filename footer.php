@@ -177,22 +177,9 @@ alertElement.querySelector('.close').addEventListener('click', hideAlert);
 
 
 
-    
-	function setError(ele, message) {
-		let parentEle = ele.parentNode;
-		parentEle.querySelector('small').innerText = message;
-		ele.style.borderColor = "red";
-		parentEle.querySelector('small').style.color = "red";
-	}
-
-	function setSuccess(ele) {
-		ele.style.borderColor = "green";
-		ele.parentNode.querySelector('small').innerText = "";
-	}
 function validateForm() {
     var paymentMethod = document.querySelector('input[name="payment"]:checked');
     var deliveryAddress = document.querySelector('input[name="address"]:checked');
-    var newAddressRadio = document.getElementById("new-address-radio");
 
     if (!paymentMethod) {
         alert('Please select a payment method.');
@@ -207,68 +194,23 @@ function validateForm() {
         return false; // Prevent form submission
     }
 
-     if(newAddressRadio.checked){
-               
-        const usernameElement = document.getElementById('newFullname');
-	usernameElement.onblur= function () {
-		const username = usernameElement.value.trim();
-		if (!username) {
-			setError(usernameElement, "Please re-enter the recipient's name !");
-		} else {
-			setSuccess(usernameElement);
-		}
-	};
-	const emailElement = document.getElementById('newEmail');
-	emailElement.onblur=function () {
-		const email = emailElement.value.trim();
-		const emailRegex = /^\s*[^@\s]+@[^\s@\s]+\.[^\s@\s]*\s*$/;
-		if (!email || !emailRegex.test(email)) {
-			setError(emailElement, "Please enter your email again ! It is not the correct format");
-		} else {
-			setSuccess(emailElement);
-		}
-	};
-	const mobileElement = document.getElementById('newPhone');
-	mobileElement.onblur = function () {
-		const mobile = mobileElement.value.trim();
-		const phoneRegex = /^0[1-9]{9}$/;
-		if (!mobile || !phoneRegex.test(mobile)) {
-			setError(mobileElement, "The phone number is not in the correct format !");
-		} else {
-			setSuccess(mobileElement);
-		}
-	};
-	const streetElement = document.getElementById('newStreet');
-	streetElement.onblur = function () {
-		const street = streetElement.value.trim();
-		if (!street) {
-			setError(streetElement, "Please enter street again !");
-
-		} else {
-			setSuccess(streetElement);
-		}
-	};
-
-            
-
-
-
-        }
     
-   
+
    
     return true;
 }
  
  
 </script>
+
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
           
     var checkout = document.getElementById("checkout");
     
     var infoCheckout = document.querySelector("#info-checkout");
-    var infoCheckout1 = document.querySelector("#info-checkout1");
         // Chọn radio buttons
         var availableAddressRadio = document.getElementById("available-address-radio");
         var newAddressRadio = document.getElementById("new-address-radio");
@@ -337,76 +279,287 @@ function validateForm() {
 
 
 
-        newAddressRadio.addEventListener("click", function() {
-            shipingDetails.style.display = "block"; 
-            shipingDetailsAvailable.style.display = "none";
-            var infoCheckout = document.querySelector("#info-checkout");
+      newAddressRadio.addEventListener("click", function() {
+    shipingDetails.style.display = "block"; 
+    shipingDetailsAvailable.style.display = "none";
+    var infoCheckout = document.querySelector("#info-checkout");
 
-document.getElementById("newFullname").addEventListener("input", updateInfo);
-document.getElementById("newEmail").addEventListener("input", updateInfo);
-document.getElementById("newPhone").addEventListener("input", updateInfo);
-document.getElementById("newStreet").addEventListener("input", updateInfo);
-document.getElementById("newWard").addEventListener("change", updateInfo);
-document.getElementById("newCity").addEventListener("change", updateInfo);
-document.getElementById("newDistrict").addEventListener("change", updateInfo);
+    document.getElementById("newFullname").addEventListener("input", updateInfo);
+    document.getElementById("newEmail").addEventListener("input", updateInfo);
+    document.getElementById("newPhone").addEventListener("input", updateInfo);
+    document.getElementById("newStreet").addEventListener("input", updateInfo);
+    document.getElementById("newWard").addEventListener("change", updateInfo);
+    document.getElementById("newCity").addEventListener("change", updateInfo);
+    document.getElementById("newDistrict").addEventListener("change", updateInfo);
 
-           
-        // Lấy dữ liệu từ các input và select
-        function updateInfo() {
-            var infoCheckout = document.querySelector("#info-checkout");
+    // Lấy dữ liệu từ các input và select
+    function updateInfo() {
+        var infoCheckout = document.querySelector("#info-checkout");
 
-    // Kiểm tra nếu radio "new-address-radio" đã được chọn
-    if (newAddressRadio.checked) {
-        // Lấy dữ liệu từ các input và select
-       
-        var newFullname = document.getElementById("newFullname").value;
-        var newEmail = document.getElementById("newEmail").value;
-        var newPhone = document.getElementById("newPhone").value;
-        var newStreet = document.getElementById("newStreet").value;
-        var newWard = document.getElementById("newWard").value;
-        var newCity = document.getElementById("newCity").value;
-        var newDistrict = document.getElementById("newDistrict").value;
+        // Kiểm tra nếu radio "new-address-radio" đã được chọn
+        if (newAddressRadio.checked) {
+            // Lấy dữ liệu từ các input và select
+            var newFullname = document.getElementById("newFullname").value;
+            var newEmail = document.getElementById("newEmail").value;
+            var newPhone = document.getElementById("newPhone").value;
+            var newStreet = document.getElementById("newStreet").value;
+            var newWard = document.getElementById("newWard").value;
+            var newCity = document.getElementById("newCity").value;
+            var newDistrict = document.getElementById("newDistrict").value;
+          
+          
+            // Lấy ngày hiện tại
+            var currentDate = new Date();
+            var day = currentDate.getDate();
+            var month = currentDate.getMonth() + 1;
+            var year = currentDate.getFullYear();
+            var formattedDate = year + '/' + month + '/' + day;
+
+            // Hiển thị thông tin mới trên giao diện
+            infoCheckout.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Receiver Name:</h6>
+                        <p>${newFullname}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Create Date:</h6>
+                        <p>${formattedDate}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Email:</h6>
+                        <p>${newEmail}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Phone:</h6>
+                        <p>${newPhone}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <h6>Address:</h6>
+                    <p>${newStreet}, ${newWard}, ${newDistrict}, ${newCity}</p>
+                </div>`;
+        }
+    }
+});
 
 
-      
-        // Lấy ngày hiện tại
-        var currentDate = new Date();
-        var day = currentDate.getDate();
-        var month = currentDate.getMonth() + 1;
-        var year = currentDate.getFullYear();
-        var formattedDate = year + '/' + month + '/' + day;
-        
-        // Hiển thị thông tin mới trên giao diện
-       
-        infoCheckout1.innerHTML = `
+
+// Hàm reset các giá trị của new address về rỗng
+function resetNewAddressFields() {
+    document.getElementById('newFullname').value = '';
+    document.getElementById('newEmail').value = '';
+    document.getElementById('newPhone').value = '';
+    document.getElementById('newStreet').value = '';
+    document.getElementById('newWard').value = '';
+    document.getElementById('newCity').value = '';
+    document.getElementById('newDistrict').value = '';
+}
+
+
+
+
+
+
+availableAddressRadio.addEventListener("click", function() {
+    shipingDetails.style.display = "none"; 
+    shipingDetailsAvailable.style.display = "block";
+    var infoCheckout = document.querySelector("#info-checkout");
+
+    if(availableAddressRadio.checked){
+        // Retrieve data attributes từ shipping-details-available
+        var userId = document.querySelector(".shiping-details-available").getAttribute("data-user-id");
+        var fullname = document.querySelector(".shiping-details-available").getAttribute("data-fullname");
+        var email = document.querySelector(".shiping-details-available").getAttribute("data-email");
+        var phone = document.querySelector(".shiping-details-available").getAttribute("data-phone");
+        var street = document.querySelector(".shiping-details-available").getAttribute("data-street");
+        var ward = document.querySelector(".shiping-details-available").getAttribute("data-ward");
+        var city = document.querySelector(".shiping-details-available").getAttribute("data-city");
+        var district = document.querySelector(".shiping-details-available").getAttribute("data-district");
+
+        // Hiển thị thông tin trong infoCheckout
+        infoCheckout.innerHTML = `
             <div class="row">
-            <div class="col-md-6">
+                <div class="col-md-6">
                     <h6>Receiver Name:</h6>
-                    <p>${newFullname}</p>
+                    <p>${fullname}</p>
                 </div>
                 <div class="col-md-6">
                     <h6>Create Date:</h6>
-                    <p>${formattedDate}</p>
+                    <p>${formattedDate}</p> <!-- Nếu cần lấy thông tin ngày hiện tại thì cần khai báo biến formattedDate -->
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <h6>Receiver Name:</h6>
-                    <p>${newEmail}</p>
+                    <h6>Email:</h6>
+                    <p>${email}</p>
                 </div>
                 <div class="col-md-6">
                     <h6>Phone:</h6>
-                    <p>${newPhone}</p>
+                    <p>${phone}</p>
                 </div>
             </div>
             <div class="row">
                 <h6>Address:</h6>
-                <p>${newStreet}, ${newWard}, ${newDistrict}, ${newCity}</p>
+                <p>${street}, ${ward}, ${district}, ${city}</p>
             </div>`;
-            infoCheckout.innerHTML = '';
+
+
+            resetNewAddressFields();
+    }
+    // Nếu không chọn availableradio, có thể xử lý theo ý muốn, ví dụ, xóa dữ liệu đã hiển thị trước đó trong infoCheckout
+    else {
+        infoCheckout.innerHTML = ""; // Xóa dữ liệu hiển thị trong infoCheckout
+    }
+    
+});
+
+
+
+const orderPlaceButton = document.getElementById('btn-checkout');
+orderPlaceButton.addEventListener('click', function(event) { 
+    if (newAddressRadio.checked) {
+        if (!checkNewAddressInputs()) {
+            alert("Please fill out all fields for the new address.");
+            if (!check()) {
+                focusOnFirstEmptyField();
+                return;
+            }
+            return; // Thêm câu lệnh return ở đây để ngăn không hiện modal khi có lỗi
+        }
+    }
+        $('#mi-modal').modal('toggle');
+    
+});
+
+document.getElementById('modal-btn-no').addEventListener('click', function() {
+    $('#mi-modal').modal('hide'); // Hide the modal when the "Cancel" button is clicked
+});
+
+function focusOnFirstEmptyField() {
+    const inputs = document.querySelectorAll('#newFullname, #newEmail, #newPhone, #newStreet, #newWard, #newCity, #newDistrict');
+    for (const input of inputs) {
+        if (!input.value.trim()) {
+            input.focus();
+            break;
+        }
     }
 }
-        });
+
+const usernameElement = document.getElementById('newFullname');
+usernameElement.addEventListener('blur', function() {
+    const username = usernameElement.value.trim();
+    if (!username) {
+        setError(usernameElement, "Please re-enter the recipient's name !");
+    } else {
+        setSuccess(usernameElement);
+    }
+});
+
+const emailElement = document.getElementById('newEmail');
+emailElement.addEventListener('blur', function() {
+    const email = emailElement.value.trim();
+    const emailRegex = /^\s*[^@\s]+@[^\s@\s]+\.[^\s@\s]*\s*$/;
+    if (!email || !emailRegex.test(email)) {
+        setError(emailElement, "Please enter your email again ! It is not the correct format");
+    } else {
+        setSuccess(emailElement);
+    }
+});
+
+const mobileElement = document.getElementById('newPhone');
+mobileElement.addEventListener('blur', function() {
+    const mobile = mobileElement.value.trim();
+    const phoneRegex = /^0[1-9]{9}$/;
+    if (!mobile || !phoneRegex.test(mobile)) {
+        setError(mobileElement, "The phone number is not in the correct format !");
+    } else {
+        setSuccess(mobileElement);
+    }
+});
+
+const streetElement = document.getElementById('newStreet');
+streetElement.addEventListener('blur', function() {
+    const street = streetElement.value.trim();
+    if (!street) {
+        setError(streetElement, "Please enter street again !");
+    } else {
+        setSuccess(streetElement);
+    }
+});
+
+function check() {
+    let hasErrors = false; // Flag to track if errors are found
+
+    // Get all input elements in the form (assuming you have a form element)
+    const inputs = document.querySelectorAll('input');
+
+    for (const input of inputs) {
+        if (input.style.borderColor === 'red') { // Check if border color is red
+            hasErrors = true;
+            break; // Exit the loop if an error is found (optional)
+        }
+    }
+
+    if (hasErrors) {
+      
+        return false; // Prevent form submission (optional)
+    }
+}
+
+function setError(ele, message) {
+    let parentEle = ele.parentNode;
+    parentEle.querySelector('small').innerText = message;
+    ele.style.borderColor = "red";
+    parentEle.querySelector('small').style.color = "red";
+}
+
+function setSuccess(ele) {
+    ele.style.borderColor = "green";
+    ele.parentNode.querySelector('small').innerText = "";
+}
+
+function checkNewAddressInputs() {
+    const newFullname = document.getElementById('newFullname').value.trim();
+    const newEmail = document.getElementById('newEmail').value.trim();
+    const newPhone = document.getElementById('newPhone').value.trim();
+    const newStreet = document.getElementById('newStreet').value.trim();
+    const newWard = document.getElementById('newWard').value.trim();
+    const newCity = document.getElementById('newCity').value.trim();
+    const newDistrict = document.getElementById('newDistrict').value.trim();
+
+    // Check if any input field is empty
+    if (!newFullname || !newEmail || !newPhone || !newStreet || !newWard || !newCity || !newDistrict) {
+        return false;
+    }
+    
+    // Kiểm tra định dạng email
+    const emailRegex = /^\s*[^@\s]+@[^\s@\s]+\.[^\s@\s]*\s*$/;
+    if (!emailRegex.test(newEmail)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+
+    // Kiểm tra định dạng số điện thoại
+    const phoneRegex = /^0[1-9]{9}$/;
+    if (!phoneRegex.test(newPhone)) {
+        alert("Please enter a valid phone number.");
+        return false;
+    }
+
+    // Nếu tất cả đều hợp lệ, trả về true
+    return true;
+}
+
+
+
+
+
+
+
+
 
 
 

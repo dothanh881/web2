@@ -207,7 +207,7 @@ while ($row = $result -> fetch_assoc()){
 
 						<br>
 
-						<input data-toggle="modal" data-target="#mi-modal"  type="button" name="checkout"  id="btn-checkout" class="btn btn-primary" value="Order Place">
+						<input type="button" name="checkout"  id="btn-checkout" class="btn btn-primary" value="Order Place">
 						<a href="cart.php" class="btn btn-secondary">Back</a>
 <br><br>
 
@@ -233,10 +233,12 @@ while ($row = $result -> fetch_assoc()){
 							<div class="col-md-6">
 								<label for="newFullname">Name</label>
 								<input type="text" id="newFullname" name="newFullname" class="form-control" >
+								<small></small>
 							</div>
 							<div class="col-md-6">
 								<label for="newEmail">Email</label>
 								<input type="email" id="newEmail" name="newEmail"class="form-control" >
+								<small></small>
 							</div>
 						</div>
 
@@ -244,6 +246,7 @@ while ($row = $result -> fetch_assoc()){
 							<div class="col-md-12">
 								<label for="newPhone">Phone</label>
 								<input type="text" id="newPhone" name="newPhone"class="form-control" >
+								<small></small>
 							</div>
 						</div>
 
@@ -252,6 +255,7 @@ while ($row = $result -> fetch_assoc()){
 							<div class="col-md-6">
 								<label for="newStreet">Street</label>
 								<input type="text" id="newStreet" name="newStreet"class="form-control" >
+								<small></small>
 							</div>
 							<div class="col-md-6">
 								<label for="new_Ward">Ward</label>
@@ -522,9 +526,7 @@ echo '<p class="empty">no product user!</p>';
 							<div id="info-checkout">
 								
 							</div>
-							<div id="info-checkout1">
-								
-							</div>
+							
 							<div id="info-payment">
 
 							</div>
@@ -542,7 +544,7 @@ echo '<p class="empty">no product user!</p>';
                </div>
                <!-- Modal footer -->
                <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="modal-btn-no" data-dismiss="modal" >Cancel</button>
+        <button type="button" class="btn btn-secondary" id="modal-btn-no" >Cancel</button>
      
 		
 		
